@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar
+    <!-- <v-app-bar
       app
       color="primary"
       dark
@@ -39,18 +39,23 @@
 
     <v-main>
       <HelloWorld/>
-    </v-main>
+    </v-main> -->
+
+    <AsosUI/>
+    
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld';
+// import HelloWorld from './components/HelloWorld';
+import AsosUI from  './components/asos-wireframe.vue';
 
 export default {
   name: 'App',
 
   components: {
-    HelloWorld,
+    // HelloWorld,
+    AsosUI,
   },
 
   data: () => ({
