@@ -41,21 +41,27 @@
       <HelloWorld/>
     </v-main> -->
 
-    <AsosUI/>
+    <!-- <AsosUI/> -->
     
+    <NavBar/>
+    <HomePage/>
   </v-app>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld';
-import AsosUI from  './components/asos-wireframe.vue';
+// import AsosUI from  './components/asos-wireframe.vue';
+import NavBar from './components/NavBar'
+import HomePage from './components/HomePage' 
 
 export default {
   name: 'App',
 
   components: {
     // HelloWorld,
-    AsosUI,
+    // AsosUI,
+    NavBar,
+    HomePage
   },
 
   data: () => ({
