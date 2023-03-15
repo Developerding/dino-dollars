@@ -1,5 +1,7 @@
 <template>
   <v-app>
+    <v-main class="blue lighten-4">
+
     <!-- <v-app-bar
       app
       color="primary"
@@ -44,7 +46,9 @@
     <!-- <AsosUI/> -->
     
     <NavBar/>
-    <HomePage/>
+
+    <router-view></router-view>
+    </v-main>
   </v-app>
 </template>
 
@@ -52,7 +56,6 @@
 // import HelloWorld from './components/HelloWorld';
 // import AsosUI from  './components/asos-wireframe.vue';
 import NavBar from './components/NavBar'
-import HomePage from './components/HomePage' 
 
 export default {
   name: 'App',
@@ -60,8 +63,7 @@ export default {
   components: {
     // HelloWorld,
     // AsosUI,
-    NavBar,
-    HomePage
+    NavBar
   },
 
   data: () => ({

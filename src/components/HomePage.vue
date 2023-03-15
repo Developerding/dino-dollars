@@ -4,7 +4,7 @@
   
       <v-main class="blue lighten-4">
         <v-container>
-          <v-div align="center" justify="center">
+          <v-div align="center">
             <h1>Dino Dollars</h1>
             <h2 class="font-weight-medium">Spend. Redeem. Save.</h2>
             <h3 class="font-weight-light">Dino Dollars is a voucher system that helps consumers save with every dollar spent!</h3>
@@ -12,17 +12,44 @@
 
           <br><br>
 
+          <!-- carousell of partners -->
+
           <v-div align="center" justify="center">
             <h2 class="font-weight-medium">Earn Dino Dollars with our Partners!</h2>
 
-            <v-carousel v-model="model">
-              <v-carousel-item v-for="partner in partners" :key="partner.name" :src="partner.src"
-              reverse-transition="fade-transition"
-              transition="fade-transition"
-            ></v-carousel-item>
+            <v-carousel hide-delimiters v-model="model">
+              <v-carousel-item reverse-transition="fade-transition" transition="fade-transition" align-center justify>
+                <router-link to="/BuyVouchers">
+                  <v-img src="../assets/asos.jpg" width="300" height="300" justify="center" align="center"></v-img>
+                </router-link>
+
+              </v-carousel-item>
+
+              <v-carousel-item reverse-transition="fade-transition" transition="fade-transition" align-center justify>
+                <v-img src="../assets/adidas.jpg" width="300" height="300" align-center justify ></v-img>
+              </v-carousel-item>
+              <v-carousel-item reverse-transition="fade-transition" transition="fade-transition" align-center justify>
+                <v-img src="../assets/nike.jpg" width="300" height="300" align-center justify ></v-img>
+              </v-carousel-item>
+              <v-carousel-item reverse-transition="fade-transition" transition="fade-transition" align-center justify>
+                <v-img src="../assets/apple.jpg" width="300" height="300" align-center justify ></v-img>
+              </v-carousel-item>
+              <v-carousel-item reverse-transition="fade-transition" transition="fade-transition" align-center justify>
+                <v-img src="../assets/puma.jpg" width="300" height="300" align-center justify ></v-img>
+              </v-carousel-item>
             </v-carousel>
           </v-div>
 
+          <!-- instructions -->
+
+          <v-div>
+            <h2 font-weight-medium align="center">How to earn Dino Dollars?</h2>
+            <v-row>
+              <v-img src=""></v-img>
+              <v-card>Link</v-card>
+            </v-row>
+            
+          </v-div>
           
           
         </v-container>
@@ -36,9 +63,11 @@ export default {
   data () {
     return {
       partners: [
-        {name: 'Asos', src: 'https://1000logos.net/wp-content/uploads/2021/04/Asos-logo.png'},
-        {name: 'Adidas', src:''},
-        {name: 'Nike', src:''},
+        {name: 'Asos', src:'../assets/asos.jpg'},
+        {name: 'Adidas', src:'../assets/adidas.jpg'},
+        {name: 'Nike', src:'../assets/nike.jpg'},
+        {name: 'Apple', src:'../assets/apple.jpg'},
+        {name: 'Puma', src:'../assets/puma.jpg'},
       ],
     }
   },
