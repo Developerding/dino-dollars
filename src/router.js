@@ -3,7 +3,7 @@ import VueRouter from 'vue-router'
 import HomePage from './components/HomePage.vue'
 import BuyVouchers from './components/BuyVouchers.vue'
 import MyVouchers from './components/MyVouchers.vue'
-import RedeemedVouchers from './components/RedeemedVouchers.vue'
+import RedemptionHistory from './components/RedemptionHistory.vue'
 
 Vue.use(VueRouter)
 
@@ -27,9 +27,9 @@ export default new VueRouter ({
             component: MyVouchers
         },
         {
-            path: '/RedeemedVouchers',
-            name: 'RedeemedVouchers',
-            component: RedeemedVouchers
+            path: '/RedemptionHistory',
+            name: 'RedemptionHistory',
+            component: RedemptionHistory
         }
     ]
 })

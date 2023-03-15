@@ -48,7 +48,7 @@
         links: [
             {text: 'Buy Vouchers', route:'/BuyVouchers'},
             {text: 'My Vouchers', route:'/MyVouchers'},
-            {text: 'Redeemed Vouchers', route:'/RedeemedVouchers'},
+            {text: 'Redemption History', route:'/RedemptionHistory'},
         ],
       }),
     }
