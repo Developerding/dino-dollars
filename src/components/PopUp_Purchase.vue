@@ -4,39 +4,19 @@
         Purchase
       </v-btn>
   
-      <v-dialog
-        v-model="dialog"
-        max-width="290"
-      >
-        <v-card>
-          <v-card-title class="text-h6">
+      <v-dialog v-model="dialog" max-width="290">
+        <v-card class="px-5 pt-5 pb-5 mx-auto text-center d-inline-block">
+          <v-card-title class="text-h5 text-center" style="word-break: break-word">
             Purchase this voucher?
           </v-card-title>
   
-          <v-card-text>
-            <v-btn>
-                
-            </v-btn>
-          </v-card-text>
+          <v-card-actions class="d-flex align-center justify-center">
+            <v-btn color="grey lighten-3" class="ma-1" @click="dialog = false">
+              Cancel</v-btn>
   
-          <v-card-actions>
-            <v-spacer></v-spacer>
-  
-            <v-btn
-              color="green darken-2"
-              text
-              @click="dialog = false"
-            >
-              Disagree
-            </v-btn>
-  
-            <v-btn
-              color="green darken-2"
-              text
-              @click="dialog = false"
-            >
-              Agree
-            </v-btn>
+            <v-btn color="blue lighten-2" class="ma-1" light @click="dialog = false" router to="/MyVouchers">
+              Yes</v-btn> 
+              <!-- link to my vouchers page and display newly bought voucher -->
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -44,6 +24,8 @@
 </template>
 
 <script>
+
+
 export default {
   data () {
     return {
