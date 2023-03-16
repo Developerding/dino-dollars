@@ -44,10 +44,13 @@
     </v-main> -->
 
     <!-- <AsosUI/> -->
-    
     <NavBar/>
+    
+    
+    
 
     <router-view></router-view>
+    <Axiostest/>
     </v-main>
   </v-app>
 </template>
@@ -56,6 +59,7 @@
 // import HelloWorld from './components/HelloWorld';
 // import AsosUI from  './components/asos-wireframe.vue';
 import NavBar from './components/NavBar'
+import Axiostest from './components/axios-testing.vue'
 
 export default {
   name: 'App',
@@ -63,7 +67,9 @@ export default {
   components: {
     // HelloWorld,
     // AsosUI,
-    NavBar
+    
+    Axiostest,
+    NavBar,
   },
 
   data: () => ({
