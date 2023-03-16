@@ -5,7 +5,8 @@ import BuyVouchers from './components/BuyVouchers.vue'
 import MyVouchers from './components/MyVouchers.vue'
 import RedemptionHistory from './components/RedemptionHistory.vue'
 import AsosVouchers from './components/AsosVouchers.vue'
-import PopUp from './components/PopUp.vue' 
+import PopUp_Purchase from './components/PopUp_Purchase.vue' 
+import PopUp_ShopNow from './components/PopUp_ShopNow.vue' 
 import LoginSignup from './components/LoginSignup.vue'
 
 Vue.use(VueRouter)
@@ -40,9 +41,14 @@ export default new VueRouter ({
             component: AsosVouchers
         },
         {
-            path: '/PopUp',
-            name: 'PopUp',
-            component: PopUp
+            path: '/PopUp_Purchase',
+            name: 'PopUp_Purchase',
+            component: PopUp_Purchase
+        },
+        {
+            path: '/PopUp_ShopNow',
+            name: 'PopUp_ShopNow',
+            component: PopUp_ShopNow
         },
         {
             path: '/LoginSignup',

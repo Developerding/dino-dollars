@@ -7,19 +7,19 @@
             <v-list-item-subtitle>Expires in 2 hours</v-list-item-subtitle>
         </v-list-item-content>
 
-        <PopUp/>
+        <PopUp_ShopNow/>
         
-        <!-- <v-btn class="rounded-lg" color="primary" outlined text>Purchase</v-btn> -->
+        <!-- <v-btn class="rounded-lg" color="primary" outlined text>Shop Now!</v-btn> -->
         </v-list-item>
     </v-card>
 </template>
 
 <script>
-import PopUp from './PopUp.vue';
+import PopUp_ShopNow from './PopUp_ShopNow.vue';
 
 export default {
     components: {
-        PopUp 
+        PopUp_ShopNow 
     },
     data() {
         return {

@@ -13,9 +13,9 @@
                 <v-div>
                     <h2>Available Vouchers:</h2><br>
                     <!-- implement code to determine number of vouchers to display -->
-                    <VoucherCoupon/><br>
-                    <VoucherCoupon/><br>
-                    <VoucherCoupon/>
+                    <Voucher_Purchase/><br>
+                    <Voucher_Purchase/><br>
+                    <Voucher_Purchase/>
                 </v-div>
             </v-col>
             </v-row>
@@ -28,13 +28,13 @@
 </template>
 
 <script>
-import VoucherCoupon from './VoucherCoupon.vue'
+import Voucher_Purchase from './Voucher_Purchase.vue'
 
 export default {
   name: 'AsosVouchers',
 
   components: {
-    VoucherCoupon
+    Voucher_Purchase
   },
 
   data: () => ({
