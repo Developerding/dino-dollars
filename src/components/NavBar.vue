@@ -28,7 +28,7 @@
   
         <v-spacer></v-spacer>
 
-        <v-btn depressed rounded>Login/Sign Up</v-btn>
+        <v-btn depressed rounded :to="{name: 'LoginSignup'}">Log In</v-btn>
 
     </v-container>
     </v-app-bar>

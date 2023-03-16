@@ -5,7 +5,8 @@ import BuyVouchers from './components/BuyVouchers.vue'
 import MyVouchers from './components/MyVouchers.vue'
 import RedemptionHistory from './components/RedemptionHistory.vue'
 import AsosVouchers from './components/AsosVouchers.vue'
-import PopUp from './components/PopUp.vue'
+import PopUp from './components/PopUp.vue' 
+import LoginSignup from './components/LoginSignup.vue'
 
 Vue.use(VueRouter)
 
@@ -42,6 +43,11 @@ export default new VueRouter ({
             path: '/PopUp',
             name: 'PopUp',
             component: PopUp
+        },
+        {
+            path: '/LoginSignup',
+            name: 'LoginSignup',
+            component: LoginSignup
         }
     ]
 })
