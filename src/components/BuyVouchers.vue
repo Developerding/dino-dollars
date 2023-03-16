@@ -1,23 +1,59 @@
 <template>
     <v-app id="inspire">
         <v-main class="blue lighten-4">
-            <v-container align="center" pa-7>
-            <v-row>
-                <v-col>
-                <v-card>
-                    asos
-                </v-card>
-            </v-col>
-            <v-col>
+            <v-container align="center">
+                <v-div align="center">
+                    <h1>Our Partners</h1>
+                    <h3 class="font-weight-light">Dino Dollars is here to help you save while shopping online! With more than 100 trusted partners, we offer exclusive deals for all users to earn rewards on their purchases.<br>
+
+                    Whether you're a seasoned online shopper or just getting started, there's something for everyone. From fashion and beauty to electronics and groceries, we have a wide range of categories to choose from. Purchase any voucher of your choice, and start accumulating discounts for all your online shopping needs today!
+                    </h3>
+                </v-div><br>
+
                 <v-div>
-                    <h2>Available Vouchers:</h2><br>
-                    <!-- implement code to determine number of vouchers to display -->
-                    <VoucherCoupon/><br>
-                    <VoucherCoupon/><br>
-                    <VoucherCoupon/>
+                    <v-responsive>
+                    <v-text-field dense flat hide-details rounded solo-inverted label="Search for categories or stores" height="50"></v-text-field>
+                    </v-responsive>
+                </v-div><br><br>
+
+                <v-div>
+                    <v-row class="justify-space-between">
+                    <v-card width="200" height="200" align="center" class="rounded-xl">
+                        <router-link to="/AsosVouchers">
+                            <img src="../assets/asos.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
+                        </router-link>
+                    </v-card>
+
+                    <v-card width="200" height="200" justify="center" align="center" class="rounded-xl">
+                        <router-link to="/AsosVouchers">
+                            <img src="../assets/adidas.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
+                        </router-link>
+                    </v-card>
+
+                    <v-card width="200" height="200" justify="center" align="center" class="rounded-xl">
+                        <router-link to="/AsosVouchers">
+                            <img src="../assets/puma.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
+                        </router-link>
+                    </v-card>
+
+                    <v-card width="200" height="200" justify="center" align="center" class="rounded-xl">
+                        <router-link to="/AsosVouchers">
+                            <img src="../assets/nike.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
+                        </router-link>
+                    </v-card>
+
+                    <v-card width="200" height="200" justify="center" align="center" class="rounded-xl">
+                        <router-link to="/AsosVouchers">
+                            <img src="../assets/apple.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
+                        </router-link>
+                    </v-card>
+                    </v-row>
+
                 </v-div>
-            </v-col>
-            </v-row>
+
+
+
+     
             </v-container>
             
 
@@ -25,19 +61,3 @@
     </v-app>
 
 </template>
-
-<script>
-import VoucherCoupon from './VoucherCoupon.vue'
-
-export default {
-  name: 'BuyVouchers',
-
-  components: {
-    VoucherCoupon
-  },
-
-  data: () => ({
-    //
-  }),
-};
-</script>

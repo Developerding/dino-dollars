@@ -3,7 +3,7 @@
 <v-app-bar app color="white" flat>
     <v-container class="py-0 fill-height">
         <router-link to="/">
-            <v-avatar class="mr-10" color="grey darken-1" size="32"></v-avatar>
+            <v-avatar class="mr-10" color="grey darken-1" size="60" tile><img src="../assets/dinodollar logo.jpg"></v-avatar>
         </router-link>
 
         <v-btn text>About</v-btn>
@@ -27,10 +27,6 @@
         <v-btn text>How to earn?</v-btn>
   
         <v-spacer></v-spacer>
-  
-        <v-responsive max-width="300">
-            <v-text-field dense flat hide-details rounded solo-inverted label="Search for categories or stores"></v-text-field>
-        </v-responsive>
 
         <v-btn depressed rounded>Login/Sign Up</v-btn>
 

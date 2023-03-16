@@ -4,6 +4,8 @@ import HomePage from './components/HomePage.vue'
 import BuyVouchers from './components/BuyVouchers.vue'
 import MyVouchers from './components/MyVouchers.vue'
 import RedemptionHistory from './components/RedemptionHistory.vue'
+import AsosVouchers from './components/AsosVouchers.vue'
+import PopUp from './components/PopUp.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +32,16 @@ export default new VueRouter ({
             path: '/RedemptionHistory',
             name: 'RedemptionHistory',
             component: RedemptionHistory
+        },
+        {
+            path: '/AsosVouchers',
+            name: 'AsosVouchers',
+            component: AsosVouchers
+        },
+        {
+            path: '/PopUp',
+            name: 'PopUp',
+            component: PopUp
         }
     ]
 })
