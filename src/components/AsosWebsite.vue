@@ -3,9 +3,9 @@
       <v-app-bar app color="white" max-height="200">
         <v-avatar class="mr-12" size="60"><img src="../assets/asos.jpg"></v-avatar>
         <v-responsive align="center" justify="center">
-        <v-text-field dense flat hide-details rounded solo-inverted label="Search for categories or stores" ></v-text-field>
+        <v-text-field dense flat hide-details rounded solo-inverted label="Search for Categories or Stores" background-color="white"></v-text-field>
         </v-responsive>
-        <v-icon>email</v-icon>
+        <v-icon color="white">mdi-domain</v-icon>
       </v-app-bar>
   
       <v-main>
