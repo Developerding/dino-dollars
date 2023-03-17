@@ -14,8 +14,8 @@
                         Discover shopping online.
                         </v-list-item-title><br><br>
                         <div>
-                            <v-btn max-width="200" class="text-center white--text my-2" color="blue lighten-2" align="center" justify="center" router to="/AsosWebsite" @click="asos = true">Shop now!</v-btn> <!-- link to asos website -->
-                        </div><br>
+                            <PopUp_ShopNow/>
+                        </div><br><br><br>
                     </v-list-item-content>
                     </v-list-item>
                 </v-card><br>
@@ -55,13 +55,17 @@
 <script>
 import Voucher_Purchase from './Voucher_Purchase.vue'
 import NavBar from './NavBar'
+import PopUp_ShopNow from './PopUp_ShopNow.vue';
+
+
 
 export default {
   name: 'AsosVouchers',
 
   components: {
     Voucher_Purchase,
-    NavBar
+    NavBar,
+    PopUp_ShopNow
   },
 
   data () {

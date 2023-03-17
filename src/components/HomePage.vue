@@ -1,16 +1,20 @@
 <template>
-  
     <v-app id="inspire">
       <NavBar/>
   
       <v-main class="blue lighten-4" >
         <v-container>
-          <v-div align="center">
-            <h1>Dino Dollars</h1>
-            <v-img src=""></v-img>
-            <h2 class="font-weight-medium">Spend. Redeem. Save.</h2>
-            <h3 class="font-weight-light">Dino Dollars is a voucher system that helps consumers save with every dollar spent!</h3>
-          </v-div>
+          <v-row>
+            <v-col align="center" justify="center">
+              <h1>Dino Dollars</h1>
+              <h2 class="font-weight-medium">Spend. Redeem. Save.</h2>
+              <h3 class="font-weight-light">Dino Dollars is a voucher system that helps consumers save with every dollar spent!</h3>
+            </v-col>
+            <v-col align="center" justify="center" >
+              <v-img src="../assets/dinodollar logo.jpg" width="200" height="200"></v-img> <!-- change image -->
+            </v-col>
+            
+          </v-row>
 
           <br><br>
 
@@ -103,3 +107,10 @@ export default {
   },
 }
 </script>
+
+<style>
+h1 {
+  font-family: fredoka;
+}
+
+</style>
