@@ -11,6 +11,9 @@
       <v-main>
         <v-container>
           <v-row>
+            <AsosHomeCarousel/>
+          </v-row>
+          <v-row>
             <template v-for="n in 4">
               <v-col
                 :key="n"
@@ -37,6 +40,9 @@
   
   <script>
     export default {
+      components: {
+        AsosHomeCarousel
+      },
       data: () => ({ drawer: null }),
     }
   </script>
