@@ -8,6 +8,7 @@ import AsosVouchers from './components/AsosVouchers.vue'
 import PopUp_Purchase from './components/PopUp_Purchase.vue' 
 import PopUp_ShopNow from './components/PopUp_ShopNow.vue' 
 import LoginSignup from './components/LoginSignup.vue'
+import AsosWebsite from './components/AsosWebsite.vue'
 
 Vue.use(VueRouter)
 
@@ -54,6 +55,11 @@ export default new VueRouter ({
             path: '/LoginSignup',
             name: 'LoginSignup',
             component: LoginSignup
+        },
+        {
+            path: '/AsosWebsite',
+            name: 'AsosWebsite',
+            component: AsosWebsite
         }
     ]
 })

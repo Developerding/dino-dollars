@@ -1,28 +1,18 @@
 <template>
     <v-app id="inspire">
-      <v-system-bar app>
-        <v-spacer></v-spacer>
-  
-        <v-icon>mdi-square</v-icon>
-  
-        <v-icon>mdi-circle</v-icon>
-  
-        <v-icon>mdi-triangle</v-icon>
-      </v-system-bar>
-  
       <v-app-bar app>
-        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-  
-        <v-toolbar-title>Application</v-toolbar-title>
+        <v-avatar class="mr-10" color="white" size="60" tile><img src="../assets/asos.jpg"></v-avatar>
+        <v-responsive align="center" justify="center">
+        <v-text-field dense flat hide-details rounded solo-inverted label="Search for categories or stores" ></v-text-field>
+        </v-responsive>
       </v-app-bar>
-  
+<!--   
       <v-navigation-drawer
         v-model="drawer"
         fixed
         temporary
       >
-        <!--  -->
-      </v-navigation-drawer>
+      </v-navigation-drawer> -->
   
       <v-main class="grey lighten-2">
         <v-container>
