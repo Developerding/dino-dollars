@@ -9,6 +9,8 @@
     <!-- <NavBar/> -->
     
     <router-view></router-view>
+
+    <!-- For Rapie's testing -->
     <!-- <Axiostest/> -->
     </v-main>
   </v-app>

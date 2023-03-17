@@ -1,21 +1,9 @@
 <template>
-    <v-card class="mx-auto rounded-lg" variant="outlined">
+
+    <v-card class="mx-auto rounded-lg" variant="outlined" color="blue-grey">
     
         <v-card-text class="py-0">
             <v-row align="center" gutter>
-
-
-        <v-overlay
-          :absolute="absolute"
-          :value="overlay"
-        >
-          <v-btn
-            color="success"
-            @click="overlay = false"
-          >
-            Hide Overlay
-          </v-btn>
-        </v-overlay>
 
                 <v-col
                 cols="2"
@@ -24,7 +12,7 @@
                 </v-col>
 
                 <v-col
-                cols="8"
+                cols="7"
                 >
                     <v-list-item three-line>
                         <v-list-item-content>
@@ -35,11 +23,19 @@
                     </v-list-item>
                 </v-col>
 
+                <v-col
+                cols="3"
+                >
+                    <h1>REDEEMED</h1>
+                </v-col>
+                
             </v-row>
         </v-card-text>
-        <br/>
 
+    <br/>
     </v-card>
+
+    
 </template>
 
 
