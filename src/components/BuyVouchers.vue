@@ -1,5 +1,6 @@
 <template>
     <v-app id="inspire">
+        <NavBar/>
         <v-main class="blue lighten-4">
             <v-container align="center">
                 <v-div align="center">
@@ -61,3 +62,15 @@
     </v-app>
 
 </template>
+
+<script>
+import NavBar from './NavBar'
+
+export default {
+  name: 'App',
+
+  components: {
+    NavBar,
+  }
+};
+</script>

@@ -1,6 +1,9 @@
 <template>
     <v-app id="inspire">
         <v-main class="blue lighten-4">
+
+        <NavBar/>
+
             <v-container align="center">
 
                 <v-div align="center">
@@ -38,12 +41,14 @@
 
 <script>
 import Voucher_ShopNow from './Voucher_ShopNow.vue'
+import NavBar from './NavBar.vue'
 
 export default {
   name: 'MyVouchers',
 
   components: {
-    Voucher_ShopNow
+    NavBar,
+    Voucher_ShopNow,
   },
 
   data: () => ({

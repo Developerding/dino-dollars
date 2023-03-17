@@ -1,6 +1,7 @@
 <template>
     <v-app id="inspire">
         <v-main class="blue lighten-4">
+            <NavBar/>
             <v-container align="center">
                
             <v-row>
@@ -13,7 +14,7 @@
                         Discover shopping online.
                         </v-list-item-title><br><br>
                         <div>
-                            <v-btn max-width="200" class="text-center white--text" color="blue lighten-2" align="center" justify="center">Shop now!</v-btn> <!-- link to asos website -->
+                            <v-btn max-width="200" class="text-center white--text" color="blue lighten-2" align="center" justify="center" router to="/AsosWebsite" @click="asos = true">Shop now!</v-btn> <!-- link to asos website -->
                         </div><br>
                     </v-list-item-content>
                     </v-list-item>
@@ -55,16 +56,20 @@
 
 <script>
 import Voucher_Purchase from './Voucher_Purchase.vue'
+import NavBar from './NavBar'
 
 export default {
   name: 'AsosVouchers',
 
   components: {
-    Voucher_Purchase
+    Voucher_Purchase,
+    NavBar
   },
 
-  data: () => ({
-    //
-  }),
+  data () {
+    return {
+      asos: false,
+    }
+  },
 };
 </script>

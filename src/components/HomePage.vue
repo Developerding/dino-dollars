@@ -1,6 +1,7 @@
 <template>
   
     <v-app id="inspire">
+      <NavBar/>
   
       <v-main class="blue lighten-4" >
         <v-container>
@@ -60,7 +61,12 @@
   </template>
 
 <script>
+import NavBar from './NavBar.vue'
+
 export default {
+  components: {
+    NavBar
+  },
   data () {
     return {
       partners: [
