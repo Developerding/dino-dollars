@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
 
     <v-card class="mx-auto rounded-lg" variant="outlined">
 
@@ -51,4 +51,4 @@ export default {
     }
 }
 
-</script> -->
+</script>
