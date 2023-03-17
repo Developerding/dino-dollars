@@ -39,6 +39,8 @@
   </template>
   
   <script>
+    import AsosHomeCarousel from './AsosHomeCarousel.vue'
+
     export default {
       components: {
         AsosHomeCarousel
