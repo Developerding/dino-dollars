@@ -1,5 +1,5 @@
 <template>
-    <v-card class="mx-auto rounded-lg" outlined>
+    <v-card class="rounded-lg" outlined>
         <v-list-item three-line>
         <v-list-item-content>
             <v-list-item-title class="text-h5 mb-1" >$5 OFF</v-list-item-title>

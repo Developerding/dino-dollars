@@ -7,6 +7,7 @@
         <v-container>
           <v-div align="center">
             <h1>Dino Dollars</h1>
+            <v-img src=""></v-img>
             <h2 class="font-weight-medium">Spend. Redeem. Save.</h2>
             <h3 class="font-weight-light">Dino Dollars is a voucher system that helps consumers save with every dollar spent!</h3>
           </v-div>
@@ -42,13 +43,35 @@
           </v-div>
 
           <!-- instructions -->
-          <br>
+          <br><br>
 
           <v-div>
-            <h2 font-weight-medium align="center">How to earn Dino Dollars?</h2>
+            <h2 font-weight-medium align="center">How to earn Dino Dollars?</h2><br>
             <v-row>
-              <v-img src=""></v-img>
-              <v-card>Link</v-card>
+              <v-col class="col-3">
+                <v-card height="180" class="rounded-xl">
+                  <v-card-title class="justify-center">Link</v-card-title>
+                  <v-card-text class="justify-center">Connect your DinoDollars account with our partner companies to get started.</v-card-text>
+                </v-card>
+              </v-col>
+              <v-col class="col-3">
+                <v-card height="180" class="rounded-xl">
+                  <v-card-title class="justify-center">Spend</v-card-title>
+                  <v-card-text>Make a purchase from one of our partner companies and receive DinoDollars for every dollar spent. $1 = 10 DinoDollars!</v-card-text>
+                </v-card>
+              </v-col>
+              <v-col class="col-3">
+                <v-card height="180" class="rounded-xl">
+                  <v-card-title class="justify-center">Redeem</v-card-title>
+                  <v-card-text>Choose from a wide range of Dino vouchers from your favourite brands and redeem them using your DinoDollars.</v-card-text>
+                </v-card>
+              </v-col>
+              <v-col class="col-3">
+                <v-card height="180" class="rounded-xl">
+                  <v-card-title class="justify-center">Save</v-card-title>
+                  <v-card-text>Use Dino vouchers to save money on your purchases and enjoy exclusive discounts that you won't find anywhere else.</v-card-text>
+                </v-card>
+              </v-col>
             </v-row>
             
           </v-div>

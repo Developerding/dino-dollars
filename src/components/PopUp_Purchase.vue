@@ -1,5 +1,6 @@
 <template>
-    <v-row justify="center">
+    <v-row class="mx-1">
+      <v-spacer></v-spacer>
       <v-btn color="primary" class="rounded-lg" outlined text @click.stop="dialog = true">
         Purchase
       </v-btn>
