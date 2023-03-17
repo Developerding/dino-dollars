@@ -11,7 +11,7 @@
               <h3 class="font-weight-light">Dino Dollars is a voucher system that helps consumers save with every dollar spent!</h3>
             </v-col>
             <v-col align="center" justify="center" >
-              <v-img src="../assets/dinodollar logo.jpg" width="200" height="200"></v-img> <!-- change image -->
+              <!-- change image -->
             </v-col>
             
           </v-row>
@@ -21,7 +21,7 @@
           <!-- carousel of partners -->
 
           <v-div align="center" justify="center">
-            <h2 class="font-weight-medium">Earn Dino Dollars with our Partners!</h2><br>
+            <h2 class="font-weight-bold">Earn Dino Dollars with our Partners!</h2><br>
 
             <v-carousel hide-delimiters v-model="model" width="300" height="320" align="center">
               <v-carousel-item reverse-transition="fade-transition" transition="fade-transition">
@@ -54,26 +54,26 @@
             <v-row>
               <v-col class="col-3">
                 <v-card height="180" class="rounded-xl">
-                  <v-card-title class="justify-center">Link</v-card-title>
-                  <v-card-text class="justify-center">Connect your DinoDollars account with our partner companies to get started.</v-card-text>
+                  <v-card-title class="justify-center header">Link</v-card-title>
+                  <v-card-text class="body">Connect your DinoDollars account with our partner companies to get started.</v-card-text>
                 </v-card>
               </v-col>
               <v-col class="col-3">
                 <v-card height="180" class="rounded-xl">
-                  <v-card-title class="justify-center">Spend</v-card-title>
-                  <v-card-text>Make a purchase from one of our partner companies and receive DinoDollars for every dollar spent. $1 = 10 DinoDollars!</v-card-text>
+                  <v-card-title class="justify-center header">Spend</v-card-title>
+                  <v-card-text class="body">Make a purchase from one of our partner companies and receive DinoDollars for every dollar spent. $1 = 10 DinoDollars!</v-card-text>
                 </v-card>
               </v-col>
               <v-col class="col-3">
                 <v-card height="180" class="rounded-xl">
-                  <v-card-title class="justify-center">Redeem</v-card-title>
-                  <v-card-text>Choose from a wide range of Dino vouchers from your favourite brands and redeem them using your DinoDollars.</v-card-text>
+                  <v-card-title class="justify-center header">Redeem</v-card-title>
+                  <v-card-text class="body">Choose from a wide range of Dino vouchers from your favourite brands and redeem them using your DinoDollars.</v-card-text>
                 </v-card>
               </v-col>
               <v-col class="col-3">
                 <v-card height="180" class="rounded-xl">
-                  <v-card-title class="justify-center">Save</v-card-title>
-                  <v-card-text>Use Dino vouchers to save money on your purchases and enjoy exclusive discounts that you won't find anywhere else.</v-card-text>
+                  <v-card-title class="justify-center header">Save</v-card-title>
+                  <v-card-text class="body">Use Dino vouchers to save money on your purchases and enjoy exclusive discounts that you won't find anywhere else.</v-card-text>
                 </v-card>
               </v-col>
             </v-row>
@@ -109,8 +109,11 @@ export default {
 </script>
 
 <style>
-h1 {
+h1, .header {
   font-family: fredoka;
 }
 
+h2, h3, .body {
+  font-family: TiltNeon;
+}
 </style>
