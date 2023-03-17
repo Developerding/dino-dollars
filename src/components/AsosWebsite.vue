@@ -1,20 +1,14 @@
 <template>
     <v-app id="inspire">
-      <v-app-bar app>
-        <v-avatar class="mr-10" color="white" size="60" tile><img src="../assets/asos.jpg"></v-avatar>
+      <v-app-bar app color="white" max-height="200">
+        <v-avatar class="mr-12" size="60"><img src="../assets/asos.jpg"></v-avatar>
         <v-responsive align="center" justify="center">
         <v-text-field dense flat hide-details rounded solo-inverted label="Search for categories or stores" ></v-text-field>
         </v-responsive>
+        <v-icon>email</v-icon>
       </v-app-bar>
-<!--   
-      <v-navigation-drawer
-        v-model="drawer"
-        fixed
-        temporary
-      >
-      </v-navigation-drawer> -->
   
-      <v-main class="grey lighten-2">
+      <v-main>
         <v-container>
           <v-row>
             <template v-for="n in 4">

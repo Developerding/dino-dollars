@@ -5,7 +5,7 @@
       </v-btn>
   
       <v-dialog v-model="dialog" max-width="290">
-        <v-card class="px-5 pt-5 pb-5 mx-auto text-center d-inline-block">
+        <v-card class="px-5 pt-5 pb-5 mx-auto text-center d-inline-block" variant="outlined">
           <v-card-title class="text-h5 text-center" style="word-break: break-word">
             Purchase this voucher?
           </v-card-title>
