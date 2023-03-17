@@ -1,18 +1,39 @@
 <template>
 
-    <v-card class="mx-auto rounded-lg" outlined>
+    <v-card class="mx-auto rounded-lg" variant="outlined">
 
-        <v-list-item three-line>
-        <v-list-item-content>
-            <v-list-item-title class="text-h5 mb-1" >$5 OFF</v-list-item-title>
-            <v-list-item-title>75 points</v-list-item-title>
-            <v-list-item-subtitle>Expires in 2 hours</v-list-item-subtitle>
-        </v-list-item-content>
+        <v-card-text class="py-0">
+            <v-row align="center" gutter>
 
-        <PopUp_ShopNow/>
+                <v-col
+                cols="2"
+                >
+                <v-img src="../assets/asos.jpg" width="85" height="85" justify="centre" align="left" class="rounded-xl elevation-5"></v-img>
+                </v-col>
+
+                <v-col
+                cols="8"
+                >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <v-list-item-title class="text-h5 mb-1" >$5 OFF</v-list-item-title>
+                            <v-list-item-title>75 points</v-list-item-title>
+                            <v-list-item-subtitle>Expires in 2 hours</v-list-item-subtitle>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-col>
+                
+                <v-col
+                cols="2"
+                >
+                <PopUp_ShopNow/>
+                </v-col>
+
+            </v-row>
+        </v-card-text>
+
+        <br/>
         
-        <!-- <v-btn class="rounded-lg" color="primary" outlined text>Shop Now!</v-btn> -->
-        </v-list-item>
     </v-card>
 </template>
 
