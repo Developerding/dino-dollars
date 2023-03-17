@@ -14,7 +14,7 @@
             <v-btn color="grey lighten-3" class="ma-1" @click="dialog = false">
               Cancel</v-btn>
   
-            <v-btn color="blue lighten-2" class="ma-1" light @click="dialog = false" router to="/asos-wireframe.vue">
+            <v-btn color="blue lighten-2" class="ma-1" light @click="dialog = false" router to="/AsosWebsite.vue">
               Yes</v-btn>
           </v-card-actions>
         </v-card>

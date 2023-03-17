@@ -8,7 +8,7 @@
                 <v-col
                 cols="2"
                 >
-                <v-img src="../assets/asos.jpg" width="85" height="85" justify="centre" align="left" class="rounded-xl elevation-5"></v-img>
+                <v-img src="../assets/asos.jpg" width="100" height="100" justify="centre" align="left" class="rounded-xl elevation-5"></v-img>
                 </v-col>
 
                 <v-col
