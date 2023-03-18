@@ -13,7 +13,6 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-# user_URL = "http://localhost:5000/point/"
 
 
 @app.route("/add_points/<int:UID>", methods=['POST'])
@@ -55,7 +54,7 @@ def processPointAddition(order, UID):
     # Invoke the order microservice
     print('\n-----Invoking order microservice-----')
     print(order)
-    user_url = "http://localhost:5000/point/" + str(UID)
+    user_url = "http://localhost:5003/point/" + str(UID)
     print(user_url)
     order_result = invoke_http( user_url, method='PUT', json=order)
     print('order_result:', order_result)
@@ -104,7 +103,6 @@ def processPointAddition(order, UID):
             body=message)
     
     print("\nOrder published to RabbitMQ Exchange.\n")
-    print(type(order_result["data"]["Points"]))
     return {
             "code": 200,
             "currentPoints": order_result["data"]["Points"],

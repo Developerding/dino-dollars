@@ -42,9 +42,7 @@ export const store = new Vuex.Store({
         checkoutCart: state => {
             state.cart.forEach(item => {
                 state.amount += item.price
-            })
-            
-            console.log({"total": state.amount})
+            }) 
         }
     },
     actions: {
@@ -64,6 +62,19 @@ export const store = new Vuex.Store({
         // }
         checkoutCart: context => {
             context.commit('checkoutCart')
+        },
+
+        pointsUpdate({commit}){
+            Vue.axios.put('http://127.0.0.1:5003/point/3', {
+                total:  commit.checkoutCart
+            })
+                .then(response => {
+                    commit('pointsUpdate', response.data)
+                })
+                .catch( error => {
+                    console.log(error.message);
+                });
         }
-    }
-})
+    },
+}
+);
