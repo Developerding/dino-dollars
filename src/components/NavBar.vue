@@ -3,8 +3,8 @@
 <v-app-bar app color="white" flat>
     <v-container class="py-0 fill-height">
         <router-link to="/">
-            <v-avatar class="mr-10" color="grey darken-1" size="60" tile><img src="../assets/dinodollar logo.jpg"></v-avatar>
-        </router-link>
+            <img src="../assets/dinodollar logo.jpeg" height="50" class="d-flex justify-center align-center">
+        </router-link><space></space>
 
         <v-btn text>About</v-btn>
 

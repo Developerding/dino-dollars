@@ -12,6 +12,7 @@
             </v-col>
             <v-col align="center" justify="center" >
               <!-- change image -->
+              <img src="../assets/dinodollar logo 2.jpeg" height="200">
             </v-col>
             
           </v-row>
