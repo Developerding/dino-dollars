@@ -3,17 +3,22 @@
     <v-container>
       <v-row>
         <v-col v-for="n in 12" :key="n" cols="4">
-          <ItemCard> </ItemCard>
+          <ItemCard
+            item-name="testing"
+            :item-price=10
+          />
         </v-col>
       </v-row>
 
-      <v-row>
+      <!-- <v-row>
         <v-col v-for="thing in somethingChanged" :key="thing" cols="4">
           {{ thing.name }}
         </v-col>
-      </v-row>
+      </v-row> -->
 
-      <button v-on:click="changeName">Change Name</button>
+      <!-- <v-btn v-on:click="changeName">Change Name</v-btn> -->
+      <v-btn router to="/ShoppingCart">To the Cart</v-btn>
+      
     </v-container>
   </v-app>
 </template>
@@ -28,9 +33,9 @@ export default {
     ItemCard,
   },
   computed: {
-    something() {
-      return this.$store.state.cart
-    },
+    // something() {
+    //   return this.$store.state.cart
+    // },
     // somethingChanged(){
     //   return this.$store.getters.somethingChanged
     // }
@@ -46,7 +51,6 @@ export default {
 
     //   this.$store.dispatch('changeName')
     // }
-
     ...mapActions([
       'changeName'
     ])

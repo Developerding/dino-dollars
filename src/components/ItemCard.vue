@@ -11,8 +11,7 @@
 
     <v-btn
       elevation="5"
-      large
-    >
+      v-on:click="addItemToCart( ItemName, ItemPrice )">
     Add to cart now!
     </v-btn>
 
@@ -20,11 +19,19 @@
 </template>
 
 <script>
+// import {mapActions, mapGetters} from 'vuex'
+
 export default {
     name: "ItemCard",
     props: {
       ItemName: String,
-      ItemPrice: Number
+      ItemPrice: Number,
+      // ItemID: Number
+    },
+    methods: {
+      addItemToCart: function(ItemName, ItemPrice) {
+        this.$store.dispatch('addItemToCart', {ItemName, ItemPrice})
+      }
     }
 }
 </script>

@@ -14,7 +14,7 @@
             <AsosHomeCarousel/>
           </v-row>
           <v-row>
-            <template v-for="n in 4">
+            <!-- <template v-for="n in 4">
               <v-col
                 :key="n"
                 class="mt-2"
@@ -31,20 +31,55 @@
               >
                 <v-sheet height="150"></v-sheet>
               </v-col>
-            </template>
+            </template> -->
+
+            <v-col v-for="n in 12" :key="n" cols="4">
+              <ItemCard
+                item-name="testing"
+                :item-price=10
+              />
+            </v-col>
+
+            <v-btn router to="/ShoppingCart">To the Cart</v-btn>
           </v-row>
         </v-container>
       </v-main>
     </v-app>
   </template>
   
-  <script>
-    import AsosHomeCarousel from './AsosHomeCarousel.vue'
+<script>
+import AsosHomeCarousel from './AsosHomeCarousel.vue'
+import ItemCard from "@/components/ItemCard.vue";
+import {mapActions, mapGetters} from 'vuex'
 
-    export default {
-      components: {
-        AsosHomeCarousel
-      },
-      data: () => ({ drawer: null }),
-    }
-  </script>
+  export default {
+    components: {
+      AsosHomeCarousel,
+      ItemCard
+    },
+    data: () => ({ drawer: null }),
+    computed: {
+    // something() {
+    //   return this.$store.state.cart
+    // },
+    // somethingChanged(){
+    //   return this.$store.getters.somethingChanged
+    // }
+    ...mapGetters([
+      'somethingChanged'
+    ])
+  },
+  methods: {
+    // changeName: function() {
+    //   // this.$store.state.cart.forEach(something => {
+    //   //   something.name = something.name + "&&&"
+    //   // })
+
+    //   this.$store.dispatch('changeName')
+    // }
+    ...mapActions([
+      'changeName'
+    ])
+  }
+  }
+</script>

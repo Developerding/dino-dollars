@@ -10,6 +10,7 @@ import PopUp_ShopNow from './components/PopUp_ShopNow.vue'
 import LoginSignup from './components/LoginSignup.vue'
 import AsosUI from "./components/AsosUI.vue"
 import AsosWebsite from './components/AsosWebsite.vue'
+import ShoppingCart from './components/ShoppingCart.vue'
 
 Vue.use(VueRouter)
 
@@ -66,6 +67,11 @@ export default new VueRouter ({
             path: '/AsosWebsite',
             name: 'AsosWebsite',
             component: AsosWebsite
+        },
+        {
+            path: '/ShoppingCart',
+            name: 'ShoppingCart',
+            component: ShoppingCart
         }
     ]
 })
