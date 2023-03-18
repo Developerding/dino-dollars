@@ -120,34 +120,42 @@ def create_user(UID):
     ), 201
 
 
-@app.route("/user/<int:UID>", methods=['POST'])
+@app.route("/point/<int:UID>", methods=['PUT'])
 def update_user(UID):
-    user = User.query.filter_by(UID=UID).first()
-    if user:
+    try:
+        user = User.query.filter_by(UID=UID).first()
+        if not user:
+            return jsonify(
+                {
+                    "code": 404,
+                    "data": {
+                        "user": user
+                    },
+                    "message": "user not found."
+                }
+            ), 404
+
+        # update status
         data = request.get_json()
-        if user['username']:
-            user.username = data['username']
-        if user['email']:
-            user.email = data['email']
-        if user['points']:
-            user.points = data['points']
-        
-        db.session.commit()
+        if data['Points']:
+            user.Points = data['Points']
+            db.session.commit()
+            return jsonify(
+                {
+                    "code": 200,
+                    "data": user.json()
+                }
+            ), 200
+    except Exception as e:
         return jsonify(
             {
-                "code": 200,
-                "data": user.json()
+                "code": 500,
+                "data": {
+                    "user": user
+                },
+                "message": "An error occurred while updating the points. " + str(e)
             }
-        )
-    return jsonify(
-        {
-            "code": 404,
-            "data": {
-                "UID": UID
-            },
-            "message": "User not found."
-        }
-    ), 404
+        ), 500
 
 
 @app.route("/user/<int:UID>", methods=['DELETE'])
