@@ -61,16 +61,18 @@
     <v-app id="inspire">
         <v-div align="center" justify="center">
             <!-- <h2 class="font-weight-medium">Earn Dino Dollars with our Partners!</h2><br> -->
-            <v-carousel cycle height="500" hide-delimiter-background hide-delimiters show-arrows-on-hover>
+            <v-carousel height="500" hide-delimiter-background hide-delimiters show-arrows-on-hover> <!-- add cycle for loop-->
                 <v-carousel-item>
                         <v-card color="#385F73" dark>
                             <v-row class="fill-height" align="center" justify="center">
-                                <v-col cols="6" class="pl-20">
-                                    <v-card-title class="text-h5">Winter-Fall Collection 2023</v-card-title>
-                                    <v-card-subtitle class="text-h7">Shop Dino Dollars new Collection for the slayest looks of the year!</v-card-subtitle>
-                                    <v-card-actions>
-                                        <v-btn text>Shop Now</v-btn>
-                                    </v-card-actions>
+                                <v-col cols="6" class="pl-30">
+                                    <v-container>
+                                        <v-card-title class="text-h5">Winter-Fall Collection 2023</v-card-title>
+                                        <v-card-subtitle class="text-h7" justify-left>Shop Dino Dollars new Collection for the slayest looks of the year!</v-card-subtitle>
+                                        <v-card-actions>
+                                            <v-btn text>Shop Now</v-btn>
+                                        </v-card-actions>
+                                    </v-container>
                                 </v-col>
                                 <v-col cols="6">
                                     <v-img width = "800" height="500" src="https://cdn.vuetifyjs.com/images/cards/cooking.png"></v-img>
@@ -79,20 +81,6 @@
                         </v-card>
                 </v-carousel-item>
                 <v-carousel-item>
-                        <v-card color="#385F73" dark>
-                            <v-row>
-                                <v-col cols="6">
-                                    <v-card-title class="text-h5">Winter-Fall Collection 2023</v-card-title>
-                                    <v-card-subtitle class="text-h7">Shop Dino Dollars new Collection for the slayest looks of the year!</v-card-subtitle>
-                                    <v-card-actions>
-                                        <v-btn text>Shop Now</v-btn>
-                                    </v-card-actions>
-                                </v-col>
-                                <v-col cols="6">
-                                    <v-img width = "800" height="500" src="https://cdn.vuetifyjs.com/images/carousel/sky.jpg"></v-img>
-                                </v-col>
-                            </v-row>
-                        </v-card>
                 </v-carousel-item>
             </v-carousel>
             <!-- <v-carousel hide-delimiters v-model="model" width="vw" height="320" align="center">
