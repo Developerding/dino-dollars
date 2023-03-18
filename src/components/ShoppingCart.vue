@@ -19,7 +19,7 @@
         >clear cart</v-btn>
 
         <v-btn
-        v-on:click="checkoutCart"
+        v-on:click="pointsUpdate"
         large
         >checkout</v-btn>
     </div>
