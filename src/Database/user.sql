@@ -25,28 +25,6 @@ CREATE TABLE IF NOT EXISTS `ACCOUNTS`(
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `AvailableVouchers`;
-CREATE TABLE IF NOT EXISTS `AvailableVouchers`(
-    `PlatformName` varchar(50) NOT NULL ,
-    `DiscountAmt` varchar(20) NOT NULL,
-    `Cost` int(10) NOT NULL,
-    CONSTRAINT PK_AvailableVouchers PRIMARY KEY (`PlatformName`, `DiscountAmt`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-DROP TABLE IF EXISTS `PurchasedVouchers`;
-CREATE TABLE IF NOT EXISTS `PurchasedVouchers`(
-    `VID` int(4) NOT NULL AUTO_INCREMENT,
-    `UID` int(4) NOT NULL,
-    `PlatformName` varchar(50) NOT NULL,
-    `PointsRequired` int(4) NOT NULL,
-    `DiscountAmt` varchar(20) NOT NULL,
-    `PurchasedDate` timestamp DEFAULT NULL,
-    `RedeemedDate` timestamp DEFAULT NULL,
-    `ExpiryDate` timestamp DEFAULT NULL,
-    CONSTRAINT PK_PurchasedVouchers PRIMARY KEY (`VID`, `UID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
 INSERT INTO `user` (`UID`, `Name`, `Email`, `Points`) VALUES
 (1, 'Ding', 'gerald.ding.2021@scis.smu.edu.sg', 0),
 (2, 'Poy', 'ryanpoy.2021@scis.smu.edu.sg', 0);
@@ -58,12 +36,6 @@ COMMIT;
 -- (2, 'Facebook'),
 -- (2, 'Google');
 -- COMMIT;
-
-
-INSERT INTO `AvailableVouchers` (`PlatformName`, `DiscountAmt`, `Cost`) VALUES
-('ASOS', '5% discount', 20),
-('ASOS', '10% discount', 40);
-COMMIT;
 
 ALTER TABLE `ACCOUNTS` ADD CONSTRAINT `FK_UID` FOREIGN KEY (`UID`) REFERENCES `user` (`UID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
