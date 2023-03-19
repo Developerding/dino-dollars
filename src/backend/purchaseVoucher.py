@@ -45,13 +45,16 @@ def getAvailableVouchers(points, vouchers):
     total.append(unavailable_vouchers)
     return total
 
-@app.route("/purchase_voucher/<int:AVID>", methods=['GET'])
-def purchase_voucher(AVID):
-    # Making sure that vouchers displayed to user are those that they have sufficient points for
-    points = getUserPoints(UID)
-    vouchers = getVouchers()
-    availableVouchers = getAvailableVouchers(points, vouchers)
-    return availableVouchers
+@app.route("/purchase_voucher/<int>:UID/<str:PlatformName>/<str:DiscountAmt>/<int:Cost>", methods=['GET'])
+def purchase_voucher(UID, PlatformName, DiscountAmt, Cost):
+    
+    
+
+# def userBuyVoucher():
+#     url = "http://localhost:5002/purchasedvoucher"
+#     userBuyVoucher = invoke_http(url, method='POST')
+#     return userBuyVoucher
+    
 
 
 if __name__ == "__main__":

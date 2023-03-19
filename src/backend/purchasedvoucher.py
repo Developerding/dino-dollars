@@ -149,7 +149,6 @@ def add_voucher():
     # /<string:pname>/<string:discount>/<int:uid>/<int:cost>
     
     data = request.get_json()
-
     
     print(data)
     #querying for the parent voucher in AvailableVoucher db
