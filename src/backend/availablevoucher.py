@@ -14,7 +14,7 @@ CORS(app)
 
 #creating a AvailableVoucher object 
 class AvailableVoucher(db.Model):
-    __tablename__ = 'AvailableVoucher'
+    __tablename__ = 'AvailableVouchers'
 
     PlatformName = db.Column(db.String(50), nullable=False, primary_key=True)
     Cost = db.Column(db.Integer, nullable=False)
