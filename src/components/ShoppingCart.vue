@@ -13,6 +13,11 @@
                 </v-btn> -->
             </li>
         </ol>
+        
+        <p>
+          {{ cartTotal }}
+        </p>
+        
 
         <v-btn
         v-on:click="removeAllItems"
@@ -22,6 +27,11 @@
         v-on:click="pointsUpdate"
         large
         >checkout</v-btn>
+
+        <v-btn
+        v-on:click="paypalTest"
+        large
+        >test paypal</v-btn>
     </div>
   </v-app>
 </template>
@@ -33,13 +43,19 @@ export default {
     cartItems() {
       return this.$store.state.cart;
     },
+    cartTotal() {
+      return this.$store.getters.cartTotal
+    }
   },
   methods: {
     removeAllItems: function() {
         this.$store.dispatch('removeAllItems')
     },
-    checkoutCart: function() {
-      this.$store.dispatch('checkoutCart')
+    pointsUpdate: function() {
+      this.$store.dispatch('pointsUpdate')
+    },
+    paypalTest: function() {
+      this.$store.dispatch('paypalTest')
     }
     // removeItem: function(item) {
     //     this.$store.dispatch('removeItem', item)
