@@ -64,7 +64,6 @@ def get_all():
             "message": "There are no users."
         }
     ), 404
-
 @app.route("/user/<int:UID>")
 def find_by_UID(UID):
     user = User.query.filter_by(UID=UID).first()

@@ -9,13 +9,13 @@
 
                     Whether you're a seasoned online shopper or just getting started, there's something for everyone. From fashion and beauty to electronics and groceries, we have a wide range of categories to choose from. Purchase any voucher of your choice, and start accumulating discounts for all your online shopping needs today!
                     </h3>
-                </v-div><br>
+                </v-div><br><br>
 
-                <v-div>
+                <!-- <v-div>
                     <v-responsive>
                     <v-text-field dense flat hide-details rounded solo-inverted label="Search for categories or stores" height="50"></v-text-field>
                     </v-responsive>
-                </v-div><br><br>
+                </v-div><br><br> -->
 
                 <v-div>
                     <v-row class="justify-space-between">
