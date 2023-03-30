@@ -1,0 +1,15 @@
+version: "4.17.1"
+
+services:
+  user:
+    image: geraldding/user:1.0
+    restart: always
+    environment:
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/user
+  
+  calluser:
+    image: geraldding/calluser:1.0
+    depends_on:
+      - user
+    environment:
+      userURL: http://user:5003/user

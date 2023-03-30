@@ -1,0 +1,31 @@
+version: "4.17.1"
+
+
+services:
+
+
+  #################################
+  # User: The User microservice
+  #################################
+  user:
+    image: geraldding/user:1.0
+    restart: always
+    environment:
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/user
+  
+  # purchasedVoucher:
+  #   image: geraldding/pvouch:1.0
+  #   restart: always
+  #   environment:
+  #     dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/voucher
+
+
+  ###############################################
+  # callbook: The test_invoke_http.py program
+  ###############################################
+  calluser:
+    image: geraldding/calluser:1.0
+    depends_on:
+      - user
+    environment:
+      userURL: http://user:5003/user
