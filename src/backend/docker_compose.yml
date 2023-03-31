@@ -1,31 +1,30 @@
 version: "4.17.1"
 
-
 services:
-
-
-  #################################
-  # User: The User microservice
-  #################################
   user:
     image: geraldding/user:1.0
     restart: always
     environment:
       dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/user
   
-  # purchasedVoucher:
-  #   image: geraldding/pvouch:1.0
-  #   restart: always
-  #   environment:
-  #     dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/voucher
-
-
-  ###############################################
-  # callbook: The test_invoke_http.py program
-  ###############################################
-  calluser:
-    image: geraldding/calluser:1.0
+  points_accumulation:
+    image: geraldding/points_accumulation:1.0
     depends_on:
       - user
+      - rabbitmq
     environment:
       userURL: http://user:5003/user
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    restart: always
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+      - rabbitmq_log:/var/log/rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+  
