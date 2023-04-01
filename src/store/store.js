@@ -148,8 +148,25 @@ export const store = new Vuex.Store({
         // },
 
         signUserIn( {commit}, payload){
-            const loggedUser= payload
-            commit('logUser', loggedUser)
+            let email=payload.email
+            let password=payload.password
+            let url="http://127.0.0.1:5003/user/"+ email+'/'+password 
+            return axios.get(url, payload)
+            .then(response => {
+                //if user logs in
+                console.log(response.data)
+                const loggedUser= response.data.data
+                commit('logUser',loggedUser)
+
+            })
+            .catch( error => {
+                // if user fails to log in
+                // console.log(error)
+                console.log(error.response.data);
+                return error.response.data
+
+            });
+         
         },
 
         logUserOut( {commit}){
