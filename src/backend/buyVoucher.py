@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 import os, sys
+from os import environ
 
 import requests
 from invokes import invoke_http
@@ -12,6 +13,9 @@ import json
 
 app = Flask(__name__)
 CORS(app)
+
+user_url = environ.get('user_URL') or "http://user:5003/user/"
+purchasedvoucher_url = environ.get('purchasedvoucher_URL') or "http://purchasedvoucher:5002/purchasedvoucher"
 
 @app.route("/buy_voucher/<int:UID>/<int:Cost>", methods=['POST'])
 def buy_voucher(UID, Cost):

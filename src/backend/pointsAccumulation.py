@@ -54,9 +54,9 @@ def processPointAddition(order, UID):
     # Invoke the order microservice
     print('\n-----Invoking order microservice-----')
     print(order)
-    user_url = "http://user:5003/user/" + str(UID)
+    user_url = "http://user:5003/point/" + str(UID)
     print(user_url)
-    order_result = invoke_http( user_url, method='PUT', json=order)
+    order_result = invoke_http(user_url, method="PUT", json=order)
     print('order_result:', order_result)
   
 
