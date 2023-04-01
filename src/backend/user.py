@@ -77,7 +77,7 @@ def get_all():
 
 
 @app.route("/user/<string:email>/<string:password>")
-def find_by_UID(email, password):
+def find_by_email_and_password(email, password):
     # data=request.get_json()
     # Email=data['Email']
     # Password=data['Password']
