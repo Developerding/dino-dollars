@@ -13,16 +13,15 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/redeem_voucher", methods=['GET'])
-def redeem_voucher():
-    data = request.get_json()
-    status = updateVoucher(data['VID'])
+@app.route("/redeem_voucher/<int:VID>", methods=['GET'])
+def redeem_voucher(VID):
+    status = updateVoucher(VID)
     return status
     
 def updateVoucher(VID):
-    url = "http://localhost:5002/purchasedvoucher/" + str(VID)
+    url = "http://purchasedvoucher:5002/purchasedvoucher/" + str(VID)
     updateVoucher = invoke_http(url, method='PUT')
     return updateVoucher
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=5010, debug=True)
+    app.run(host='0.0.0.0',port=5011, debug=True)

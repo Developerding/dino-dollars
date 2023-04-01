@@ -54,7 +54,10 @@ def processPointAddition(order, UID):
     # Invoke the order microservice
     print('\n-----Invoking order microservice-----')
     print(order)
+    
     user_url = "http://user:5003/point/" + str(UID)
+    # Converts amount into points
+    order = convertPoints(order)
     print(user_url)
     order_result = invoke_http(user_url, method="PUT", json=order)
     print('order_result:', order_result)
@@ -109,12 +112,17 @@ def processPointAddition(order, UID):
             }    # - reply from the invocation is not used;
     # continue even if this invocation fails
     
-
+def convertPoints(order):
+    convertedPoints = int(float(order["Points"])) // 10
+    data = {"Points": convertedPoints}
+    # response = jsonify( data )
+    # response.status_code = 200
+    return data
 
 # Execute this program if it is run as a main script (not by 'import')
 if __name__ == "__main__":
     print("This is flask " + os.path.basename(__file__) + " for placing an order...")
-    app.run(host="0.0.0.0", port=6000, debug=True)
+    app.run(host="0.0.0.0", port=6001, debug=True)
     # Notes for the parameters: 
     # - debug=True will reload the program automatically if a change is detected;
     #   -- it in fact starts two instances of the same flask program, and uses one of the instances to monitor the program changes;
