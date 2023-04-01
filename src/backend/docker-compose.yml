@@ -1,0 +1,107 @@
+version: '4.17.1'
+
+volumes:
+  rabbitmq_data:
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+  user:
+    build:
+      context: ./
+      dockerfile: user.Dockerfile
+    image: geraldding/user:1.0
+    restart: always
+    container_name: user
+    environment:
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/user
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5003:5003"
+
+  points_accumulation:
+    build:
+      context: ./
+      dockerfile: points_accumulation.Dockerfile
+    image: geraldding/points_accumulation:1.0
+    restart: always
+    depends_on:
+      - rabbitmq
+      - user
+    container_name: points_accumulation
+    environment:
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      user_URL: http://user:5003/user
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "6000:6000"
+  
+  availablevoucher:
+    build:
+      context: ./
+      dockerfile: availablevoucher.Dockerfile
+    image: geraldding/availablevoucher:1.0
+    restart: always
+    container_name: availablevoucher
+    environment:
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/voucher
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5001:5001"
+  
+  redeemvoucher:
+    build:
+      context: ./
+      dockerfile: redeemvoucher.Dockerfile
+    image: geraldding/redeemvoucher:1.0
+    restart: always
+    depends_on:
+      - rabbitmq
+      - purchasedvoucher
+    container_name: redeemvoucher
+    environment:
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      voucher_URL: http://purchasedvoucher:5002/voucher
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5010:5010"
+  
+  purchasedvoucher:
+    build:
+      context: ./
+      dockerfile: purchasedvoucher.Dockerfile
+    image: geraldding/purchasedvoucher:1.0
+    restart: always
+    container_name: purchasedvoucher
+    environment:
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/voucher
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "5002:5002"
+
+  error:
+    build:
+      context: ./
+      dockerfile: error.Dockerfile
+    image: geraldding/error:1.0
+    restart: always
+    depends_on:
+      - rabbitmq
+    container_name: error
+    environment:
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      PYTHONUNBUFFERED: 1
