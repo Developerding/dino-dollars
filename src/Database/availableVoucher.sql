@@ -11,12 +11,12 @@ USE `availableVoucher`;
 DROP TABLE IF EXISTS `availableVoucher`;
 CREATE TABLE IF NOT EXISTS `availableVoucher` (
   `PlatformName` varchar(50) NOT NULL,
-  `DiscountAmt` varchar(20) NOT NULL,
+  `DiscountAmt` int NOT NULL,
   `DDRequired` int NOT NULL,
   PRIMARY KEY (`PlatformName`,`DiscountAmt`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
-INSERT INTO `availablevouchers` (`PlatformName`, `DiscountAmt`, `DDRequired`) VALUES
-('ASOS', '10% discount', 40),
-('ASOS', '5% discount', 20);
+INSERT INTO `availablevoucher` (`PlatformName`, `DiscountAmt`, `DDRequired`) VALUES
+('ASOS', 10, 40),
+('ASOS', 5, 20);

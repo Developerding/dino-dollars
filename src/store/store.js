@@ -22,13 +22,17 @@ export const store = new Vuex.Store({
         
         //       return somethingChange
         // }
-        cartTotal: state => {
-            state.cart.forEach(item => {
-                state.amount += item.price
-            })
+        // cartTotal: state => {
+        //     state.cart.forEach(item => {
+        //         state.amount += item.price
+        //     })
 
-            return state.amount
-        },
+        //     // return state.amount
+        // },
+
+        // getCart: state => {
+        //     return state.amount
+        // },
 
         //returning the vuex user state, can be seen in the console log.
         getUser(state){
