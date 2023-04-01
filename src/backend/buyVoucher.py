@@ -6,16 +6,15 @@ import os, sys
 import requests
 from invokes import invoke_http
 
-# import amqp_setup
-# import pika
+import amqp_setup
+import pika
 import json
 
 app = Flask(__name__)
 CORS(app)
 
-@app.route("/buy_voucher/<int>:UID/<int:Cost>", methods=['GET'])
+@app.route("/buy_voucher/<int:UID>/<int:Cost>", methods=['POST'])
 def buy_voucher(UID, Cost):
-    
     if request.is_json:
         try:
             order = request.get_json()
@@ -56,7 +55,7 @@ def buy_voucher(UID, Cost):
     }), 400
 
 def createNewVoucher():
-    url = "http://localhost:5002/purchasedvoucher/" 
+    url = "http://localhost:5002/purchasedvoucher/new" 
     newVoucher = invoke_http(url, method='POST')
     return newVoucher
 
