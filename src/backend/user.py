@@ -214,7 +214,7 @@ def update_user(UID):
         # update status
         data = request.get_json()
         if data['Points']:
-            user.Points = data['Points']
+            user.Points = user.Points + data['Points']
             db.session.commit()
             return jsonify(
                 {

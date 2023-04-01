@@ -84,7 +84,9 @@ export default {
           data, config
       )
       .then(response => {
-          console.log(response)
+          // console.log(response)
+          let amountSpent = response.data.purchase_units[0].amount.value
+          this.pointsAccumulation(amountSpent)
       })
       .catch(error => {
           console.log(error)
@@ -118,6 +120,20 @@ export default {
     getToken: async function() {
       let response = await this.paypalAuth()
       this.token = response
+    },
+
+    pointsAccumulation: function(amountSpent) {
+      // MAKE DYNAMIC BY GETTING UID FROM STATE
+      let url = "http://localhost:6001/add_points/1" 
+      let data = {"Points": amountSpent}
+
+      axios.post(url,data)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
 
     // validatingVoucher: function() {
