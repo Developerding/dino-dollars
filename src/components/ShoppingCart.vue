@@ -32,11 +32,18 @@
         v-on:click="paypalTest"
         large
         >test paypal</v-btn>
+
+        <v-btn
+        v-on:click="validatingVoucher"
+        large
+        >test validation</v-btn>
     </div>
   </v-app>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: "ShoppingCart",
   computed: {
@@ -56,6 +63,17 @@ export default {
     },
     paypalTest: function() {
       this.$store.dispatch('paypalTest')
+    },
+    validatingVoucher: function() {
+      axios.get('http://localhost:6001/validate_vouchers/1', {
+
+      })
+      .then(response => {
+        console.log(response.data)
+      })
+      .catch(error => {
+        console.log(error.message)
+      })
     }
     // removeItem: function(item) {
     //     this.$store.dispatch('removeItem', item)
