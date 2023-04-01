@@ -17,6 +17,6 @@ CREATE TABLE IF NOT EXISTS `availableVoucher` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 
-INSERT INTO `availablevouchers` (`PlatformName`, `DiscountAmt`, `DDRequired`) VALUES
+INSERT INTO `availablevoucher` (`PlatformName`, `DiscountAmt`, `DDRequired`) VALUES
 ('ASOS', 10, 40),
 ('ASOS', 5, 20);

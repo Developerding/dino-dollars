@@ -53,7 +53,7 @@ services:
       user_URL: http://user:5003/user
       PYTHONUNBUFFERED: 1
     ports:
-      - "6000:6000"
+      - "6003:6003"
 
   buyvoucher:
     build:
@@ -84,7 +84,7 @@ services:
     restart: always
     container_name: availablevoucher
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/voucher
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/availablevoucher
       PYTHONUNBUFFERED: 1
     ports:
       - "5001:5001"
@@ -115,7 +115,7 @@ services:
     restart: always
     container_name: purchasedvoucher
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/voucher
+      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/purchasedvoucher
       PYTHONUNBUFFERED: 1
     ports:
       - "5002:5002"
