@@ -113,7 +113,7 @@ export default {
 
 <style>
 h1, .header {
-  font-family: fredoka;
+  font-family: fabulous;
 }
 
 h2, h3, .body {
