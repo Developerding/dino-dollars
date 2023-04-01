@@ -15,7 +15,7 @@ app = Flask(__name__)
 CORS(app)
 
 user_url = environ.get('user_URL') or "http://user:5003/user/"
-purchasedvoucher_url = environ.get('purchasedvoucher_URL') or "http://purchasedvoucher:5002/purchasedvoucher"
+purchasedvoucher_url = environ.get('purchasedvoucher_URL') or "http://purchasedvoucher:5002/purchasedvoucher"   
 
 @app.route("/buy_voucher/<int:UID>/<int:Cost>", methods=['POST'])
 def buy_voucher(UID, Cost):
@@ -27,12 +27,20 @@ def buy_voucher(UID, Cost):
             # do the actual work
             # 1. Send order info {cart items}
             newVoucher = createNewVoucher(details)
+            print(newVoucher)
             if newVoucher["code"] in range(200,300):
-                newBalance = getCurrentBalance(UID) - Cost
-                newPoints = {"Points": newBalance}
-                result = updateUserBalance(newPoints, UID)
-                print('\n------------------------')
-                print('\nresult: ', result)
+                user = getCurrentBalance(UID)
+                if user["code"] in range(200,300):
+                    currentBalance = user["data"]["Points"]
+                    newBalance = currentBalance - Cost
+                    print(type(newBalance))
+                    newPoints = {"Points": newBalance}
+                    result = updateUserBalance(newPoints, UID)
+                    print('\n------------------------')
+                    print('\nresult: ', result)
+                    return jsonify(result), result["code"]
+                else:
+                    return jsonify(user), user["code"]
             else:
                 return jsonify(newVoucher), newVoucher["code"]
             
@@ -69,7 +77,7 @@ def createNewVoucher(details):
 def getCurrentBalance(UID):
     url = "http://user:5003/user/" + str(UID)
     user = invoke_http(url, method='GET')
-    return user['data']['Points']
+    return user
 
 
 def updateUserBalance(order, UID):
@@ -77,7 +85,7 @@ def updateUserBalance(order, UID):
     # Invoke the order microservice
     print('\n-----Invoking order microservice-----')
     print(order)
-    user_url = "http://localhost:5003/point/" + str(UID)
+    user_url = "http://user:5003/point/" + str(UID)
     print(user_url)
     order_result = invoke_http(user_url, method='PUT', json=order)
     print('order_result:', order_result)
