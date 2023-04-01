@@ -97,7 +97,7 @@ export const store = new Vuex.Store({
                 headers: {
                     "Content-Type": "application/json",
                     "Prefer": "return=representation",
-                    "Authorization": "Bearer A21AALy4-PStTiGkc8Ij60Tr13pQ5htRCWOrNXHtwreJepeXKVMkZJXhQ0MguLNhy8YDBsjTBo6-UBw7bC1ni8qZnkTNzFflw"
+                    "Authorization": "Bearer A21AAKC4Zz9p1F_noCLaWiAivHj7HowA8Z3D-FwHi-ae0dZuJU0RqMZItgP_uuyW2eI6fkGKXECNuQ9yGdQwB8UnTm2AMqwdA"
                 }
               }
 
