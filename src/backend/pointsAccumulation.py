@@ -13,7 +13,7 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-user_URL = environ.get('user_URL') or "http://localhost:5003/user/"
+user_url = environ.get('user_URL') or "http://localhost:5003/user/"
 
 @app.route("/add_points/<int:UID>", methods=['POST'])
 def add_points(UID):
@@ -92,15 +92,15 @@ def processPointAddition(order, UID):
     # Since the "Activity Log" binds to the queue using '#' => any routing_key would be matched 
     # and a message sent to “Error” queue can be received by “Activity Log” too.
 
-    else:
-        # 4. Record new order
-        # record the activity log anyway
-        #print('\n\n-----Invoking activity_log microservice-----')
-        print('\n\n-----Publishing the (order info) message with routing_key=order.info-----')        
+    # else:
+    #     # 4. Record new order
+    #     # record the activity log anyway
+    #     #print('\n\n-----Invoking activity_log microservice-----')
+    #     print('\n\n-----Publishing the (order info) message with routing_key=order.info-----')        
 
-        # invoke_http(activity_log_URL, method="POST", json=order_result)            
-        amqp_setup.channel.basic_publish(exchange=amqp_setup.exchangename, routing_key="order.info", 
-            body=message)
+    #     # invoke_http(activity_log_URL, method="POST", json=order_result)            
+    #     amqp_setup.channel.basic_publish(exchange=amqp_setup.exchangename, routing_key="order.info", 
+    #         body=message)
     
     print("\nOrder published to RabbitMQ Exchange.\n")
     return {

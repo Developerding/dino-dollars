@@ -7,15 +7,15 @@ services:
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
-    hostname: rabbitmq
+    restart: always
     ports:
-      - 5672:5672
-      - 15672:15672
+      - "5672:5672"
+      - "15672:15672"
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
 
   user:
     build:
@@ -34,11 +34,12 @@ services:
     build:
       context: ./
       dockerfile: points_accumulation.Dockerfile
-    image: geraldding/points_accumulation:1.0
+    image: geraldding/points_accumulation:dino
     restart: always
     depends_on:
       - rabbitmq
       - user
+      - error
     container_name: points_accumulation
     environment:
       rabbit_host: rabbitmq
@@ -52,7 +53,7 @@ services:
     build:
       context: ./
       dockerfile: availablevoucher.Dockerfile
-    image: geraldding/availablevoucher:1.0
+    image: geraldding/availablevoucher:dino
     restart: always
     container_name: availablevoucher
     environment:
@@ -65,7 +66,7 @@ services:
     build:
       context: ./
       dockerfile: redeemvoucher.Dockerfile
-    image: geraldding/redeemvoucher:1.0
+    image: geraldding/redeemvoucher:dino
     restart: always
     depends_on:
       - rabbitmq
@@ -83,7 +84,7 @@ services:
     build:
       context: ./
       dockerfile: purchasedvoucher.Dockerfile
-    image: geraldding/purchasedvoucher:1.0
+    image: geraldding/purchasedvoucher:dino
     restart: always
     container_name: purchasedvoucher
     environment:
@@ -96,7 +97,7 @@ services:
     build:
       context: ./
       dockerfile: error.Dockerfile
-    image: geraldding/error:1.0
+    image: geraldding/error:dino
     restart: always
     depends_on:
       - rabbitmq
