@@ -4,7 +4,8 @@ from flask_cors import CORS
 from os import environ
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL')
+# app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/user'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -13,22 +14,30 @@ CORS(app)
 
 class User(db.Model):
     __tablename__ = 'USER'
-    UID = db.Column(db.Integer, primary_key=True)
+    UID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Name = db.Column(db.String(64), nullable=False)
     Email = db.Column(db.String(64), nullable=False)
     Points = db.Column(db.Integer, nullable=False)
+    Password= db.Column(db.String(64), nullable=False)
 
-    def __init__(self, UID, Name, Email, Points):
-        self.UID = UID
+    # def __init__(self, UID, Name, Email, Points):
+    #     self.UID = UID
+    #     self.Name = Name
+    #     self.Email = Email
+    #     self.Points = Points
+
+    def __init__(self, Name, Email, Password):
+        # self.UID = UID
         self.Name = Name
         self.Email = Email
-        self.Points = Points
+        self.Points = 0
+        self.Password=Password
 
     def json(self):
-        user = {"UID": self.UID, "Name": self.Name, "Email": self.Email, "Points": self.Points}
+        user = {"UID": self.UID, "Name": self.Name, "Email": self.Email, "Points": self.Points, 'Password':self.Password}
         user['LinkedAccs'] = []
-        for acc in self.ACCOUNTS:
-            user['LinkedAccs'].append(acc.json())
+        # for acc in self.ACCOUNTS:
+        #     user['LinkedAccs'].append(acc.json())
         return user
 
 
@@ -66,39 +75,107 @@ def get_all():
         }
     ), 404
 
-@app.route("/user/<int:UID>")
-def find_by_UID(UID):
-    user = User.query.filter_by(UID=UID).first()
+
+@app.route("/user/<string:email>/<string:password>")
+def find_by_email_and_password(email, password):
+    # data=request.get_json()
+    # Email=data['Email']
+    # Password=data['Password']
+    user = User.query.filter_by(Email=email , Password=password).first()
+
+    #### I'm commenting this out temporarily
+    # if user:
+    #     return jsonify(
+    #         {
+    #             "code": 200,
+    #             "data": user.json()
+    #         }
+    #     )
+    # return jsonify(
+    #     {
+    #         "code": 404,
+    #         "message": "User not found."
+    #     }
+    # ), 404
     if user:
         return jsonify(
             {
                 "code": 200,
                 "data": user.json()
             }
-        )
+        ),200
+    # print(user)
     return jsonify(
         {
-            "code": 404,
-            "message": "User not found."
+           
+            "code":404,
+            "message": "Email or password incorrect."
         }
     ), 404
+    
+
+@app.route("/user/<int:UID>")
+def find_by_UID(UID):
+    user = User.query.filter_by(UID=UID).first()
+
+    if user:
+        return jsonify(
+            {
+                "code": 200,
+                "data": user.json()
+            }
+        ),200
+    print(user)
+    return jsonify(
+        {
+            "code":404,
+            "message": "Email or password incorrect."
+        }
+    ),404
+
+    
 
 
-@app.route("/user/<int:UID>", methods=['POST'])
-def create_user(UID):
-    if (User.query.filter_by(UID=UID).first()):
+# @app.route("/user/<int:UID>", methods=['POST'])
+@app.route("/user", methods=['POST'])
+def create_user():
+    data = request.get_json()
+
+    #checking for registration fields
+    if data['Name'].strip()=="" or data['Password'].strip()=="" or data['Email'].strip()=="":
+        return jsonify(
+        {
+            "code": 400,
+            "message": "Registration failed. Please enter all fields"
+        }
+        ), 400
+    
+    #checking if username or email already exist in the database
+    if (User.query.filter_by(Email=data['Email']).first()):
         return jsonify(
             {
                 "code": 400,
-                "data": {
-                    "UID": UID
-                },
-                "message": "User already exists."
+                "message": "Email already exists."
             }
         ), 400
+    
+    if (User.query.filter_by(Name=data['Name']).first()):
+        return jsonify(
+            {
+                "code": 400,
+                "message": "Name already exists."
+            }
+        ), 400
+    
+    
 
-    data = request.get_json()
-    user = User(UID, **data)
+    #the data should be in {username, email, password} format
+    # print(data)
+    user = User( Name=data['Name'], Email=data['Email'], Password=data['Password'])
+    # print(user.Password)
+    # print(user.Email)
+    # print(user.Name)
+    # print(user.UID)
 
     try:
         db.session.add(user)
@@ -107,9 +184,6 @@ def create_user(UID):
         return jsonify(
             {
                 "code": 500,
-                "data": {
-                    "UID": UID
-                },
                 "message": "An error occurred creating the user."
             }
         ), 500
