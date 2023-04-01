@@ -54,6 +54,27 @@ services:
       PYTHONUNBUFFERED: 1
     ports:
       - "6000:6000"
+
+  buyvoucher:
+    build:
+      context: ./
+      dockerfile: buyvoucher.Dockerfile
+    image: geraldding/buyvoucher:dino
+    restart: always
+    depends_on:
+      - rabbitmq
+      - user
+      - error
+      - purchasedvoucher
+    container_name: buyvoucher
+    environment:
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      user_URL: http://user:5003/user
+      voucher_URL: http://purchasedvoucher:5002/voucher
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "6002:6002"
   
   availablevoucher:
     build:
