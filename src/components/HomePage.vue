@@ -5,6 +5,7 @@
       <v-main class="blue lighten-4" >
         <v-container>
           <v-row>
+            <v-col class="col-2"></v-col>
             <v-col align="center" justify="center">
               <h1>Dino Dollars</h1>
               <h2 class="font-weight-medium">Spend. Redeem. Save.</h2>
@@ -14,7 +15,8 @@
               <!-- change image -->
               <img src="../assets/dinodollar logo 2.jpeg" height="200">
             </v-col>
-            
+            <v-col class="col-2"></v-col>
+
           </v-row>
 
           <br><br>
