@@ -97,37 +97,55 @@ export const store = new Vuex.Store({
                 console.log(error.message);
             });
         },
-        paypalTest: () => {
-            let data = {
-                "intent": "CAPTURE",
-                "purchase_units": [
-                    {
-                        "amount": {
-                            "currency_code": "USD",
-                            "value": "100"
-                        }
-                    }
-                ]
-            } 
+        // paypalTest: () => {
+        //     let data = {
+        //         "intent": "CAPTURE",
+        //         "purchase_units": [
+        //             {
+        //                 "amount": {
+        //                     "currency_code": "USD",
+        //                     "value": "100"
+        //                 }
+        //             }
+        //         ]
+        //     } 
 
-            let config = {
-                headers: {
-                    "Content-Type": "application/json",
-                    "Prefer": "return=representation",
-                    "Authorization": "Bearer A21AAKC4Zz9p1F_noCLaWiAivHj7HowA8Z3D-FwHi-ae0dZuJU0RqMZItgP_uuyW2eI6fkGKXECNuQ9yGdQwB8UnTm2AMqwdA"
-                }
-              }
+        //     let config = {
+        //         headers: {
+        //             "Content-Type": "application/json",
+        //             "Prefer": "return=representation",
+        //             "Authorization": "Bearer A21AAKC4Zz9p1F_noCLaWiAivHj7HowA8Z3D-FwHi-ae0dZuJU0RqMZItgP_uuyW2eI6fkGKXECNuQ9yGdQwB8UnTm2AMqwdA"
+        //         }
+        //       }
 
-            axios.post('https://api-m.sandbox.paypal.com/v2/checkout/orders', 
-                data, config
-            )
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-                console.log(error)
-            })
-        },
+        //     axios.post('https://api-m.sandbox.paypal.com/v2/checkout/orders', 
+        //         data, config
+        //     )
+        //     .then(response => {
+        //         console.log(response)
+        //     })
+        //     .catch(error => {
+        //         console.log(error)
+        //     })
+        // },
+
+        // paypalAuth: () => {
+        //     let data = {
+        //         "grant_type": "client_credentials"
+        //     }
+
+        //     axios.post('https://api-m.sandbox.paypal.com/v1/oauth2/token',{
+        //         auth: {
+        //           username: 'AfhfcAANPYIAq90OTmgdpm11kw9wYoiQU635f5NinRCJa5yXRU1f3UaXTTpRYwvpyjrb5fjyiaMkixUp',
+        //           password: 'EFEP1zHTJlER95z51Vu4xUvMgqz3NBaXEYsXRTbxdLcy5ziX4Jt-N1dUMV86dW4t0dxN-WDbMm-m6x8I'
+        //         },
+        //         data
+        //       }
+        //     )
+        //     .then(response => {
+                
+        //     })
+        // },
 
         signUserIn( {commit}, payload){
             const loggedUser= payload
