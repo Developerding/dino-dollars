@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `user`(
     `Name` varchar(64) NOT NULL,
     `Email` varchar(64) NOT NULL,
     `Points` int(10) NOT NULL DEFAULT 0,
+    `Password` varchar(64) NOT NULL,
     PRIMARY KEY (`UID`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -25,9 +26,9 @@ CREATE TABLE IF NOT EXISTS `ACCOUNTS`(
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `user` (`UID`, `Name`, `Email`, `Points`) VALUES
-(1, 'Ding', 'gerald.ding.2021@scis.smu.edu.sg', 0),
-(2, 'Poy', 'ryanpoy.2021@scis.smu.edu.sg', 0);
+INSERT INTO `user` (`UID`, `Name`, `Email`, `Points`, `Password`) VALUES
+(1, 'Ding', 'gerald.ding.2021@scis.smu.edu.sg', 0, 'password'),
+(2, 'Poy', 'ryanpoy.2021@scis.smu.edu.sg', 0, 'password');
 COMMIT;
 
 -- INSERT INTO `ACCOUNTS` (`UID`, `Name`) VALUES

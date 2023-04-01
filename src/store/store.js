@@ -8,7 +8,9 @@ export const store = new Vuex.Store({
     state: {
         cart: [
         ],
-        amount: 0
+        amount: 0,
+
+        user: null
     },
     getters: {
         // somethingChanged: state => {
@@ -26,7 +28,13 @@ export const store = new Vuex.Store({
             })
 
             return state.amount
-        }
+        },
+
+        //returning the vuex user state, can be seen in the console log.
+        getUser(state){
+            console.log(state.user)
+            return state.user
+        } 
     },
     mutations: {
         // changeName: state => {
@@ -49,6 +57,15 @@ export const store = new Vuex.Store({
         //         state.amount += item.price
         //     })
         // }
+        logUser (state, payload){
+            state.user=payload
+        },
+
+        logOut (state){
+            state.user=null
+        }
+
+        
     },
     actions: {
         // changeName: context => {
@@ -110,6 +127,15 @@ export const store = new Vuex.Store({
             .catch(error => {
                 console.log(error)
             })
+        },
+
+        signUserIn( {commit}, payload){
+            const loggedUser= payload
+            commit('logUser', loggedUser)
+        },
+
+        logUserOut( {commit}){
+            commit('logOut')
         }
     },
 }
