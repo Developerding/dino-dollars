@@ -137,7 +137,7 @@ export const store = new Vuex.Store({
             .then(response => {
                 //if user logs in
                 console.log(response.data)
-                const loggedUser= response.data
+                const loggedUser= response.data.data
                 commit('logUser',loggedUser)
 
             })
