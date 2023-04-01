@@ -20,9 +20,9 @@
 
       <v-btn v-on:click="removeAllItems">clear cart</v-btn>
 
-      <v-btn v-on:click="pointsUpdate" large>checkout</v-btn>
+      <!-- <v-btn v-on:click="pointsUpdate" large>checkout</v-btn> -->
 
-      <v-btn v-on:click="paypalTest" large>test paypal</v-btn>
+      <v-btn v-on:click="checkoutCart" large>CHECKOUT BABY</v-btn>
 
       <!-- <v-btn
         v-on:click="validatingVoucher"
@@ -45,8 +45,15 @@ export default {
       return this.$store.state.cart;
     },
     cartTotal() {
-      return this.$store.getters.cartTotal;
+      let state = this.$store.state
+
+      state.cart.forEach(item => {
+        state.amount += item.price
+      })
+
+      return state.amount
     },
+    
   },
   methods: {
     removeAllItems: function () {
@@ -55,7 +62,10 @@ export default {
     pointsUpdate: function () {
       this.$store.dispatch("pointsUpdate");
     },
-    paypalTest: function () {
+    currentUser() {
+      return this.$store.getters.getUser;
+    },
+    checkoutCart: function () {
       // this.$store.dispatch('paypalTest')
       let authToken = "Bearer " + this.token
       let value = this.cartTotal
@@ -123,8 +133,11 @@ export default {
     },
 
     pointsAccumulation: function(amountSpent) {
-      // MAKE DYNAMIC BY GETTING UID FROM STATE
-      let url = "http://localhost:6003/add_points/1" 
+      let currentUser = this.currentUser()
+      let currentUID = currentUser.UID
+      // console.log(currentUID.UID)
+
+      let url = "http://localhost:6003/add_points/" + currentUID
       let data = {"Points": amountSpent}
 
       axios.post(url,data)
@@ -135,20 +148,6 @@ export default {
         console.log(error)
       })
     }
-
-    // validatingVoucher: function() {
-    //   axios.get('http://localhost:6001/validate_voucher/1')
-    //   .then(response => {
-    //     console.log(response.data)
-    //   })
-    //   .catch(error => {
-    //     console.log(error.message)
-    //   })
-    // }
-
-    // removeItem: function(item) {
-    //     this.$store.dispatch('removeItem', item)
-    // }
   },
   mounted: function() {
     this.getToken();
