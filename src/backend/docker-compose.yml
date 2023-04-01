@@ -2,20 +2,26 @@ version: '4.17.1'
 
 volumes:
   rabbitmq_data:
+  pgdata:
+  kongadata:
+
+networks:
+  kong-net:
+    driver: bridge
 
 services:
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
-    hostname: rabbitmq
+    restart: always
     ports:
-      - 5672:5672
-      - 15672:15672
+      - "5672:5672"
+      - "15672:15672"
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
     environment:
-      - RABBITMQ_DEFAULT_USER=guest
-      - RABBITMQ_DEFAULT_PASS=guest
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
 
   user:
     build:
@@ -34,11 +40,12 @@ services:
     build:
       context: ./
       dockerfile: points_accumulation.Dockerfile
-    image: geraldding/points_accumulation:1.0
+    image: geraldding/points_accumulation:dino
     restart: always
     depends_on:
       - rabbitmq
       - user
+      - error
     container_name: points_accumulation
     environment:
       rabbit_host: rabbitmq
@@ -47,12 +54,33 @@ services:
       PYTHONUNBUFFERED: 1
     ports:
       - "6000:6000"
+
+  buyvoucher:
+    build:
+      context: ./
+      dockerfile: buyvoucher.Dockerfile
+    image: geraldding/buyvoucher:dino
+    restart: always
+    depends_on:
+      - rabbitmq
+      - user
+      - error
+      - purchasedvoucher
+    container_name: buyvoucher
+    environment:
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      user_URL: http://user:5003/user
+      voucher_URL: http://purchasedvoucher:5002/voucher
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "6002:6002"
   
   availablevoucher:
     build:
       context: ./
       dockerfile: availablevoucher.Dockerfile
-    image: geraldding/availablevoucher:1.0
+    image: geraldding/availablevoucher:dino
     restart: always
     container_name: availablevoucher
     environment:
@@ -65,7 +93,7 @@ services:
     build:
       context: ./
       dockerfile: redeemvoucher.Dockerfile
-    image: geraldding/redeemvoucher:1.0
+    image: geraldding/redeemvoucher:dino
     restart: always
     depends_on:
       - rabbitmq
@@ -83,7 +111,7 @@ services:
     build:
       context: ./
       dockerfile: purchasedvoucher.Dockerfile
-    image: geraldding/purchasedvoucher:1.0
+    image: geraldding/purchasedvoucher:dino
     restart: always
     container_name: purchasedvoucher
     environment:
@@ -96,7 +124,7 @@ services:
     build:
       context: ./
       dockerfile: error.Dockerfile
-    image: geraldding/error:1.0
+    image: geraldding/error:dino
     restart: always
     depends_on:
       - rabbitmq
@@ -105,3 +133,88 @@ services:
       rabbit_host: rabbitmq
       rabbit_port: 5672
       PYTHONUNBUFFERED: 1
+
+  validatevoucher:
+    build:
+      context: ./
+      dockerfile: validatevoucher.Dockerfile
+    image: geraldding/validatevoucher:dino
+    restart: always
+    depends_on:
+      - user
+      - availablevoucher
+    container_name: validatevoucher
+    environment:
+      user_URL: http://user:5003/user
+      voucher_URL: http://availablevoucher:5001/availablevoucher
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "6001:6001"
+
+  kong-database:
+    image: postgres:9.6
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      POSTGRES_DB: kong
+      POSTGRES_USER: kong
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "kong"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  kong-migration:
+    image: kong:2.0.4
+    command: "kong migrations bootstrap"
+    restart: on-failure
+    networks:
+      - kong-net
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: password
+    depends_on:
+      - kong-database
+
+  kong:
+    image: kong:2.0.4
+    restart: always
+    networks:
+      - kong-net
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: password
+      KONG_PROXY_LISTEN: 0.0.0.0:8000
+      KONG_ADMIN_LISTEN: 0.0.0.0:8001
+    depends_on:
+      - kong-migration
+    ports:
+      - "8000:8000"
+  
+  konga:
+    image: pantsel/konga
+    restart: always
+    networks:
+        - kong-net
+    environment:
+      DB_ADAPTER: postgres
+      DB_HOST: kong-database
+      DB_USER: kong
+      DB_PASSWORD: password
+      DB_DATABASE: konga_db
+    depends_on:
+      - kong
+    ports:
+      - "1337:1337"
+    volumes:
+      - kongadata:/app/kongadata

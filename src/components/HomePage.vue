@@ -11,7 +11,7 @@
               <h2 class="font-weight-medium">Spend. Redeem. Save.</h2>
               <h3 class="font-weight-light">Dino Dollars is a voucher system that helps consumers save with every dollar spent!</h3>
             </v-col>
-            <v-col align="center" justify="center" >
+            <v-col align="center" justify="center">
               <!-- change image -->
               <img src="../assets/dinodollar logo 2.jpeg" height="200">
             </v-col>

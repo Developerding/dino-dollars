@@ -1,7 +1,7 @@
 <template>
   <v-app>
 
-    <v-main class="blue lighten-4">
+    <v-main>
 
 
     <!-- <AsosUI/> -->
