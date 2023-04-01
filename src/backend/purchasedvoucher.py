@@ -16,32 +16,32 @@ db = SQLAlchemy(app)
 CORS(app)  
 
 #creating a AvailableVoucher object 
-class AvailableVoucher(db.Model):
-    __tablename__ = 'AvailableVoucher'
+# class AvailableVoucher(db.Model):
+#     __tablename__ = 'AvailableVoucher'
 
-    PlatformName = db.Column(db.String(50), nullable=False, primary_key=True)
-    DiscountAmt = db.Column(db.Integer, nullable=False, primary_key=True)
-    DDRequired = db.Column(db.Integer, nullable=False)
+#     PlatformName = db.Column(db.String(50), nullable=False, primary_key=True)
+#     DiscountAmt = db.Column(db.Integer, nullable=False, primary_key=True)
+#     DDRequired = db.Column(db.Integer, nullable=False)
 
 
-    # purchasedvouchers=db.relationship('PurchasedVoucher', backref='AvailableVoucher')
+#     # purchasedvouchers=db.relationship('PurchasedVoucher', backref='AvailableVoucher')
     
 
-    #init AvailableVoucher object
-    def __init__(self, PlatformName, DDRequired, DiscountAmt):
-        self.PlatformName=PlatformName
-        self.DiscountAmt=DiscountAmt
+#     #init AvailableVoucher object
+#     def __init__(self, PlatformName, DDRequired, DiscountAmt):
+#         self.PlatformName=PlatformName
+#         self.DiscountAmt=DiscountAmt
 
-        self.DDRequired=DDRequired
+#         self.DDRequired=DDRequired
 
-    #returned object in JSON format
-    def json(self):
+#     #returned object in JSON format
+#     def json(self):
         
-        return {
-            'PlatformName': self.PlatformName,
-            'DiscountAmt': self.DiscountAmt,
-            'DDRequired': self.DDRequired
-        }
+#         return {
+#             'PlatformName': self.PlatformName,
+#             'DiscountAmt': self.DiscountAmt,
+#             'DDRequired': self.DDRequired
+#         }
 
 #creating a PurchasedVoucher object 
 class PurchasedVoucher(db.Model):
@@ -155,20 +155,20 @@ def add_voucher():
     
     data = request.get_json()
     
-    print(data)
-    #querying for the parent voucher in AvailableVoucher db
-    parent_voucher=AvailableVoucher.query.filter_by(PlatformName=data['pname'], DiscountAmt=data['discount'], DDRequired=data['DDRequired']).first()
-    print(parent_voucher)
+    # print(data)
+    # #querying for the parent voucher in AvailableVoucher db
+    # parent_voucher=AvailableVoucher.query.filter_by(PlatformName=data['pname'], DiscountAmt=data['discount'], DDRequired=data['DDRequired']).first()
+    # print(parent_voucher)
     
-    #chosen voucher is not in available voucher db
-    if not parent_voucher:
-        return jsonify(
-            {
-                "code": 500,
-                "message":  "Chosen voucher not found in the AvailableVoucher database."
-            }
+    # #chosen voucher is not in available voucher db
+    # if not parent_voucher:
+    #     return jsonify(
+    #         {
+    #             "code": 500,
+    #             "message":  "Chosen voucher not found in the AvailableVoucher database."
+    #         }
 
-        )
+    #     )
     
     #chosen voucher is in available voucher DB:
     #currently expiry date is current timing. Need to fix this!!!
