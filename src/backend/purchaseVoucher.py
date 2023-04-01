@@ -45,8 +45,8 @@ def getAvailableVouchers(points, vouchers):
     total.append(unavailable_vouchers)
     return total
 
-@app.route("/purchase_voucher/<int>:UID/<str:PlatformName>/<str:DiscountAmt>/<int:Cost>", methods=['GET'])
-def purchase_voucher(UID, PlatformName, DiscountAmt, Cost):
+# @app.route("/purchase_voucher/<int>:UID/<str:PlatformName>/<str:DiscountAmt>/<int:Cost>", methods=['GET'])
+# def purchase_voucher(UID, PlatformName, DiscountAmt, Cost):
     
     
 

@@ -2,8 +2,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 import os, sys
+from os import environ
 
-import requests
 from invokes import invoke_http
 
 import amqp_setup
@@ -13,7 +13,7 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-
+user_URL = environ.get('user_URL') or "http://localhost:5003/user/"
 
 @app.route("/add_points/<int:UID>", methods=['POST'])
 def add_points(UID):
@@ -54,7 +54,7 @@ def processPointAddition(order, UID):
     # Invoke the order microservice
     print('\n-----Invoking order microservice-----')
     print(order)
-    user_url = "http://localhost:5003/point/" + str(UID)
+    user_url = "http://localhost:5003/user/" + str(UID)
     print(user_url)
     order_result = invoke_http( user_url, method='PUT', json=order)
     print('order_result:', order_result)
