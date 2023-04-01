@@ -16,26 +16,27 @@ CORS(app)
 
 #creating a AvailableVoucher object 
 class AvailableVoucher(db.Model):
-    __tablename__ = 'AvailableVouchers'
+    __tablename__ = 'availableVoucher'
 
     PlatformName = db.Column(db.String(50), nullable=False, primary_key=True)
-    Cost = db.Column(db.Integer, nullable=False)
-    DiscountAmt = db.Column(db.String(20), nullable=False, primary_key=True)
+    DiscountAmt = db.Column(db.Integer, nullable=False, primary_key=True)
+    DDRequired = db.Column(db.Integer, nullable=False)
     
 
     #init AvailableVoucher object
-    def __init__(self, PlatformName, Cost, DiscountAmt):
+    def __init__(self, PlatformName, DiscountAmt, DDRequired):
         self.Platform_Name=PlatformName
-        self.Cost=Cost
         self.DiscountAmt=DiscountAmt
+        self.DDRequired=DDRequired
 
     #returned object in JSON format
     def json(self):
         
         return {
             'Platform_Name': self.PlatformName,
-            'Cost': self.Cost,
-            'DiscountAmt': self.DiscountAmt
+            'DiscountAmt': self.DiscountAmt,
+            'DDRequired': self.DDRequired,
+
         }
     
 
