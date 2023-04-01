@@ -38,7 +38,7 @@ def getAvailableVouchers(points, vouchers):
 
     for voucher in vouchers:
         # return voucher
-        if int(voucher['Cost']) < int(points):
+        if int(voucher['DDRequired']) < int(points):
             available_vouchers.append(voucher)
         else:
             unavailable_vouchers.append(voucher)

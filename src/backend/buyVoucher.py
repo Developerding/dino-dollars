@@ -17,8 +17,8 @@ CORS(app)
 user_url = environ.get('user_URL') or "http://user:5003/user/"
 purchasedvoucher_url = environ.get('purchasedvoucher_URL') or "http://purchasedvoucher:5002/purchasedvoucher"   
 
-@app.route("/buy_voucher/<int:UID>/<int:Cost>", methods=['POST'])
-def buy_voucher(UID, Cost):
+@app.route("/buy_voucher/<int:UID>/<int:DDRequired>", methods=['POST'])
+def buy_voucher(UID, DDRequired):
     if request.is_json:
         try:
             details = request.get_json()
@@ -32,7 +32,7 @@ def buy_voucher(UID, Cost):
                 user = getCurrentBalance(UID)
                 if user["code"] in range(200,300):
                     currentBalance = user["data"]["Points"]
-                    newBalance = currentBalance - Cost
+                    newBalance = currentBalance - DDRequired
                     print(type(newBalance))
                     newPoints = {"Points": newBalance}
                     result = updateUserBalance(newPoints, UID)
