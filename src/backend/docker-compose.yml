@@ -27,7 +27,7 @@ services:
     build:
       context: ./
       dockerfile: user.Dockerfile
-    image: geraldding/user:1.0
+    image: geraldding/user:dino
     restart: always
     container_name: user
     environment:
