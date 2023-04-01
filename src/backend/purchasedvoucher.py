@@ -6,8 +6,8 @@ from os import environ
 
 app = Flask(__name__)
 ##Rememeber to change db connection using environ
-# app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/user'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL')
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/purchasedvoucher'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -17,7 +17,7 @@ CORS(app)
 
 #creating a AvailableVoucher object 
 class AvailableVoucher(db.Model):
-    __tablename__ = 'AvailableVouchers'
+    __tablename__ = 'AvailableVoucher'
 
     PlatformName = db.Column(db.String(50), nullable=False, primary_key=True)
     DiscountAmt = db.Column(db.Integer, nullable=False, primary_key=True)
@@ -45,7 +45,7 @@ class AvailableVoucher(db.Model):
 
 #creating a PurchasedVoucher object 
 class PurchasedVoucher(db.Model):
-    __tablename__ = 'PurchasedVouchers'
+    __tablename__ = 'purchasedVoucher'
 
     Vid=db.Column(db.Integer, autoincrement=True, primary_key=True)
     Uid=db.Column(db.Integer)
