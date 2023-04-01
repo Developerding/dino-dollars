@@ -124,7 +124,7 @@ export default {
 
     pointsAccumulation: function(amountSpent) {
       // MAKE DYNAMIC BY GETTING UID FROM STATE
-      let url = "http://localhost:6001/add_points/1" 
+      let url = "http://localhost:6003/add_points/1" 
       let data = {"Points": amountSpent}
 
       axios.post(url,data)
