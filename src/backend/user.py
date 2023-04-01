@@ -97,6 +97,22 @@ def find_by_UID(email, password):
     #         "message": "User not found."
     #     }
     # ), 404
+    if user:
+        return jsonify(
+            {
+                "code": 200,
+                "data": user.json()
+            }
+        ),200
+    # print(user)
+    return jsonify(
+        {
+           
+            "code":404,
+            "message": "Email or password incorrect."
+        }
+    ), 404
+    
 
 @app.route("/user/<int:UID>")
 def find_by_UID(UID):
