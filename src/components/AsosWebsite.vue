@@ -37,13 +37,13 @@
               </v-col>
             </template> -->
 
-              <ItemCard
-              v-for="product in products"
-              :key="product.name"
-              :item-name="product.name"
-              :item-image="product.image"
-              :item-price="product.price"
-              />
+            <ItemCard
+            v-for="(product, key) in products"
+            :key="key"
+            :item-name="product.name"
+            :item-image="require(`@/assets/${product.image}`)"
+            :item-price="product.price"
+          />
 
           </v-row><br><br>
           <v-row align="center" justify="center">
@@ -70,22 +70,22 @@ import {mapActions, mapGetters} from 'vuex'
         item1: {
           name: "Cargo Trousers",
           price: 48.15,
-          image: '../assets/asos1.png'
+          image: "asos1.png"
         },
         item2: {
           name: "Cotton Jacket",
           price: 58.85,
-          image: "../assets/asos2.png"
+          image: "asos2.png"
         },
         item3: {
           name: "Linen Jumpsuit",
           price: 101.64,
-          image: "../assets/asos3.png"
+          image: "asos3.png"
         },
         item4: {
           name: "Midi Dress",
           price: 97.36,
-          image: "../assets/asos4.png"
+          image: "asos4.png"
         }
       }
     }),
