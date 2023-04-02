@@ -6,8 +6,8 @@ from os import environ
 
 app = Flask(__name__)
 ##Rememeber to change db connection using environ
-# app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL')
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/user'
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL')
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/purchasedvoucher'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
@@ -16,41 +16,43 @@ db = SQLAlchemy(app)
 CORS(app)  
 
 #creating a AvailableVoucher object 
-class AvailableVoucher(db.Model):
-    __tablename__ = 'AvailableVouchers'
+# class AvailableVoucher(db.Model):
+#     __tablename__ = 'AvailableVoucher'
 
-    PlatformName = db.Column(db.String(50), nullable=False, primary_key=True)
-    Cost = db.Column(db.Integer, nullable=False)
-    DiscountAmt = db.Column(db.String(20), nullable=False, primary_key=True)
+#     PlatformName = db.Column(db.String(50), nullable=False, primary_key=True)
+#     DiscountAmt = db.Column(db.Integer, nullable=False, primary_key=True)
+#     DDRequired = db.Column(db.Integer, nullable=False)
 
-    # purchasedvouchers=db.relationship('PurchasedVoucher', backref='AvailableVoucher')
+
+#     # purchasedvouchers=db.relationship('PurchasedVoucher', backref='AvailableVoucher')
     
 
-    #init AvailableVoucher object
-    def __init__(self, PlatformName, Cost, DiscountAmt):
-        self.PlatformName=PlatformName
-        self.Cost=Cost
-        self.DiscountAmt=DiscountAmt
+#     #init AvailableVoucher object
+#     def __init__(self, PlatformName, DDRequired, DiscountAmt):
+#         self.PlatformName=PlatformName
+#         self.DiscountAmt=DiscountAmt
 
-    #returned object in JSON format
-    def json(self):
+#         self.DDRequired=DDRequired
+
+#     #returned object in JSON format
+#     def json(self):
         
-        return {
-            'PlatformName': self.PlatformName,
-            'Cost': self.Cost,
-            'DiscountAmt': self.DiscountAmt
-        }
+#         return {
+#             'PlatformName': self.PlatformName,
+#             'DiscountAmt': self.DiscountAmt,
+#             'DDRequired': self.DDRequired
+#         }
 
 #creating a PurchasedVoucher object 
 class PurchasedVoucher(db.Model):
-    __tablename__ = 'PurchasedVouchers'
+    __tablename__ = 'purchasedVoucher'
 
     Vid=db.Column(db.Integer, autoincrement=True, primary_key=True)
     Uid=db.Column(db.Integer)
     # Uid=db.Column(db.ForeignKey("User.UID", ondelete='CASCADE', onupdate="CASCADE") )
     PlatformName=db.Column(db.String(50))
-    DiscountAmt=db.Column(db.String(20))
-    PointsRequired= db.Column(db.Integer)
+    DiscountAmt=db.Column(db.Integer)
+    DDRequired= db.Column(db.Integer)
     # PlatformName = db.Column(db.String(50), db.ForeignKey("AvailableVoucher.PlatformName", ondelete='CASCADE', onupdate="CASCADE"))
     # DiscountAmt = db.Column(db.String(20), db.ForeignKey('AvailableVoucher.DiscountAmt', ondelete='CASCADE', onupdate="CASCADE"))
     # Cost = db.Column(db.Integer, db.ForeignKey('AvailableVoucher.Cost', ondelete='CASCADE', onupdate="CASCADE"))
@@ -69,12 +71,12 @@ class PurchasedVoucher(db.Model):
     
 
     #init PurchasedVoucher object. PurchasedDate, RedeemedDate and ExpiryDate are left blank (idk how we gonna set the date lmao)
-    def __init__(self,Uid,PlatformName, DiscountAmt, PointsRequired, ExpiryDate):
+    def __init__(self,Uid,PlatformName, DiscountAmt, DDRequired, ExpiryDate):
         # self.Vid=Vid
         self.Uid=Uid
         self.PlatformName=PlatformName
         self.DiscountAmt=DiscountAmt
-        self.PointsRequired=PointsRequired
+        self.DDRequired=DDRequired
         self.ExpiryDate=ExpiryDate
     
         
@@ -87,7 +89,7 @@ class PurchasedVoucher(db.Model):
             'Uid': self.Uid,
             'PlatformName': self.PlatformName,
             'DiscountAmt': self.DiscountAmt,
-            'PointsRequired': self.PointsRequired,
+            'DDRequired': self.DDRequired,
             'PurchasedDate' : self.PurchasedDate,
             'RedeemedDate': self.RedeemedDate,
             'ExpiryDate': self.ExpiryDate
@@ -153,27 +155,27 @@ def add_voucher():
     
     data = request.get_json()
     
-    print(data)
-    #querying for the parent voucher in AvailableVoucher db
-    parent_voucher=AvailableVoucher.query.filter_by(PlatformName=data['pname'], DiscountAmt=data['discount'], Cost=data['cost']).first()
-    print(parent_voucher)
+    # print(data)
+    # #querying for the parent voucher in AvailableVoucher db
+    # parent_voucher=AvailableVoucher.query.filter_by(PlatformName=data['pname'], DiscountAmt=data['discount'], DDRequired=data['DDRequired']).first()
+    # print(parent_voucher)
     
-    #chosen voucher is not in available voucher db
-    if not parent_voucher:
-        return jsonify(
-            {
-                "code": 500,
-                "message":  "Chosen voucher not found in the AvailableVoucher database."
-            }
+    # #chosen voucher is not in available voucher db
+    # if not parent_voucher:
+    #     return jsonify(
+    #         {
+    #             "code": 500,
+    #             "message":  "Chosen voucher not found in the AvailableVoucher database."
+    #         }
 
-        )
+    #     )
     
     #chosen voucher is in available voucher DB:
     #currently expiry date is current timing. Need to fix this!!!
     expiry_date= datetime.utcnow()
     # self,Uid,PlatformName, DiscountAmt, Cost, ExpiryDate
     # Uid,PlatformName, DiscountAmt, Cost, ExpiryDate
-    added_voucher=PurchasedVoucher(Uid=data['uid'], PlatformName=data['pname'], DiscountAmt=data['discount'], PointsRequired=data['cost'],ExpiryDate=expiry_date  )
+    added_voucher=PurchasedVoucher(Uid=data['uid'], PlatformName=data['pname'], DiscountAmt=data['discount'], DDRequired=data['DDRequired'],ExpiryDate=expiry_date  )
     db.session.add(added_voucher)
     db.session.commit()
     return jsonify(
