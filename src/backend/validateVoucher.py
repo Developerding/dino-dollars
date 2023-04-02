@@ -15,22 +15,25 @@ voucher_url = environ.get('voucher_URL') or "http://localhost:5001/voucher"
 @app.route("/validate_voucher/<int:UID>", methods=['GET'])
 def validate_voucher(UID):
     # Making sure that vouchers displayed to user are those that they have sufficient points for
-    points = getUserPoints(UID)
-    return points
     vouchers = getVouchers()
+    points = getUserPoints(UID)
+    
     voucherList = getAvailableVouchers(points, vouchers)
+    available_voucher_list=voucherList[0]
+    unavailable_voucher_list=voucherList[1]
+    print(available_voucher_list)
+    print(unavailable_voucher_list)
     return voucherList
 
 def getUserPoints(UID):
-    url = "http://localhost:5003/user/" + str(UID)
+    url = "http://user:5003/user/" + str(UID)
     getUser = invoke_http(url, method='GET')
-    # return str(getUser["data"]["Points"])
-    return getUser
+    return str(getUser["data"]["Points"])
     
 def getVouchers():
-    url = "http://localhost:5001/availablevoucher"
+    url = "http://availablevoucher:5001/availablevoucher"
     getVouchers = invoke_http(url, method='GET')
-    return getVouchers['data']['AllVouchers']
+    return getVouchers["data"]["AllVouchers"]
 
 def getAvailableVouchers(points, vouchers):
     available_vouchers = []
@@ -39,7 +42,7 @@ def getAvailableVouchers(points, vouchers):
 
     for voucher in vouchers:
         # return voucher
-        if int(voucher['Cost']) < int(points):
+        if int(voucher['DDRequired']) <= int(points):
             available_vouchers.append(voucher)
         else:
             unavailable_vouchers.append(voucher)

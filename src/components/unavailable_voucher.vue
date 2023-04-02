@@ -7,7 +7,7 @@
             <v-list-item-subtitle>{{ voucher_obj.Platform_Name }} voucher</v-list-item-subtitle>
         </v-list-item-content>
 
-        <PopUp_Purchase/>
+        <unavailableButton/>
         
         <!-- <v-btn class="rounded-lg" color="primary" outlined text>Purchase</v-btn> -->
         </v-list-item>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import PopUp_Purchase from './PopUp_Purchase.vue';
+import unavailableButton from './unavailable_voucher_button.vue';
 
 export default {
     props:['voucher_obj']
@@ -23,7 +23,7 @@ export default {
     ,
 
     components: {
-        PopUp_Purchase 
+        unavailableButton
     },
     data() {
         return {
