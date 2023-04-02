@@ -1,6 +1,6 @@
-import {store} from 'store.js'
+import {store} from './store.js'
 export default(to,from,next)=>{
-    if(store.getters.getuser){
+    if(store.getters.getUser){
         next()
     }
     else{

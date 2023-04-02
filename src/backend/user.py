@@ -256,7 +256,7 @@ def create_account(UID,Name):
             }
         ), 400
 
-    data = request.get_json()
+    # data = request.get_json()
     account = Accounts(UID, Name)
 
     try:
