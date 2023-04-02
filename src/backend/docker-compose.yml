@@ -27,7 +27,7 @@ services:
     build:
       context: ./
       dockerfile: user.Dockerfile
-    image: geraldding/user:1.0
+    image: geraldding/user:dino
     restart: always
     container_name: user
     environment:
@@ -53,7 +53,7 @@ services:
       user_URL: http://user:5003/user
       PYTHONUNBUFFERED: 1
     ports:
-      - "6000:6000"
+      - "6003:6003"
 
   buyvoucher:
     build:

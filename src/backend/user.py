@@ -113,6 +113,7 @@ def find_by_email_and_password(email, password):
         }
     ), 404
 
+
 @app.route("/user/<int:UID>")
 def find_by_UID(UID):
     user = User.query.filter_by(UID=UID).first()
@@ -213,7 +214,7 @@ def update_user(UID):
         # update status
         data = request.get_json()
         if data['Points']:
-            user.Points = data['Points']
+            user.Points = user.Points + data['Points']
             db.session.commit()
             return jsonify(
                 {

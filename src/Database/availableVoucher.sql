@@ -19,4 +19,6 @@ CREATE TABLE IF NOT EXISTS `availableVoucher` (
 
 INSERT INTO `availablevoucher` (`PlatformName`, `DiscountAmt`, `DDRequired`) VALUES
 ('ASOS', 10, 40),
+('ASOS', 5, 20),
 ('ASOS', 5, 20);
+

@@ -1,6 +1,8 @@
 <template>
+  <v-col class="col-md-3">
   <v-card elevation="2" outlined class="pa-4" tile>
-    <v-img :src="ItemImage">
+
+    <v-img :src="ItemImage" :width="250">
     </v-img>
     <v-card-title>
       <!-- Needs to be dynamic -->
@@ -12,12 +14,13 @@
     </v-card-subtitle>
 
     <v-btn
-      elevation="5"
-      v-on:click="addItemToCart( ItemName, ItemPrice )">
-    Add to cart now!
+    color="blue-darken-4"
+      v-on:click="addItemToCart( ItemName, ItemPrice, ItemImage )">
+    ADD TO CART
     </v-btn>
 
   </v-card>
+</v-col>
 </template>
 
 <script>

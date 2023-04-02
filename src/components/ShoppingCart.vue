@@ -1,6 +1,37 @@
 <template>
   <v-app>
-    <div>
+    <v-app-bar app color="black" max-height="200">
+      <router-link to="/AsosWebsite">
+          <v-avatar class="mr-12" size="60"><img src="../assets/asos.jpg"></v-avatar>
+      </router-link>
+      <v-responsive align="center" justify="center">
+      <v-text-field dense flat hide-details rounded solo-inverted label="Search for Categories or Stores" background-color="white"></v-text-field>
+      </v-responsive>
+
+      <router-link to="/ShoppingCart"><v-icon color="white">mdi-cart-outline</v-icon></router-link>
+    </v-app-bar>
+
+    <v-main v-if="cartItems.length == 0">
+        <v-container>
+            <v-row align="center" justify="center">
+                <v-icon color="black">mdi-basket-fill</v-icon>
+            </v-row>
+            <v-row align="center" justify="center" >
+                Your cart is empty.
+            </v-row>
+            <v-row align="center" justify="center" >
+                <v-btn router to="/AsosWebsite">Start shopping!</v-btn>
+            </v-row><br><br>
+            <v-row align="center" justify="center" >
+                Connnect to Dino Dollars to redeem vouchers!
+            </v-row>
+            <v-row align="center" justify="center" >
+                <v-btn :to="{name: 'LoginSignup'}">Link my Dino Dollars account</v-btn>
+            </v-row>
+        </v-container>
+    </v-main>
+
+    <v-main v-else>
       <ol>
         <li v-for="item in cartItems" :key="item.name">
           {{ item.name }}
@@ -18,17 +49,18 @@
         {{ cartTotal }}
       </p>
 
-      <v-btn v-on:click="removeAllItems">clear cart</v-btn>
+      <v-btn v-on:click="removeAllItems">Clear Cart</v-btn>
 
-      <v-btn v-on:click="pointsUpdate" large>checkout</v-btn>
+      <!-- <v-btn v-on:click="pointsUpdate" large>checkout</v-btn> -->
 
-      <v-btn v-on:click="paypalTest" large>test paypal</v-btn>
+      <v-btn v-on:click="checkoutCart" large>Checkout</v-btn>
 
       <!-- <v-btn
         v-on:click="validatingVoucher"
         large
         >test validation</v-btn> -->
-    </div>
+    </v-main>
+
   </v-app>
 </template>
 
@@ -45,8 +77,15 @@ export default {
       return this.$store.state.cart;
     },
     cartTotal() {
-      return this.$store.getters.cartTotal;
+      let state = this.$store.state
+
+      state.cart.forEach(item => {
+        state.amount += item.price
+      })
+
+      return state.amount
     },
+    
   },
   methods: {
     removeAllItems: function () {
@@ -55,7 +94,10 @@ export default {
     pointsUpdate: function () {
       this.$store.dispatch("pointsUpdate");
     },
-    paypalTest: function () {
+    currentUser() {
+      return this.$store.getters.getUser;
+    },
+    checkoutCart: function () {
       // this.$store.dispatch('paypalTest')
       let authToken = "Bearer " + this.token
       let value = this.cartTotal
@@ -84,7 +126,9 @@ export default {
           data, config
       )
       .then(response => {
-          console.log(response)
+          // console.log(response)
+          let amountSpent = response.data.purchase_units[0].amount.value
+          this.pointsAccumulation(amountSpent)
       })
       .catch(error => {
           console.log(error)
@@ -118,21 +162,24 @@ export default {
     getToken: async function() {
       let response = await this.paypalAuth()
       this.token = response
+    },
+
+    pointsAccumulation: function(amountSpent) {
+      let currentUser = this.currentUser()
+      let currentUID = currentUser.UID
+      // console.log(currentUID.UID)
+
+      let url = "http://localhost:6003/add_points/" + currentUID
+      let data = {"Points": amountSpent}
+
+      axios.post(url,data)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
-
-    // validatingVoucher: function() {
-    //   axios.get('http://localhost:6001/validate_voucher/1')
-    //   .then(response => {
-    //     console.log(response.data)
-    //   })
-    //   .catch(error => {
-    //     console.log(error.message)
-    //   })
-    // }
-
-    // removeItem: function(item) {
-    //     this.$store.dispatch('removeItem', item)
-    // }
   },
   mounted: function() {
     this.getToken();

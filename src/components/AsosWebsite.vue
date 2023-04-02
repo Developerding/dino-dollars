@@ -8,7 +8,7 @@
         <v-text-field dense flat hide-details rounded solo-inverted label="Search for Categories or Stores" background-color="white"></v-text-field>
         </v-responsive>
 
-        <router-link to="/AsosCart"><v-icon color="white">mdi-cart</v-icon></router-link>
+        <router-link to="/ShoppingCart"><v-icon color="white">mdi-cart-outline</v-icon></router-link>
       </v-app-bar>
   
       <v-main>
@@ -16,7 +16,7 @@
           <!-- <v-row>
             <AsosHomeCarousel/>
           </v-row> -->
-          <v-row>
+          <v-row align="center" justify="center">
             <v-img src="../assets/AsosWebsite1.png"></v-img>
             <!-- <template v-for="n in 4">
               <v-col
@@ -37,16 +37,15 @@
               </v-col>
             </template> -->
 
-            <v-col v-for="n in 12" :key="n" cols="4">
-              <ItemCard
-                item-image="../assets/asos1.png"
-                item-name="testing"
-                :item-price=10
-              />
-            </v-col>
+            <ItemCard
+            v-for="(product, key) in products"
+            :key="key"
+            :item-name="product.name"
+            :item-image="require(`@/assets/${product.image}`)"
+            :item-price="product.price"
+          />
 
-            <v-btn router to="/ShoppingCart">To the Cart</v-btn>
-          </v-row>
+          </v-row><br><br>
         </v-container>
       </v-main>
     </v-app>
@@ -62,7 +61,31 @@ import {mapActions, mapGetters} from 'vuex'
       // AsosHomeCarousel,
       ItemCard
     },
-    data: () => ({ drawer: null }),
+    data: () => ({ drawer: null },
+    {
+      products: {
+        item1: {
+          name: "Cargo Trousers",
+          price: 48.15,
+          image: "asos1.png"
+        },
+        item2: {
+          name: "Cotton Jacket",
+          price: 58.85,
+          image: "asos2.png"
+        },
+        item3: {
+          name: "Linen Jumpsuit",
+          price: 101.64,
+          image: "asos3.png"
+        },
+        item4: {
+          name: "Midi Dress",
+          price: 97.36,
+          image: "asos4.png"
+        }
+      }
+    }),
     computed: {
     // something() {
     //   return this.$store.state.cart

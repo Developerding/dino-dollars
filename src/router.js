@@ -11,8 +11,10 @@ import LoginSignup from './components/LoginSignup.vue'
 import AsosUI from "./components/AsosUI.vue"
 import AsosWebsite from './components/AsosWebsite.vue'
 import ShoppingCart from './components/ShoppingCart.vue'
+
 import AsosCart from './components/AsosCart.vue'
 import authguard from './store/auth.js'
+
 
 Vue.use(VueRouter)
 
@@ -85,6 +87,7 @@ export default new VueRouter ({
         {
             path: '/ShoppingCart',
             name: 'ShoppingCart',
+
             component: ShoppingCart,
             beforeEnter:authguard,
 
@@ -94,6 +97,7 @@ export default new VueRouter ({
             name: 'AsosCart',
             component: AsosCart,
             beforeEnter:authguard,
+
 
         }
     ]
