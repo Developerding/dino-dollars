@@ -77,7 +77,7 @@ def get_all():
 
 
 @app.route("/user/<string:email>/<string:password>")
-def find_by_UID(email, password):
+def find_by_email_and_password(email, password):
     # data=request.get_json()
     # Email=data['Email']
     # Password=data['Password']
@@ -97,7 +97,22 @@ def find_by_UID(email, password):
     #         "message": "User not found."
     #     }
     # ), 404
-=======
+    if user:
+        return jsonify(
+            {
+                "code": 200,
+                "data": user.json()
+            }
+        ),200
+    # print(user)
+    return jsonify(
+        {
+           
+            "code":404,
+            "message": "Email or password incorrect."
+        }
+    ), 404
+
 @app.route("/user/<int:UID>")
 def find_by_UID(UID):
     user = User.query.filter_by(UID=UID).first()
