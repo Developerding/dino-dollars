@@ -1,6 +1,6 @@
 <template>
 
-<v-app-bar app color="white" flat>
+<v-app-bar app color="transparent" >
     <v-container class="py-0 fill-height">
         <router-link to="/">
             <img src="../assets/dinodollar logo.jpeg" height="50" class="d-flex justify-center align-center">

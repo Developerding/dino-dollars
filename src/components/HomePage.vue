@@ -2,7 +2,7 @@
     <v-app id="inspire">
       <NavBar/>
   
-      <v-main class="blue lighten-4" >
+      <v-main class="blue lighten-4" :style="{ background: 'linear-gradient(to bottom, #95C4CB, #214F84)', minHeight: '100vh' }" >
         <v-container>
           <v-row>
             <v-col class="col-2"></v-col>

@@ -8,7 +8,7 @@
         <v-text-field dense flat hide-details rounded solo-inverted label="Search for Categories or Stores" background-color="white"></v-text-field>
         </v-responsive>
 
-        <router-link to="/ShoppingCart"><v-icon color="white">mdi-cart</v-icon></router-link>
+        <router-link to="/ShoppingCart"><v-icon color="white">mdi-cart-outline</v-icon></router-link>
       </v-app-bar>
   
       <v-main>
