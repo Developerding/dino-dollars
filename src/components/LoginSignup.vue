@@ -3,16 +3,18 @@
     <v-content>
       <v-container class="fill-height" fluid>
         <v-row align="center" justify="center">
-          <v-col cols="12" sm="8" md="8">
-            <v-card class="elevation-12">
+          <v-col cols="10" md="6">
+            <v-card class="elevation-10">
+
               <v-window v-model="step">
                 <v-window-item :value="1">
+
                   <v-row>
-                    <v-col cols="12" md="8">
+                  
+                    <v-col cols="10" md="8">
                       <v-card-text class="mt-12">
 
                       <!-- Error tag -->
-
                         <div v-if="error">
                             <v-alert
                                 type="error"
@@ -22,10 +24,8 @@
                               </v-alert>
                       </div>
 
-
-                        <h1
-                          class="text-center display-2 green--text text--darken-2"
-                        >Log in to Dino Dollars!</h1>
+                    <img src="../assets/dinodollar logo transparent.png" height="200" align="center" justify="center">
+                    <h1 class="text-center display-2 green--text text--darken-2">Log in to Dino Dollars!</h1>
 
                         
                         <v-form>
@@ -47,8 +47,6 @@
                         </v-form>
                         <h3 class="text-center mt-4">Forgot your password?</h3>
                       </v-card-text>
-
-                     
 
                       <div class="text-center mt-3">
                         <v-btn class="btn" rounded color="green darken-2" type="submit" :disabled="!signInValid" @click="logIn" >SIGN IN</v-btn>
@@ -235,7 +233,19 @@ export default {
 };
 </script>
 
+<style>
+h1, .header {
+  font-family: brightwall;
+}
 
+h2, .body {
+  font-family: glacial_bold;
+}
+
+h3, .body {
+  font-family: glacial;
+}
+</style>
 
 
 

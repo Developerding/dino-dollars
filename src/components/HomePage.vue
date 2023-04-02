@@ -7,10 +7,14 @@
           <v-row>
             <v-col class="col-2"></v-col>
             <v-col align="center" justify="center">
-              <h1>Dino Dollars</h1>
-              <h2 class="font-weight-medium">Spend. Redeem. Save.</h2>
-              <h3 class="font-weight-light">Dino Dollars is a voucher system that helps consumers save with every dollar spent!</h3>
+              <h1 class="indigo--text text--darken-4">Dino Dollars</h1>
+              <br>
+              <h2 class="font-weight-medium">SPEND. REDEEM. SAVE.</h2>
+              <h3 class="font-weight-light">Dino Dollars rewards vouchers for purchases and helps you save with every dollar spent!</h3>
+              <br>
+              <v-btn size="small" color="#1A237E" class="white--text">Earn Dino Dollars Now!</v-btn>
             </v-col>
+            
             <v-col align="center" justify="center">
               <!-- change image -->
               <img src="../assets/dinodollar logo transparent.png" height="200">
@@ -19,7 +23,7 @@
 
           </v-row>
 
-          <br><br>
+          <br><br><br><br>
 
           <!-- carousel of partners -->
 
@@ -50,39 +54,61 @@
           </v-div>
 
           <!-- instructions -->
-          <br><br>
+          <br><br><br><br>
 
           <v-div>
             <h2 font-weight-medium align="center">How to earn Dino Dollars?</h2><br>
+
+            <v-row align="left" class="pl-10 mx-2">
+              <!-- <v-col class="col-3"> -->
+                <v-card width="500" class="rounded-xl" color="#1A237E">
+                  <v-card-title class="justify-left header white--text">Link</v-card-title>
+                  <v-card-text class="body white--text">Connect your DinoDollars account with our partner companies to get started.</v-card-text>
+                </v-card>
+              <!-- </v-col> -->
+            </v-row>
+            <br><br>
+
             <v-row>
-              <v-col class="col-3">
-                <v-card height="180" class="rounded-xl">
-                  <v-card-title class="justify-center header">Link</v-card-title>
-                  <v-card-text class="body">Connect your DinoDollars account with our partner companies to get started.</v-card-text>
+              <v-col align="right" class="pr-10 mx-2">
+                <v-card width="500" class="rounded-xl" color="#1A237E">
+                  <v-card-title class="justify-left header white--text">Spend</v-card-title>
+                  <v-card-text align="left" class="body white--text">Make a purchase from one of our partner companies and receive DinoDollars for every dollar spent. $1 = 10 DinoDollars!</v-card-text>
                 </v-card>
               </v-col>
-              <v-col class="col-3">
-                <v-card height="180" class="rounded-xl">
-                  <v-card-title class="justify-center header">Spend</v-card-title>
-                  <v-card-text class="body">Make a purchase from one of our partner companies and receive DinoDollars for every dollar spent. $1 = 10 DinoDollars!</v-card-text>
+            </v-row>
+            <br><br>
+
+            <v-row align="left" class="pl-10 mx-2">
+              <!-- <v-col class="col-3"> -->
+                <v-card width="500" class="rounded-xl" color="#1A237E">
+                  <v-card-title class="justify-left header white--text">Redeem</v-card-title>
+                  <v-card-text class="body white--text">Choose from a wide range of Dino vouchers from your favourite brands and redeem them using your Dino Dollars.</v-card-text>
+                </v-card>
+              <!-- </v-col> -->
+            </v-row>
+            <br><br>
+
+            <v-row>
+              <v-col align="right" class="pr-10 mx-2">
+                <v-card width="500" class="rounded-xl" color="#1A237E">
+                  <v-card-title class="justify-left header white--text">Save</v-card-title>
+                  <v-card-text align="left" class="body white--text">Use Dino vouchers to save money on your purchases and enjoy exclusive discounts that you won't find anywhere else.</v-card-text>
                 </v-card>
               </v-col>
-              <v-col class="col-3">
-                <v-card height="180" class="rounded-xl">
-                  <v-card-title class="justify-center header">Redeem</v-card-title>
-                  <v-card-text class="body">Choose from a wide range of Dino vouchers from your favourite brands and redeem them using your DinoDollars.</v-card-text>
-                </v-card>
-              </v-col>
+            </v-row>
+            <br><br><br><br>
+            
+            <!-- <v-row>
               <v-col class="col-3">
                 <v-card height="180" class="rounded-xl">
                   <v-card-title class="justify-center header">Save</v-card-title>
                   <v-card-text class="body">Use Dino vouchers to save money on your purchases and enjoy exclusive discounts that you won't find anywhere else.</v-card-text>
                 </v-card>
               </v-col>
-            </v-row>
+            </v-row> -->
             
           </v-div>
-          
           
         </v-container>
   
@@ -113,10 +139,14 @@ export default {
 
 <style>
 h1, .header {
-  font-family: fabulous;
+  font-family: brightwall;
 }
 
-h2, h3, .body {
-  font-family: TiltNeon;
+h2, .body {
+  font-family: glacial_bold;
+}
+
+h3, .body {
+  font-family: glacial;
 }
 </style>
