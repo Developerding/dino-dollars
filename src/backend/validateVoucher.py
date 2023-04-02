@@ -19,6 +19,10 @@ def validate_voucher(UID):
     points = getUserPoints(UID)
     
     voucherList = getAvailableVouchers(points, vouchers)
+    available_voucher_list=voucherList[0]
+    unavailable_voucher_list=voucherList[1]
+    print(available_voucher_list)
+    print(unavailable_voucher_list)
     return voucherList
 
 def getUserPoints(UID):
@@ -38,7 +42,9 @@ def getAvailableVouchers(points, vouchers):
 
     for voucher in vouchers:
         # return voucher
-        if int(voucher['DDRequired']) < int(points):
+
+        if int(voucher['DDRequired']) <= int(points):
+
             available_vouchers.append(voucher)
         else:
             unavailable_vouchers.append(voucher)

@@ -112,7 +112,7 @@ def find_by_email_and_password(email, password):
             "message": "Email or password incorrect."
         }
     ), 404
-    
+
 
 @app.route("/user/<int:UID>")
 def find_by_UID(UID):
@@ -272,7 +272,7 @@ def create_account(UID,Name):
             }
         ), 400
 
-    data = request.get_json()
+    # data = request.get_json()
     account = Accounts(UID, Name)
 
     try:

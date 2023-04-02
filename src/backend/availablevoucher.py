@@ -20,14 +20,17 @@ class AvailableVoucher(db.Model):
 
     PlatformName = db.Column(db.String(50), nullable=False, primary_key=True)
     DiscountAmt = db.Column(db.Integer, nullable=False, primary_key=True)
-    DDRequired = db.Column(db.Integer, nullable=False)
+
+    DDRequired=db.Column(db.Integer, nullable=False)
     
 
     #init AvailableVoucher object
-    def __init__(self, PlatformName, DiscountAmt, DDRequired):
+    def __init__(self, PlatformName, DDRequired, DiscountAmt):
         self.Platform_Name=PlatformName
         self.DiscountAmt=DiscountAmt
-        self.DDRequired=DDRequired
+        self.DDrequired=DDRequired
+
+
 
     #returned object in JSON format
     def json(self):
@@ -35,7 +38,9 @@ class AvailableVoucher(db.Model):
         return {
             'Platform_Name': self.PlatformName,
             'DiscountAmt': self.DiscountAmt,
-            'DDRequired': self.DDRequired,
+
+            'DDRequired': self.DDRequired
+
 
         }
     

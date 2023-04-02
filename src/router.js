@@ -12,6 +12,10 @@ import AsosUI from "./components/AsosUI.vue"
 import AsosWebsite from './components/AsosWebsite.vue'
 import ShoppingCart from './components/ShoppingCart.vue'
 
+import AsosCart from './components/AsosCart.vue'
+import authguard from './store/auth.js'
+
+
 Vue.use(VueRouter)
 
 export default new VueRouter ({ 
@@ -26,32 +30,40 @@ export default new VueRouter ({
         {
             path: '/BuyVouchers',
             name: 'BuyVouchers',
-            component: BuyVouchers
+            component: BuyVouchers,
+            beforeEnter:authguard,
         },
         {
             path: '/MyVouchers',
             name: 'MyVouchers',
-            component: MyVouchers
+            component: MyVouchers,
+            beforeEnter:authguard,
         },
         {
             path: '/RedemptionHistory',
             name: 'RedemptionHistory',
-            component: RedemptionHistory
+            component: RedemptionHistory,
+            beforeEnter:authguard,
         },
         {
             path: '/AsosVouchers',
             name: 'AsosVouchers',
-            component: AsosVouchers
+            component: AsosVouchers,
+            beforeEnter:authguard,
         },
         {
             path: '/PopUp_Purchase',
             name: 'PopUp_Purchase',
-            component: PopUp_Purchase
+            component: PopUp_Purchase,
+            beforeEnter:authguard,
+
         },
         {
             path: '/PopUp_ShopNow',
             name: 'PopUp_ShopNow',
-            component: PopUp_ShopNow
+            component: PopUp_ShopNow,
+            beforeEnter:authguard,
+
         },
         {
             path: '/LoginSignup',
@@ -61,17 +73,32 @@ export default new VueRouter ({
         {
             path: '/AsosUI',
             name: 'AsosUI',
-            component: AsosUI
+            component: AsosUI,
+            beforeEnter:authguard,
+
         },
         {
             path: '/AsosWebsite',
             name: 'AsosWebsite',
-            component: AsosWebsite
+            component: AsosWebsite,
+            beforeEnter:authguard,
+
         },
         {
             path: '/ShoppingCart',
             name: 'ShoppingCart',
-            component: ShoppingCart
+
+            component: ShoppingCart,
+            beforeEnter:authguard,
+
+        },
+        {
+            path: '/AsosCart',
+            name: 'AsosCart',
+            component: AsosCart,
+            beforeEnter:authguard,
+
+
         }
     ]
 })
