@@ -11,6 +11,8 @@ import LoginSignup from './components/LoginSignup.vue'
 import AsosUI from "./components/AsosUI.vue"
 import AsosWebsite from './components/AsosWebsite.vue'
 import ShoppingCart from './components/ShoppingCart.vue'
+import LoginPage from './components/LoginPage.vue'
+import SignupPage from './components/SignupPage.vue'
 import authguard from './store/auth.js'
 
 
@@ -88,6 +90,18 @@ export default new VueRouter ({
 
             component: ShoppingCart,
             beforeEnter:authguard,
+
+        },
+        {
+            path: '/LoginPage',
+            name: 'LoginPage',
+            component: LoginPage,
+
+        },
+        {
+            path: '/SignupPage',
+            name: 'SignupPage',
+            component: SignupPage,
 
         }
     ]
