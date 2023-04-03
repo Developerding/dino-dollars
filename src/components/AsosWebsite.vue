@@ -1,10 +1,10 @@
 <template>
-    <v-app id="inspire">
+    <v-app id="inspire" class="font">
       <v-app-bar app color="black" max-height="200">
         <router-link to="/AsosWebsite">
-            <v-avatar class="mr-12" size="60"><img src="../assets/asos.jpg"></v-avatar>
+            <v-avatar class="mr-8" size="60"><img src="../assets/asos.jpg"></v-avatar>
         </router-link>
-        <v-responsive align="center" justify="center">
+        <v-responsive align="center" justify="center" class="mr-4">
         <v-text-field dense flat hide-details rounded solo-inverted label="Search for Categories or Stores" background-color="white"></v-text-field>
         </v-responsive>
 

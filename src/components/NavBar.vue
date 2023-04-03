@@ -6,20 +6,20 @@
             <img src="../assets/dinodollar logo transparent.png" height="50" class="d-flex justify-center align-center">
         </router-link><space></space>
 
-
-        <v-btn text>About</v-btn>
+        
+        <v-btn text class="btn">About</v-btn>
         <router-link to="/" tag="v-btn">
             <v-btn text @click="scrollToBottom">How to earn?</v-btn> 
         </router-link>
 
         <v-menu offset-y v-if="userLoggedIn">
             <template v-slot:activator="{ on, attrs }">
-                <v-btn color="primary" dark v-bind="attrs" v-on="on" text>Vouchers</v-btn>
+                <v-btn color="primary" dark v-bind="attrs" v-on="on" text class="btn">Vouchers</v-btn>
             </template>
             
             <v-list>
                 <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
-                    <v-list-item-title>
+                    <v-list-item-title class="body">
                         {{ link.text }}
                     </v-list-item-title>
                 </v-list-item>
@@ -46,7 +46,6 @@
         links: [
             {text: 'Buy Vouchers', route:'/BuyVouchers'},
             {text: 'My Vouchers', route:'/MyVouchers'},
-            {text: 'Redemption History', route:'/RedemptionHistory'},
             // {text: 'Rapie Testing Corner', route:'/AsosUI'},
         ],
       }),
@@ -81,3 +80,11 @@
       }
     }
 </script>
+
+<style>
+
+v-btn, .btn{
+  font-family: glacial_bold;
+}
+
+</style>

@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import HomePage from './components/HomePage.vue'
 import BuyVouchers from './components/BuyVouchers.vue'
 import MyVouchers from './components/MyVouchers.vue'
-import RedemptionHistory from './components/RedemptionHistory.vue'
 import AsosVouchers from './components/AsosVouchers.vue'
 import PopUp_Purchase from './components/PopUp_Purchase.vue' 
 import PopUp_ShopNow from './components/PopUp_ShopNow.vue' 
@@ -37,12 +36,6 @@ export default new VueRouter ({
             path: '/MyVouchers',
             name: 'MyVouchers',
             component: MyVouchers,
-            beforeEnter:authguard,
-        },
-        {
-            path: '/RedemptionHistory',
-            name: 'RedemptionHistory',
-            component: RedemptionHistory,
             beforeEnter:authguard,
         },
         {

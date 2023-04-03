@@ -39,7 +39,7 @@
 
             <v-col>
 
-                <h1>Your Current Points : <span id="body">{{ points }}</span></h1>
+                <h1>Your Current DinoDollars : <span id="body">{{ points }}</span></h1>
                 <br>
                 <h2>Available Vouchers:</h2><br>
                 <div v-if="available_voucher_list.length==0">

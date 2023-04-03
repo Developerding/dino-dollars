@@ -23,7 +23,7 @@
 
           </v-row>
           
-          <br><br><br>
+          <br><br>
           <v-divider color="white"></v-divider>
           <br><br>
 
@@ -150,7 +150,7 @@ h1, .header {
   font-family: brightwall;
 }
 
-h2, .body {
+h2, .body, .heading {
   font-family: glacial_bold;
 }
 
