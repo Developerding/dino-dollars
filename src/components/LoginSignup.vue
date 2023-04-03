@@ -218,7 +218,10 @@ export default {
       axios.post(url, payload)
       .then((response)=>{
         console.log(response)
-        this.$router.push('/LoginSignup')
+        this.name=''
+        this.email=''
+        this.password=''
+        this.$router.go()
       })
       .catch( (err)=>{
         console.log(err)

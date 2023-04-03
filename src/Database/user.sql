@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS `user`(
     `UID` int(4) NOT NULL AUTO_INCREMENT,
     `Name` varchar(64) NOT NULL,
     `Email` varchar(64) NOT NULL,
-    `Points` int(10) NOT NULL DEFAULT 0,
+    `Points` int(10) DEFAULT 0,
     `Password` varchar(64) NOT NULL,
     PRIMARY KEY (`UID`)
 

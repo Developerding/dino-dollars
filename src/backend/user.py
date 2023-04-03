@@ -17,7 +17,7 @@ class User(db.Model):
     UID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     Name = db.Column(db.String(64), nullable=False)
     Email = db.Column(db.String(64), nullable=False)
-    Points = db.Column(db.Integer, nullable=False)
+    Points = db.Column(db.Integer)
     Password= db.Column(db.String(64), nullable=False)
 
     # def __init__(self, UID, Name, Email, Points):
@@ -214,7 +214,7 @@ def update_user(UID):
 
         # update status
         data = request.get_json()
-        if data['Points']:
+        if data['Points']>0:
             user.Points = data['Points']
             db.session.commit()
             return jsonify(
@@ -223,6 +223,23 @@ def update_user(UID):
                     "data": user.json()
                 }
             ), 200
+        else:
+            user.Points=0
+            print(user)
+            db.session.commit()
+            return jsonify(
+                {
+                    "code": 200,
+                    "data": user.json()
+                }
+            ), 200
+            
+        
+        
+
+    
+        
+    
         
     except Exception as e:
         return jsonify(
