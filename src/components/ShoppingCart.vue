@@ -36,12 +36,6 @@
         <li v-for="item in cartItems" :key="item.name">
           {{ item.name }}
           {{ item.price }}
-
-          <!-- <v-btn
-                    v-on:click="removeItem(item)"
-                >
-                Remove this damn item
-                </v-btn> -->
         </li>
       </ol>
 
@@ -53,7 +47,12 @@
 
       <!-- <v-btn v-on:click="pointsUpdate" large>checkout</v-btn> -->
 
-      <v-btn v-on:click="checkoutCart" large>Checkout</v-btn>
+      <v-btn v-on:click="checkoutCart(); redeemVoucher()" large>Checkout</v-btn>
+
+      <div v-for="(voucher,index) in this.voucher_list" v-bind:key="index">
+      <User_Voucher
+      v-bind:voucher_obj="voucher"
+        /></div>
 
       <!-- <v-btn
         v-on:click="validatingVoucher"
@@ -66,26 +65,62 @@
 
 <script>
 import axios from "axios";
+import User_Voucher from "./User_Voucher.vue";
 
 export default {
   name: "ShoppingCart",
   data: () => ({
-    token: ""
+    token: "",
+    voucher_list:[]
   }),
+  created(){
+    let userObj=this.$store.getters.getUser
+    let userUID=userObj.UID
+    let url="http://localhost:5002/purchasedvoucher/" + userUID
+
+    axios.get(url)
+    .then(response => {
+      let allVoucherList = response.data.data.AllVouchers
+
+      for (let i = 0; i < allVoucherList.length; i++) {
+        if (!allVoucherList[i].RedeemedDate) {
+          this.voucher_list.push(allVoucherList[i])
+        }
+      }
+
+      console.log(this.voucher_list)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  },
+  components: {
+    User_Voucher,
+  },
   computed: {
     cartItems() {
       return this.$store.state.cart;
     },
     cartTotal() {
       let state = this.$store.state
+      var amount = 0
 
-      state.cart.forEach(item => {
-        state.amount += item.price
-      })
+      if (!this.$store.state.amount) {
+        state.cart.forEach(item => {
+          state.amount += item.price
+        })
 
-      return state.amount
+        amount = state.amount
+      }
+
+      if (this.$store.state.voucher) {
+        let voucherObj=this.$store.getters.getVoucher
+        amount = state.amount - ((state.amount/100) * voucherObj.DiscountAmt)
+        state.discountedAmount = amount
+      }
+
+      return amount.toFixed(2)
     },
-    
   },
   methods: {
     removeAllItems: function () {
@@ -173,6 +208,20 @@ export default {
       let data = {"Points": amountSpent}
 
       axios.post(url,data)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    },
+
+    redeemVoucher: function() {
+      let vid = this.$store.state.voucher.Vid
+      console.log(vid)
+      let url = "http://localhost:5010/redeem_voucher/" + vid
+
+      axios.get(url)
       .then(response => {
         console.log(response)
       })
