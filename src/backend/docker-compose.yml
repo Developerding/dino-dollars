@@ -13,19 +13,19 @@ networks:
     driver: bridge
 
 services:
-  db:
-    image: mysql:8.0
-    cap_add:
-      - SYS_NICE
-    restart: always
-    environment:
-      - MYSQL_DATABASE=user
-      - MYSQL_ROOT_PASSWORD=password
-    ports:
-      - '3307:3306'
-    volumes:
-      - db:/var/lib/mysql
-      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+  # db:
+  #   image: mysql:8.0
+  #   cap_add:
+  #     - SYS_NICE
+  #   restart: always
+  #   environment:
+  #     - MYSQL_DATABASE=user
+  #     - MYSQL_ROOT_PASSWORD=password
+  #   ports:
+  #     - '3307:3306'
+  #   volumes:
+  #     - db:/var/lib/mysql
+  #     - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
@@ -47,7 +47,7 @@ services:
     restart: always
     container_name: user
     environment:
-      dbURL: mysql+mysqlconnector://root:password@db:3307/user
+      dbURL: mysql+mysqlconnector://is213@docker.host.internal:3306/user
       DB_HOST: db
       DB_PORT: 3307
       DB_USER: root
@@ -109,7 +109,7 @@ services:
     restart: always
     container_name: availablevoucher
     environment:
-      dbURL: mysql+mysqlconnector://root:password@db:3307/availablevoucher
+      dbURL: mysql+mysqlconnector://is213@docker.host.internal:3306/availablevoucher
       DB_HOST: db
       DB_PORT: 3307
       DB_USER: root
@@ -149,7 +149,7 @@ services:
     restart: always
     container_name: purchasedvoucher
     environment:
-      dbURL: mysql+mysqlconnector://root:password@db:3307/purchasedvoucher
+      dbURL: mysql+mysqlconnector://is213@docker.host.internal:3306/purchasedvoucher
       DB_HOST: db
       DB_PORT: 3307
       DB_USER: root
