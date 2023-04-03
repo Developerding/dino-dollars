@@ -12,7 +12,7 @@
               <h2 class="font-weight-medium">SPEND. REDEEM. SAVE.</h2>
               <h3 class="font-weight-light">Dino Dollars rewards vouchers for purchases and helps you save with every dollar spent!</h3>
               <br>
-              <v-btn size="small" color="#1A237E" class="white--text" >Earn Dino Dollars Now!</v-btn>
+              <v-btn size="small" color="#1A237E" class="white--text" a href="/LoginSignup">Earn Dino Dollars Now!</v-btn>
             </v-col>
             
             <v-col align="center" justify="center">
