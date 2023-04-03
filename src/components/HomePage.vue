@@ -22,13 +22,15 @@
             <v-col class="col-2"></v-col>
 
           </v-row>
-
-          <br><br><br><br>
+          
+          <br><br><br>
+          <v-divider color="white"></v-divider>
+          <br><br>
 
           <!-- carousel of partners -->
 
           <v-div align="center" justify="center">
-            <h2 class="font-weight-bold">Earn Dino Dollars with our Partners!</h2><br>
+            <h1 class="font-weight-bold white--text">Earn Dino Dollars with our Partners!</h1><br>
 
             <v-carousel hide-delimiters v-model="model" width="300" height="320" align="center">
               <v-carousel-item reverse-transition="fade-transition" transition="fade-transition">
@@ -53,11 +55,12 @@
             </v-carousel>
           </v-div>
 
-          <!-- instructions -->
-          <br><br><br><br>
+          <br><br>
+          <v-divider color="white"></v-divider>
+          <br><br>
 
-          <v-div>
-            <h2 font-weight-medium align="center" class="white--text" ref="bottom">How to earn Dino Dollars?</h2><br>
+          <v-div ref="bottom">
+            <h1 font-weight-medium align="center" class="white--text">How to earn Dino Dollars?</h1><br><br>
 
             <v-row align="left" class="pl-10 mx-2">
               <!-- <v-col class="col-3"> -->
@@ -97,7 +100,7 @@
                 </v-card>
               </v-col>
             </v-row>
-            <br><br><br><br>
+            <br>
             
             <!-- <v-row>
               <v-col class="col-3">
@@ -134,14 +137,17 @@ export default {
       ],
     }
   },
-  
+  methods: {
+    scrollToBottom(){
+      this.$refs['bottom'].scrollIntoView({behavior: "smooth"})
+    }  
+  }
 }
 </script>
 
 <style>
 h1, .header {
   font-family: brightwall;
-  font-size: 100px
 }
 
 h2, .body {

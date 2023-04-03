@@ -6,24 +6,11 @@
             <img src="../assets/dinodollar logo transparent.png" height="50" class="d-flex justify-center align-center">
         </router-link><space></space>
 
-        <!-- <v-btn text>About</v-btn>
-
-        <v-menu offset-y>
-            <template v-slot:activator="{ on, attrs }">
-                <v-btn color="primary" dark v-bind="attrs" v-on="on" text>Vouchers</v-btn>
-            </template>
-            
-            <v-list>
-                <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
-                    <v-list-item-title>
-                        {{ link.text }}
-                    </v-list-item-title>
-                </v-list-item>
-            </v-list>
-        </v-menu> -->
 
         <v-btn text>About</v-btn>
-        <v-btn text>How to earn?</v-btn> 
+        <router-link to="/" tag="v-btn">
+            <v-btn text @click="scrollToBottom">How to earn?</v-btn> 
+        </router-link>
 
         <v-menu offset-y v-if="userLoggedIn">
             <template v-slot:activator="{ on, attrs }">
@@ -38,17 +25,7 @@
                 </v-list-item>
             </v-list>
         </v-menu>
-         
-<!--         
-        <v-btn text>How to earn?</v-btn>
   
-        <v-spacer></v-spacer> -->
-        
-        <!-- links for the navbar -->
-        <!-- <span v-for="(link,i) in linkss" :key="i">
-            <v-btn text router :to="link.route">{{ link.text }}</v-btn>
-        </span> -->
-        <!--  -->
         <v-spacer></v-spacer>
 
         <v-btn v-if="userLoggedIn" depressed @click="signUserOut" class="btn white--text" color="green darken-2">Sign Out</v-btn>

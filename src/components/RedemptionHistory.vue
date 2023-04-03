@@ -19,7 +19,7 @@
             <v-row>
             <v-col>
                 <v-div>
-                    <h2>Available Vouchers:</h2><br>
+                    <h2>Redeemed Vouchers:</h2><br>
                     <!-- implement code to determine number of vouchers to display -->
                     <Voucher_Redeemed/><br>
                     <Voucher_Redeemed/><br>

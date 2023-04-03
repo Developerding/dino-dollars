@@ -23,14 +23,14 @@
                 <v-card class="rounded-lg py-0" max-width="300">
                     <v-list-item align="center">
                     <v-list-item-content>
-                        <v-list-item class="eligibility mb-1 font-weight-medium py-1">
+                        <v-list-item class="header mb-1 font-weight-medium py-1">
                             Ensure voucher eligibility:
                         </v-list-item>
                         <v-list-item align="left" class="condition">
-                            - Check voucher's expiration date
+                            1. Check voucher's expiration date
                         </v-list-item>
                         <v-list-item align="left" class="condition">
-                            - Read the terms and conditions
+                            2. Read the terms and conditions
                         </v-list-item>
                     </v-list-item-content>
                     </v-list-item>
@@ -39,7 +39,7 @@
 
             <v-col>
 
-                <h2>Your Current Points:       {{ points }}</h2>
+                <h1>Your Current Points : <span id="body">{{ points }}</span></h1>
                 <br>
                 <h2>Available Vouchers:</h2><br>
                 <div v-if="available_voucher_list.length==0">
@@ -164,6 +164,10 @@ export default {
 
 
 <style>
+.header {
+  font-family: brightwall;
+}
+
 .slogan {
   font-family: glacial;
   font-size: 20px
@@ -175,5 +179,10 @@ export default {
 
 .condition {
     font-family: glacial;
+}
+
+#body {
+    font-family: glacial_bold;
+    font-size: 30px;
 }
 </style>
