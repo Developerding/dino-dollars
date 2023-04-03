@@ -200,6 +200,7 @@ def create_user():
 def update_user(UID):
     try:
         user = User.query.filter_by(UID=UID).first()
+        
         if not user:
             return jsonify(
                 {
@@ -214,7 +215,7 @@ def update_user(UID):
         # update status
         data = request.get_json()
         if data['Points']:
-            user.Points = user.Points + data['Points']
+            user.Points = data['Points']
             db.session.commit()
             return jsonify(
                 {
@@ -222,6 +223,7 @@ def update_user(UID):
                     "data": user.json()
                 }
             ), 200
+        
     except Exception as e:
         return jsonify(
             {

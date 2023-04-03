@@ -54,14 +54,24 @@ def processPointAddition(order, UID):
     # Invoke the order microservice
     print('\n-----Invoking order microservice-----')
     print(order)
+
+    user = getCurrentBalance(UID)
+
+    if user["code"] in range(200,300):
+        current_balance = user["data"]["Points"]
+
+        # Converts amount into points
+        converted_order = convertPoints(order)
+        new_balance = current_balance + converted_order["ConvertedPoints"]
+        converted_order = {"Points": new_balance}
     
-    user_url = "http://user:5003/point/" + str(UID)
-    # Converts amount into points
-    order = convertPoints(order)
-    print(user_url)
-    order_result = invoke_http(user_url, method="PUT", json=order)
-    print('order_result:', order_result)
-  
+        user_url = "http://user:5003/point/" + str(UID)
+
+        print(user_url)
+        order_result = invoke_http(user_url, method="PUT", json=converted_order)
+        print('order_result:', order_result)
+    else:
+        return jsonify(user), user["code"]
 
     # Check the order result; if a failure, send it to the error microservice.
     code = order_result["code"]
@@ -114,10 +124,15 @@ def processPointAddition(order, UID):
     
 def convertPoints(order):
     convertedPoints = int(float(order["Points"])) // 10
-    data = {"Points": convertedPoints}
+    data = {"ConvertedPoints": convertedPoints}
     # response = jsonify( data )
     # response.status_code = 200
     return data
+
+def getCurrentBalance(UID):
+    url = "http://user:5003/user/" + str(UID)
+    user = invoke_http(url,method='GET')
+    return user
 
 # Execute this program if it is run as a main script (not by 'import')
 if __name__ == "__main__":

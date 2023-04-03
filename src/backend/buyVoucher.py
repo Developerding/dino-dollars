@@ -28,11 +28,16 @@ def buy_voucher(UID, DDRequired):
             # 1. Send order info {cart items}
             newVoucher = createNewVoucher(details)
             print(newVoucher)
+
             if newVoucher["code"] in range(200,300):
                 user = getCurrentBalance(UID)
+
                 if user["code"] in range(200,300):
                     currentBalance = user["data"]["Points"]
                     newBalance = currentBalance - DDRequired
+                    print(f'currentBalance {currentBalance}')
+                    print(f'newBalance {newBalance}')
+                    print(f'DDRequired {DDRequired}')
                     print(type(newBalance))
                     newPoints = {"Points": newBalance}
                     result = updateUserBalance(newPoints, UID)

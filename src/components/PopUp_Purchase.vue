@@ -15,9 +15,12 @@
             <v-btn color="grey lighten-3" class="ma-1" @click="dialog = false">
               Cancel</v-btn>
   
-            <v-btn color="blue lighten-2" class="ma-1" light @click="dialog = false" router to="/MyVouchers">
+            <v-btn color="blue lighten-2" class="ma-1" light @click="buyVoucher(); dialog = false">
               Yes</v-btn> 
-              <!-- link to my vouchers page and display newly bought voucher -->
+
+            <!-- <v-btn color="blue lighten-2" class="ma-1" light @click="buyVoucher()">
+            Testing</v-btn>  -->
+            <!-- link to my vouchers page and display newly bought voucher -->
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -25,7 +28,7 @@
 </template>
 
 <script>
-
+import axios from "axios";
 
 export default {
   data () {
@@ -33,5 +36,45 @@ export default {
       dialog: false,
     }
   },
+  props: 
+    ['voucher_obj']
+  ,
+  methods: {
+    // how to pass in the DDRequired and all these 
+    // {
+    // "pname": "ASOS",
+    // "discount": "5% Discount",
+    // "uid": 2,
+    // "DDRequired": 20
+    // }
+
+    buyVoucher() {
+      let userObj=this.$store.getters.getUser
+      let userUID = userObj.UID
+      let platformName = this.voucher_obj.Platform_Name
+      let discountAmt = this.voucher_obj.DiscountAmt
+      let ddRequired = this.voucher_obj.DDRequired
+
+      let url = "http://localhost:6002/buy_voucher/" + userUID + "/" + ddRequired
+
+      console.log(url)
+
+      let body = {
+        "pname": platformName,
+        "discount": discountAmt + "% Discount",
+        "uid": userUID,
+        "DDRequired": ddRequired
+      }
+
+      axios.post(url, body)
+      .then(response => {
+        console.log(response)
+        this.$router.push('/MyVouchers')
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
+  }
 }
 </script>

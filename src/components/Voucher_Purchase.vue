@@ -7,7 +7,7 @@
             <v-list-item-subtitle>{{ voucher_obj.Platform_Name }} voucher</v-list-item-subtitle>
         </v-list-item-content>
 
-        <PopUp_Purchase/>
+        <PopUp_Purchase v-bind:voucher_obj="voucher_obj"/>
         
         <!-- <v-btn class="rounded-lg" color="primary" outlined text>Purchase</v-btn> -->
         </v-list-item>

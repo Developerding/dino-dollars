@@ -70,7 +70,7 @@
             {text: 'Buy Vouchers', route:'/BuyVouchers'},
             {text: 'My Vouchers', route:'/MyVouchers'},
             {text: 'Redemption History', route:'/RedemptionHistory'},
-            {text: 'Rapie Testing Corner', route:'/AsosUI'},
+            // {text: 'Rapie Testing Corner', route:'/AsosUI'},
         ],
       }),
 
