@@ -4,12 +4,28 @@ volumes:
   rabbitmq_data:
   pgdata:
   kongadata:
+  db-data:
+  db:
+    driver: local
 
 networks:
   kong-net:
     driver: bridge
 
 services:
+  db:
+    image: mysql:8.0
+    cap_add:
+      - SYS_NICE
+    restart: always
+    environment:
+      - MYSQL_DATABASE=user
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - '3307:3306'
+    volumes:
+      - db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
   rabbitmq:
     image: rabbitmq:3-management
     container_name: rabbitmq
@@ -31,8 +47,17 @@ services:
     restart: always
     container_name: user
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/user
+      dbURL: mysql+mysqlconnector://root:password@db:3307/user
+      DB_HOST: db
+      DB_PORT: 3307
+      DB_USER: root
+      DB_PASSWORD: password
+      DB_NAME: user
       PYTHONUNBUFFERED: 1
+    links:
+      - db
+    volumes:
+      - ./:/src
     ports:
       - "5003:5003"
 
@@ -84,8 +109,17 @@ services:
     restart: always
     container_name: availablevoucher
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/availablevoucher
+      dbURL: mysql+mysqlconnector://root:password@db:3307/availablevoucher
+      DB_HOST: db
+      DB_PORT: 3307
+      DB_USER: root
+      DB_PASSWORD: password
+      DB_NAME: user
       PYTHONUNBUFFERED: 1
+    links:
+      - db
+    volumes:
+      - ./:/src
     ports:
       - "5001:5001"
   
@@ -115,8 +149,17 @@ services:
     restart: always
     container_name: purchasedvoucher
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/purchasedvoucher
+      dbURL: mysql+mysqlconnector://root:password@db:3307/purchasedvoucher
+      DB_HOST: db
+      DB_PORT: 3307
+      DB_USER: root
+      DB_PASSWORD: password
+      DB_NAME: user
       PYTHONUNBUFFERED: 1
+    links:
+      - db
+    volumes:
+      - ./:/src
     ports:
       - "5002:5002"
 
@@ -169,7 +212,6 @@ services:
       retries: 5
     volumes:
       - pgdata:/var/lib/postgresql/data
-
   kong-migration:
     image: kong:2.0.4
     command: "kong migrations bootstrap"
@@ -183,7 +225,6 @@ services:
       KONG_PG_PASSWORD: password
     depends_on:
       - kong-database
-
   kong:
     image: kong:2.0.4
     restart: always
@@ -200,7 +241,6 @@ services:
       - kong-migration
     ports:
       - "8000:8000"
-  
   konga:
     image: pantsel/konga
     restart: always
@@ -218,3 +258,4 @@ services:
       - "1337:1337"
     volumes:
       - kongadata:/app/kongadata
+
