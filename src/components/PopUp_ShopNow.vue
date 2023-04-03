@@ -1,7 +1,7 @@
 <template>
     <v-row justify="center">
-      <v-btn color="primary" class="rounded-lg" outlined text @click.stop="dialog = true">
-        Shop Now
+      <v-btn color="primary" class="rounded-lg shop" outlined text @click.stop="dialog = true">
+        SHOP NOW
       </v-btn>
   
       <v-dialog v-model="dialog" max-width="290">
@@ -24,8 +24,6 @@
 
 <script>
 import axios from 'axios'
-
-
 
 export default {
   data () {
@@ -55,3 +53,13 @@ export default {
 }
 </script>
 
+
+<style>
+.shop {
+  font-family: glacial_bold;
+}
+
+h3, .body {
+  font-family: glacial;
+}
+</style>

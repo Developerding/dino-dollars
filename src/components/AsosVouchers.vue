@@ -1,6 +1,6 @@
 <template>
     <v-app id="inspire">
-        <v-main class="blue lighten-4">
+        <v-main class="blue lighten-4" :style="{ background: 'linear-gradient(to bottom, #95C4CB, #214F84)', minHeight: '100vh' }" >
             <NavBar/>
             <v-container align="center">
                
@@ -10,7 +10,7 @@
                     <v-list-item two-line align="center">
                     <v-list-item-content>
                         <div><img src="https://www.theclimatepledge.com/content/dam/amazonclimatepledge/signatory-logo/ASOS.png" width="200"></div>
-                        <v-list-item-title class="text-h6 font-weight-light">
+                        <v-list-item-title class="font-weight-light slogan">
                         Discover shopping online.
                         </v-list-item-title><br><br>
                         <div>
@@ -23,13 +23,13 @@
                 <v-card class="rounded-lg py-0" max-width="300">
                     <v-list-item align="center">
                     <v-list-item-content>
-                        <v-list-item class="text-h6 mb-1 font-weight-medium py-1">
+                        <v-list-item class="eligibility mb-1 font-weight-medium py-1">
                             Ensure voucher eligibility:
                         </v-list-item>
-                        <v-list-item align="left">
+                        <v-list-item align="left" class="condition">
                             - Check voucher's expiration date
                         </v-list-item>
-                        <v-list-item align="left">
+                        <v-list-item align="left" class="condition">
                             - Read the terms and conditions
                         </v-list-item>
                     </v-list-item-content>
@@ -43,7 +43,7 @@
                 <br>
                 <h2>Available Vouchers:</h2><br>
                 <div v-if="available_voucher_list.length==0">
-                    <h4>You have insufficient points to purchase any voucher</h4>
+                    <h4>You have insufficient points to purchase any voucher.</h4>
                 </div>
                 <!-- implement code to determine number of vouchers to display -->
                 <div v-for="(voucher,index) in this.available_voucher_list" v-bind:key="index">
@@ -161,3 +161,19 @@ export default {
   }
 };
 </script>
+
+
+<style>
+.slogan {
+  font-family: glacial;
+  font-size: 20px
+}
+
+.eligibility {
+  font-family: glacial_bold;
+}
+
+.condition {
+    font-family: glacial;
+}
+</style>

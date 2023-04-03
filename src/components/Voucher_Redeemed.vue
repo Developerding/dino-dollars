@@ -8,7 +8,9 @@
                 <v-col
                 cols="2"
                 >
+                <router-link to="/AsosVouchers">
                 <v-img src="../assets/asos.jpg" width="100" height="100" justify="centre" align="left" class="rounded-xl elevation-5"></v-img>
+                </router-link>
                 </v-col>
 
                 <v-col

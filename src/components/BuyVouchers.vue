@@ -1,9 +1,9 @@
 <template>
     <v-app id="inspire">
         <NavBar/>
-        <v-main class="blue lighten-4">
+        <v-main class="blue lighten-4" :style="{ background: 'linear-gradient(to bottom, #214F84, #95C4CB)', minHeight: '100vh' }" >
             <v-container align="center">
-                <v-div align="center">
+                <v-div align="center" class="white--text">
                     <h1>Our Partners</h1>
                     <h3 class="font-weight-light">Dino Dollars is here to help you save while shopping online! With more than 100 trusted partners, we offer exclusive deals for all users to earn rewards on their purchases.<br>
 
@@ -26,27 +26,19 @@
                     </v-card>
 
                     <v-card width="200" height="200" justify="center" align="center" class="rounded-xl">
-                        <router-link to="/AsosVouchers">
-                            <img src="../assets/adidas.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
-                        </router-link>
+                        <img src="../assets/adidas.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
                     </v-card>
 
                     <v-card width="200" height="200" justify="center" align="center" class="rounded-xl">
-                        <router-link to="/AsosVouchers">
-                            <img src="../assets/puma.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
-                        </router-link>
+                        <img src="../assets/puma.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
                     </v-card>
 
                     <v-card width="200" height="200" justify="center" align="center" class="rounded-xl">
-                        <router-link to="/AsosVouchers">
-                            <img src="../assets/nike.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
-                        </router-link>
+                        <img src="../assets/nike.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
                     </v-card>
 
                     <v-card width="200" height="200" justify="center" align="center" class="rounded-xl">
-                        <router-link to="/AsosVouchers">
-                            <img src="../assets/apple.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
-                        </router-link>
+                        <img src="../assets/apple.jpg" width="200" height="200" justify="center" align="center" class="rounded-xl elevation-5">
                     </v-card>
                     </v-row>
 
