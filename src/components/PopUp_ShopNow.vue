@@ -5,8 +5,8 @@
       </v-btn>
   
       <v-dialog v-model="dialog" max-width="290">
-        <v-card class="px-5 pt-5 pb-5 mx-auto text-center d-inline-block" variant="outlined">
-          <v-card-title class="text-h5 text-center" style="word-break: break-word">
+        <v-card class="px-5 pt-5 pb-5 mx-auto text-center d-inline-block shop" variant="outlined">
+          <v-card-title class="text-center" style="word-break: break-word">
             Leave site to shop at ASOS?
           </v-card-title>
   
@@ -14,7 +14,7 @@
             <v-btn color="grey lighten-3" class="ma-1" @click="dialog = false">
               Cancel</v-btn>
   
-            <v-btn color="blue lighten-2" class="ma-1" light @click="shopNow" > 
+            <v-btn color="green lighten-2" class="ma-1" light @click="shopNow" > 
               Yes</v-btn>
           </v-card-actions>
         </v-card>

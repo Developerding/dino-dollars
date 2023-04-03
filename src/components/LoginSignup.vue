@@ -11,15 +11,15 @@
                   </v-row>
                   <v-row></v-row>
                   
-                  <v-row class="header" align="center" justify="center">
+                  <v-row class="header green--text" align="center" justify="center">
                     Start earning Dino Dollars today!
                   </v-row><br><br>
                   <v-row class="btn" align="center" justify="center">
                     <router-link to="/LoginPage" tag="v-btn">
-                    <v-btn>Login</v-btn>
+                    <v-btn class="btn white--text mx-4" color="green darken-2">Login</v-btn>
                   </router-link>
                   <router-link to="/SignupPage" tag="v-btn">
-                    <v-btn>Sign Up</v-btn>
+                    <v-btn class="btn white--text mx-4" color="green darken-2">Sign Up</v-btn>
                   </router-link>
                   </v-row>
                   <br>

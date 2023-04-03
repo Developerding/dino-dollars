@@ -51,8 +51,8 @@
         <!--  -->
         <v-spacer></v-spacer>
 
-        <v-btn v-if="userLoggedIn" depressed rounded @click="signUserOut">Sign Out</v-btn>
-        <v-btn v-else depressed rounded :to="{name: 'LoginSignup'}">Log In</v-btn>
+        <v-btn v-if="userLoggedIn" depressed @click="signUserOut" class="btn white--text" color="green darken-2">Sign Out</v-btn>
+        <v-btn v-else depressed :to="{name: 'LoginSignup'}" class="btn white--text" color="green darken-2">Log In</v-btn>
 
 
     </v-container>

@@ -7,12 +7,12 @@
           <v-row>
             <v-col class="col-2"></v-col>
             <v-col align="center" justify="center">
-              <h1 class="indigo--text text--darken-4">Dino Dollars</h1>
+              <h1 class="green--text text--darken-3">Dino Dollars</h1>
               <br>
               <h2 class="font-weight-medium">SPEND. REDEEM. SAVE.</h2>
               <h3 class="font-weight-light">Dino Dollars rewards vouchers for purchases and helps you save with every dollar spent!</h3>
               <br>
-              <v-btn size="small" color="#1A237E" class="white--text" a href="/LoginSignup">Earn Dino Dollars Now!</v-btn>
+              <v-btn size="small" class="btn white--text" color="green darken-2" @click="scrollToBottom">Earn Dino Dollars Now!</v-btn>
             </v-col>
             
             <v-col align="center" justify="center">
@@ -57,7 +57,7 @@
           <br><br><br><br>
 
           <v-div>
-            <h2 font-weight-medium align="center" class="white--text">How to earn Dino Dollars?</h2><br>
+            <h2 font-weight-medium align="center" class="white--text" ref="bottom">How to earn Dino Dollars?</h2><br>
 
             <v-row align="left" class="pl-10 mx-2">
               <!-- <v-col class="col-3"> -->
@@ -134,12 +134,14 @@ export default {
       ],
     }
   },
+  
 }
 </script>
 
 <style>
 h1, .header {
   font-family: brightwall;
+  font-size: 100px
 }
 
 h2, .body {
