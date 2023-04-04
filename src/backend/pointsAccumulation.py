@@ -63,6 +63,7 @@ def processPointAddition(order, UID):
         # Converts amount into points
         converted_order = convertPoints(order)
         new_balance = current_balance + converted_order["ConvertedPoints"]
+        print(f'converted points: {converted_order["ConvertedPoints"]}')
         converted_order = {"Points": new_balance}
     
         user_url = "http://user:5003/point/" + str(UID)
@@ -114,7 +115,16 @@ def processPointAddition(order, UID):
     #     # invoke_http(activity_log_URL, method="POST", json=order_result)            
     #     amqp_setup.channel.basic_publish(exchange=amqp_setup.exchangename, routing_key="order.info", 
     #         body=message)
-    
+
+    formatted_body = {
+        "type": "accumulate",
+        "order_result": order_result
+    }
+
+    message = json.dumps(formatted_body)
+    amqp_setup.channel.basic_publish(exchange=amqp_setup.exchangename, routing_key="accumulate.notifications", 
+    body=message, properties=pika.BasicProperties(delivery_mode = 2)) 
+
     print("\nOrder published to RabbitMQ Exchange.\n")
     return {
             "code": 200,
