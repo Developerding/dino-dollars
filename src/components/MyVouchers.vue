@@ -21,9 +21,14 @@
                 <v-div>
                     <h2>Available Vouchers:</h2><br>
                     <!-- implement code to determine number of vouchers to display -->
+                    <!-- <Voucher_ShopNow/><br>
                     <Voucher_ShopNow/><br>
-                    <Voucher_ShopNow/><br>
-                    <Voucher_ShopNow/>
+                    <Voucher_ShopNow/> -->
+
+                    <div v-for="(voucher,index) in this.my_vouchers" v-bind:key="index">
+                    <Voucher_ShopNow
+                v-bind:voucher_obj="voucher"
+                 /><br></div>
                 </v-div>
             </v-col>
             </v-row>
@@ -39,6 +44,7 @@
 <script>
 import Voucher_ShopNow from './Voucher_ShopNow.vue'
 import NavBar from './NavBar.vue'
+import axios from 'axios'
 
 export default {
   name: 'MyVouchers',
@@ -48,8 +54,26 @@ export default {
     Voucher_ShopNow,
   },
 
-  data: () => ({
-    //
-  }),
+  data () {
+    return {
+        my_vouchers: [],
+        UID: null
+    }
+  },
+
+  created() {
+    let userObj=this.$store.getters.getUser
+        this.UID=userObj.UID
+        let url="http://127.0.0.1:5002/purchasedvoucher"+'/'+this.UID
+        axios.get(url)
+        .then( (response)=>{
+            console.log(response.data.data.AllVouchers)
+            // console.log(response.data.data.AllVouchers)
+            this.my_vouchers=response.data.data.AllVouchers
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+  }
 };
 </script>

@@ -9,8 +9,10 @@ export const store = new Vuex.Store({
         cart: [
         ],
         amount: 0,
-
-        user: null
+        discountedAmount: 0,
+        voucher: null,
+        user: null,
+        purchasedVoucher: null
     },
     getters: {
         // somethingChanged: state => {
@@ -38,7 +40,13 @@ export const store = new Vuex.Store({
         getUser(state){
             console.log(state.user)
             return state.user
-        } 
+        },
+        getVoucher(state){
+            return state.voucher
+        },
+        getPurchasedVoucher(state){
+            return state.purchasedVoucher
+        }
     },
     mutations: {
         // changeName: state => {
@@ -61,6 +69,10 @@ export const store = new Vuex.Store({
         //         state.amount += item.price
         //     })
         // }
+
+        applyVoucher: (state,payload) => {
+            state.voucher = payload
+        },
         logUser (state, payload){
             state.user=payload
         },
@@ -101,56 +113,9 @@ export const store = new Vuex.Store({
                 console.log(error.message);
             });
         },
-        // paypalTest: () => {
-        //     let data = {
-        //         "intent": "CAPTURE",
-        //         "purchase_units": [
-        //             {
-        //                 "amount": {
-        //                     "currency_code": "USD",
-        //                     "value": "100"
-        //                 }
-        //             }
-        //         ]
-        //     } 
-
-        //     let config = {
-        //         headers: {
-        //             "Content-Type": "application/json",
-        //             "Prefer": "return=representation",
-        //             "Authorization": "Bearer A21AAKC4Zz9p1F_noCLaWiAivHj7HowA8Z3D-FwHi-ae0dZuJU0RqMZItgP_uuyW2eI6fkGKXECNuQ9yGdQwB8UnTm2AMqwdA"
-        //         }
-        //       }
-
-        //     axios.post('https://api-m.sandbox.paypal.com/v2/checkout/orders', 
-        //         data, config
-        //     )
-        //     .then(response => {
-        //         console.log(response)
-        //     })
-        //     .catch(error => {
-        //         console.log(error)
-        //     })
-        // },
-
-        // paypalAuth: () => {
-        //     let data = {
-        //         "grant_type": "client_credentials"
-        //     }
-
-        //     axios.post('https://api-m.sandbox.paypal.com/v1/oauth2/token',{
-        //         auth: {
-        //           username: 'AfhfcAANPYIAq90OTmgdpm11kw9wYoiQU635f5NinRCJa5yXRU1f3UaXTTpRYwvpyjrb5fjyiaMkixUp',
-        //           password: 'EFEP1zHTJlER95z51Vu4xUvMgqz3NBaXEYsXRTbxdLcy5ziX4Jt-N1dUMV86dW4t0dxN-WDbMm-m6x8I'
-        //         },
-        //         data
-        //       }
-        //     )
-        //     .then(response => {
-                
-        //     })
-        // },
-
+        applyVoucher: (context,payload) => {
+            context.commit('applyVoucher',payload)
+        },
         signUserIn( {commit}, payload){
             let email=payload.email
             let password=payload.password

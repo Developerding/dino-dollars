@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import HomePage from './components/HomePage.vue'
 import BuyVouchers from './components/BuyVouchers.vue'
 import MyVouchers from './components/MyVouchers.vue'
-import RedemptionHistory from './components/RedemptionHistory.vue'
 import AsosVouchers from './components/AsosVouchers.vue'
 import PopUp_Purchase from './components/PopUp_Purchase.vue' 
 import PopUp_ShopNow from './components/PopUp_ShopNow.vue' 
@@ -11,6 +10,8 @@ import LoginSignup from './components/LoginSignup.vue'
 import AsosUI from "./components/AsosUI.vue"
 import AsosWebsite from './components/AsosWebsite.vue'
 import ShoppingCart from './components/ShoppingCart.vue'
+import LoginPage from './components/LoginPage.vue'
+import SignupPage from './components/SignupPage.vue'
 import authguard from './store/auth.js'
 
 
@@ -35,12 +36,6 @@ export default new VueRouter ({
             path: '/MyVouchers',
             name: 'MyVouchers',
             component: MyVouchers,
-            beforeEnter:authguard,
-        },
-        {
-            path: '/RedemptionHistory',
-            name: 'RedemptionHistory',
-            component: RedemptionHistory,
             beforeEnter:authguard,
         },
         {
@@ -88,6 +83,18 @@ export default new VueRouter ({
 
             component: ShoppingCart,
             beforeEnter:authguard,
+
+        },
+        {
+            path: '/LoginPage',
+            name: 'LoginPage',
+            component: LoginPage,
+
+        },
+        {
+            path: '/SignupPage',
+            name: 'SignupPage',
+            component: SignupPage,
 
         }
     ]

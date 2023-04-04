@@ -4,6 +4,7 @@ from flask_cors import CORS
 from os import environ
 
 app = Flask(__name__)
+
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL')
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/user'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -107,7 +108,7 @@ def find_by_email_and_password(email, password):
     # print(user)
     return jsonify(
         {
-           
+
             "code":404,
             "message": "Email or password incorrect."
         }

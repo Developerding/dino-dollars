@@ -7,12 +7,12 @@
           <v-row>
             <v-col class="col-2"></v-col>
             <v-col align="center" justify="center">
-              <h1 class="indigo--text text--darken-4">Dino Dollars</h1>
+              <h1 class="green--text text--darken-3">Dino Dollars</h1>
               <br>
               <h2 class="font-weight-medium">SPEND. REDEEM. SAVE.</h2>
               <h3 class="font-weight-light">Dino Dollars rewards vouchers for purchases and helps you save with every dollar spent!</h3>
               <br>
-              <v-btn size="small" color="#1A237E" class="white--text" >Earn Dino Dollars Now!</v-btn>
+              <v-btn size="small" class="btn white--text" color="green darken-2" @click="scrollToBottom">Earn Dino Dollars Now!</v-btn>
             </v-col>
             
             <v-col align="center" justify="center">
@@ -22,13 +22,15 @@
             <v-col class="col-2"></v-col>
 
           </v-row>
-
-          <br><br><br><br>
+          
+          <br><br>
+          <v-divider color="white"></v-divider>
+          <br><br>
 
           <!-- carousel of partners -->
 
           <v-div align="center" justify="center">
-            <h2 class="font-weight-bold">Earn Dino Dollars with our Partners!</h2><br>
+            <h1 class="font-weight-bold white--text">Earn Dino Dollars with our Partners!</h1><br>
 
             <v-carousel hide-delimiters v-model="model" width="300" height="320" align="center">
               <v-carousel-item reverse-transition="fade-transition" transition="fade-transition">
@@ -53,51 +55,83 @@
             </v-carousel>
           </v-div>
 
-          <!-- instructions -->
-          <br><br><br><br>
+          <br><br>
+          <v-divider color="white"></v-divider>
+          <br><br>
 
-          <v-div>
-            <h2 font-weight-medium align="center" class="white--text">How to earn Dino Dollars?</h2><br>
+          <!-- Instructions -->
 
-            <v-row align="left" class="pl-10 mx-2">
+          <v-div ref="bottom">
+            <h1 font-weight-medium align="center" class="white--text">How to earn Dino Dollars?</h1><br><br>
+
+            <v-row align="left" class="pl-8 mx-8">
               <!-- <v-col class="col-3"> -->
-                <v-card width="500" class="rounded-xl" color="#1A237E">
+                <v-card width="500" class="rounded-xl" color="#388E3C">
                   <v-card-title class="justify-left header white--text">Link</v-card-title>
-                  <v-card-text class="body white--text">Connect your DinoDollars account with our partner companies to get started.</v-card-text>
+                  <v-card-text class="body white--text">Connect your Dino Dollars account with our partner companies to get started.</v-card-text>
+                </v-card>
+              <!-- </v-col> -->
+              <v-spacer></v-spacer>
+              <img src="../assets/Link.png" height="100">
+              <img src="../assets/Link.png" height="100">
+              <img src="../assets/Link.png" height="100">
+              <img src="../assets/Link.png" height="100">
+              <img src="../assets/Link.png" height="100">
+              <img src="../assets/Link.png" height="100">
+
+            </v-row>
+            <br><br><br>
+
+            <v-row align="right" class="pr-2 mx-8">
+            <img src="../assets/Spend.png" height="100">
+            <img src="../assets/Spend.png" height="100">
+            <img src="../assets/Spend.png" height="100">
+            <img src="../assets/Spend.png" height="100">
+            <img src="../assets/Spend.png" height="100">
+            <img src="../assets/Spend.png" height="100">
+            <v-spacer></v-spacer>
+              <!-- <v-col align="right" class="pr-10 mx-2"> -->
+                <v-card align="right" width="500" class="rounded-xl" color="#388E3C">
+                  <v-card-title class="justify-left header white--text">Spend</v-card-title>
+                  <v-card-text align="left" class="body white--text">Make a purchase from one of our partner companies and receive Dino Dollars for every dollar spent. $1 = 10 Dino Dollars!</v-card-text>
                 </v-card>
               <!-- </v-col> -->
             </v-row>
-            <br><br>
+            <br><br><br>
 
-            <v-row>
-              <v-col align="right" class="pr-10 mx-2">
-                <v-card width="500" class="rounded-xl" color="#1A237E">
-                  <v-card-title class="justify-left header white--text">Spend</v-card-title>
-                  <v-card-text align="left" class="body white--text">Make a purchase from one of our partner companies and receive DinoDollars for every dollar spent. $1 = 10 DinoDollars!</v-card-text>
-                </v-card>
-              </v-col>
-            </v-row>
-            <br><br>
-
-            <v-row align="left" class="pl-10 mx-2">
+            <v-row align="left" class="pl-8 mx-8">
               <!-- <v-col class="col-3"> -->
-                <v-card width="500" class="rounded-xl" color="#1A237E">
+                <v-card width="500" class="rounded-xl" color="#388E3C">
                   <v-card-title class="justify-left header white--text">Redeem</v-card-title>
                   <v-card-text class="body white--text">Choose from a wide range of Dino vouchers from your favourite brands and redeem them using your Dino Dollars.</v-card-text>
                 </v-card>
+                <v-spacer></v-spacer>
+            <img src="../assets/Redeem.png" height="100">
+            <img src="../assets/Redeem.png" height="100">
+            <img src="../assets/Redeem.png" height="100">
+            <img src="../assets/Redeem.png" height="100">
+            <img src="../assets/Redeem.png" height="100">
+            <img src="../assets/Redeem.png" height="100">
+
               <!-- </v-col> -->
             </v-row>
-            <br><br>
+            <br><br><br>
 
-            <v-row>
-              <v-col align="right" class="pr-10 mx-2">
-                <v-card width="500" class="rounded-xl" color="#1A237E">
+            <v-row align="right" class="pr-2 mx-8">
+            <img src="../assets/Save.png" height="100">
+            <img src="../assets/Save.png" height="100">
+            <img src="../assets/Save.png" height="100">
+            <img src="../assets/Save.png" height="100">
+
+            <v-spacer></v-spacer>
+              <!-- <v-col align="right" class="pr-10 mx-2"> -->
+                <v-card width="500" class="rounded-xl" color="#388E3C">
                   <v-card-title class="justify-left header white--text">Save</v-card-title>
                   <v-card-text align="left" class="body white--text">Use Dino vouchers to save money on your purchases and enjoy exclusive discounts that you won't find anywhere else.</v-card-text>
                 </v-card>
-              </v-col>
+              <!-- </v-col> -->
             </v-row>
-            <br><br><br><br>
+            <br>
             
             <!-- <v-row>
               <v-col class="col-3">
@@ -136,42 +170,13 @@ export default {
     }
   },
 
-  created(){
-      const parameters={
-            method: "GET",
-  url: "https://asos2.p.rapidapi.com/products/v2/list",
-  params: {
-    store: "US",
-    offset: "0",
-    categoryId: "4209",
-    limit: "100",
-    country: "US",
-    sort: "freshness",
-    currency: "USD",
-    sizeSchema: "US",
-    lang: "en-US",
-  },headers: {
-    "X-RapidAPI-Key": "e2131ac1c7mshf037e692363d1d8p1e89cajsn50d1e5e1a4e6",
-    "X-RapidAPI-Host": "asos2.p.rapidapi.com",
-  },
+  methods: {
+    scrollToBottom(){
+      this.$refs['bottom'].scrollIntoView({behavior: "smooth"})
+    }  
   }
-  axios.request(parameters)
-        .then( (response)=>{
-            console.log(response.data.products)
-            items_list=response.data.products
-            
-            return items_list
+}
 
-        })
-        .catch( (err)=>{
-            console.log(err)
-        })
-
-
-
-
-
-}}
 </script>
 
 <style>
@@ -179,7 +184,7 @@ h1, .header {
   font-family: brightwall;
 }
 
-h2, .body {
+h2, .body, .heading {
   font-family: glacial_bold;
 }
 

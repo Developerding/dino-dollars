@@ -94,11 +94,6 @@ class PurchasedVoucher(db.Model):
             'RedeemedDate': self.RedeemedDate,
             'ExpiryDate': self.ExpiryDate
         }
-    
-
-
-    
-
 
 #function to get all purchased vouchers according to Uid:
 @app.route('/purchasedvoucher/<int:uid>', methods=['GET'])

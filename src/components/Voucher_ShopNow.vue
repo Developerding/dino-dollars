@@ -12,15 +12,21 @@
                 </v-col>
 
                 <v-col
-                cols="8"
+                cols="8" 
                 >
+                
                     <v-list-item three-line>
-                        <v-list-item-content>
-                            <v-list-item-title class="text-h5 mb-1" >$5 OFF</v-list-item-title>
-                            <v-list-item-title>75 points</v-list-item-title>
-                            <v-list-item-subtitle>Expires in 2 hours</v-list-item-subtitle>
+                        <!-- <v-list-item-content>
+                            <v-list-item-title class="shop mb-1" >$5 OFF</v-list-item-title>
+                            <v-list-item-title class="body">75 points</v-list-item-title>
+                            <v-list-item-subtitle class="body">Expires in 2 hours</v-list-item-subtitle>
+                        </v-list-item-content> -->
+                        <v-list-item-content >
+                            <v-list-item-title class="shop mb-1" >{{ discountAmount }}% off</v-list-item-title>
+                            <v-list-item-title class="body">{{ ddRequired }} points</v-list-item-title>
+                            <v-list-item-subtitle class="body">{{ expiryDate }}</v-list-item-subtitle>
                         </v-list-item-content>
-                    </v-list-item>
+                                    </v-list-item>
                 </v-col>
                 
                 <v-col
@@ -41,14 +47,31 @@
 import PopUp_ShopNow from './PopUp_ShopNow.vue';
 
 export default {
+    props: {
+        'voucher_obj': Object
+    },
     components: {
         PopUp_ShopNow 
     },
     data() {
         return {
-            drawer: false
+            drawer: false,
+            discountAmount:this.voucher_obj.DiscountAmt,
+            ddRequired:this.voucher_obj.DDRequired,
+            expiryDate:this.voucher_obj.ExpiryDate.slice(4,16)
         }
     }
 }
 
 </script>
+
+<style>
+.shop {
+  font-family: glacial_bold;
+  font-size: 25px
+}
+
+h3, .body {
+  font-family: glacial;
+}
+</style>

@@ -4,7 +4,7 @@
         <v-main class="blue lighten-4" :style="{ background: 'linear-gradient(to bottom, #214F84, #95C4CB)', minHeight: '100vh' }" >
             <v-container align="center">
                 <v-div align="center" class="white--text">
-                    <h1>Our Partners</h1>
+                    <h1>Our Partners</h1><br>
                     <h3 class="font-weight-light">Dino Dollars is here to help you save while shopping online! With more than 100 trusted partners, we offer exclusive deals for all users to earn rewards on their purchases.<br>
 
                     Whether you're a seasoned online shopper or just getting started, there's something for everyone. From fashion and beauty to electronics and groceries, we have a wide range of categories to choose from. Purchase any voucher of your choice, and start accumulating discounts for all your online shopping needs today!

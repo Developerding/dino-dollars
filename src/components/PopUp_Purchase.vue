@@ -1,13 +1,13 @@
 <template>
     <v-row class="mx-1">
       <v-spacer></v-spacer>
-      <v-btn color="primary" class="rounded-lg" outlined text @click.stop="dialog = true">
-        Purchase
+      <v-btn color="primary" class="rounded-lg shop" outlined text @click.stop="dialog = true">
+        PURCHASE
       </v-btn>
   
       <v-dialog v-model="dialog" max-width="290">
-        <v-card class="px-5 pt-5 pb-5 mx-auto text-center d-inline-block" variant="outlined">
-          <v-card-title class="text-h5 text-center" style="word-break: break-word">
+        <v-card class="px-5 pt-5 pb-5 mx-auto text-center d-inline-block shop" variant="outlined">
+          <v-card-title class="shop text-center" style="word-break: break-word">
             Purchase this voucher?
           </v-card-title>
   
@@ -15,7 +15,7 @@
             <v-btn color="grey lighten-3" class="ma-1" @click="dialog = false">
               Cancel</v-btn>
   
-            <v-btn color="blue lighten-2" class="ma-1" light @click="buyVoucher(); dialog = false">
+            <v-btn color="green lighten-2" class="ma-1" light @click="buyVoucher(); dialog = false">
               Yes</v-btn> 
 
             <!-- <v-btn color="blue lighten-2" class="ma-1" light @click="buyVoucher()">
@@ -78,3 +78,13 @@ export default {
   }
 }
 </script>
+
+<style>
+.shop {
+  font-family: glacial_bold;
+}
+
+h3, .body {
+  font-family: glacial;
+}
+</style>

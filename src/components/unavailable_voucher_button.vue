@@ -1,7 +1,7 @@
 <template>
     <v-row class="mx-1">
       <v-spacer></v-spacer>
-      <v-btn color="primary"  class="rounded-lg" outlined text disabled>
+      <v-btn color="primary"  class="rounded-lg shop" outlined text disabled>
         Purchase
       </v-btn>
 <!--   
@@ -35,3 +35,13 @@ export default {
 //   },
 }
 </script>
+
+<style>
+.shop {
+  font-family: glacial_bold;
+}
+
+h3, .body {
+  font-family: glacial;
+}
+</style>

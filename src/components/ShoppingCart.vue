@@ -1,10 +1,10 @@
 <template>
-  <v-app>
-    <v-app-bar app color="black" max-height="200">
+  <v-app class="font">
+    <v-app-bar app color="black" max-height="200" :style="{ background:grey}" class="font">
       <router-link to="/AsosWebsite">
-          <v-avatar class="mr-12" size="60"><img src="../assets/asos.jpg"></v-avatar>
+          <v-avatar class="mr-8" size="60"><img src="../assets/asos.jpg"></v-avatar>
       </router-link>
-      <v-responsive align="center" justify="center">
+      <v-responsive align="center" justify="center" class="mr-4">
       <v-text-field dense flat hide-details rounded solo-inverted label="Search for Categories or Stores" background-color="white"></v-text-field>
       </v-responsive>
 
@@ -31,29 +31,69 @@
         </v-container>
     </v-main>
 
-    <v-main v-else>
-      <ol>
+    <v-main v-else grid-list-md>
+      <!-- <ol>
         <li v-for="item in cartItems" :key="item.name">
           {{ item.name }}
           {{ item.price }}
-
-          <!-- <v-btn
-                    v-on:click="removeItem(item)"
-                >
-                Remove this damn item
-                </v-btn> -->
         </li>
-      </ol>
+      </ol> -->
+      <!-- <v-row>
+        <v-col class="col-2"></v-col>
+        <b id="heading">MY BAG</b>
+      </v-row><br><br> -->
+      <v-row>
+        <v-col class="col-2"></v-col>
+        <v-col align="center">
+          <v-row>
+            <b id="heading" class="mb-2">MY BAG</b>
+          </v-row><br>
+        <v-row v-for="item in cartItems" :key="item.name" class="pb-4">
+            <v-card width="500" >
+              <v-card-title class="justify-left">{{ item.name }}</v-card-title>
+              <v-card-text align="left">${{ item.price }}</v-card-text>
+            </v-card>
+            <v-row></v-row>
+        </v-row>
+        <v-row>
+          <v-btn v-on:click="removeAllItems">Clear Cart</v-btn>
+        </v-row>
+      </v-col>
+      <v-col>
+        <v-card width="400">
+          <v-card-title id="heading"><b>TOTAL</b></v-card-title>
+          <v-divider></v-divider>
+          <v-card-text><b>Sub-total:</b><span align="right" justify="right"> ${{ cartTotal }}</span> <br>
+          <b>Delivery:</b> $0.00</v-card-text>
+          <v-divider></v-divider><br>
+          <v-row align="center" justify="center">
+            <v-btn v-on:click="checkoutCart(); redeemVoucher()" large depressed width="370px" class="btn white--text" color="green darken-2">Checkout</v-btn>
+          </v-row><br>
+          <v-divider></v-divider>
+          <v-card-text><b>WE ACCEPT:</b>
+            <v-img src="../assets/paymentmethod.png"></v-img>
+          </v-card-text>
+          
 
-      <p>
+        </v-card>
+      </v-col>
+      <v-col class="col-1"></v-col>
+
+      </v-row>
+      <!-- <p>
         {{ cartTotal }}
       </p>
 
       <v-btn v-on:click="removeAllItems">Clear Cart</v-btn>
 
-      <!-- <v-btn v-on:click="pointsUpdate" large>checkout</v-btn> -->
+      <v-btn v-on:click="pointsUpdate" large>checkout</v-btn>
 
-      <v-btn v-on:click="checkoutCart" large>Checkout</v-btn>
+      <v-btn v-on:click="checkoutCart(); redeemVoucher()" large>Checkout</v-btn> -->
+
+      <div v-for="(voucher,index) in this.voucher_list" v-bind:key="index">
+      <User_Voucher
+      v-bind:voucher_obj="voucher"
+        /></div>
 
       <!-- <v-btn
         v-on:click="validatingVoucher"
@@ -66,26 +106,62 @@
 
 <script>
 import axios from "axios";
+import User_Voucher from "./User_Voucher.vue";
 
 export default {
   name: "ShoppingCart",
   data: () => ({
-    token: ""
+    token: "",
+    voucher_list:[]
   }),
+  created(){
+    let userObj=this.$store.getters.getUser
+    let userUID=userObj.UID
+    let url="http://localhost:5002/purchasedvoucher/" + userUID
+
+    axios.get(url)
+    .then(response => {
+      let allVoucherList = response.data.data.AllVouchers
+
+      for (let i = 0; i < allVoucherList.length; i++) {
+        if (!allVoucherList[i].RedeemedDate) {
+          this.voucher_list.push(allVoucherList[i])
+        }
+      }
+
+      console.log(this.voucher_list)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  },
+  components: {
+    User_Voucher,
+  },
   computed: {
     cartItems() {
       return this.$store.state.cart;
     },
     cartTotal() {
       let state = this.$store.state
+      var amount = 0
 
-      state.cart.forEach(item => {
-        state.amount += item.price
-      })
+      if (!this.$store.state.amount) {
+        state.cart.forEach(item => {
+          state.amount += item.price
+        })
 
-      return state.amount
+        amount = state.amount
+      }
+
+      if (this.$store.state.voucher) {
+        let voucherObj=this.$store.getters.getVoucher
+        amount = state.amount - ((state.amount/100) * voucherObj.DiscountAmt)
+        state.discountedAmount = amount
+      }
+
+      return amount.toFixed(2)
     },
-    
   },
   methods: {
     removeAllItems: function () {
@@ -179,6 +255,20 @@ export default {
       .catch(error => {
         console.log(error)
       })
+    },
+
+    redeemVoucher: function() {
+      let vid = this.$store.state.voucher.Vid
+      console.log(vid)
+      let url = "http://localhost:5010/redeem_voucher/" + vid
+
+      axios.get(url)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error)
+      })
     }
   },
   mounted: function() {
@@ -186,3 +276,13 @@ export default {
   }
 };
 </script>
+
+<style>
+.font {
+  font-family: glacial;
+}
+
+#heading {
+  font-size: 25px;
+}
+</style>
