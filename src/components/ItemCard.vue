@@ -35,9 +35,12 @@ export default {
       // ItemID: Number
     },
     methods: {
-      addItemToCart: function(ItemName, ItemPrice) {
-        this.$store.dispatch('addItemToCart', {ItemName, ItemPrice})
+      addItemToCart: function(ItemName, ItemPrice,ItemImage) {
+        this.$store.dispatch('addItemToCart', {ItemName, ItemPrice, ItemImage})
       }
+    },
+    created(){
+  
     }
 }
 </script>

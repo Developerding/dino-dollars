@@ -38,10 +38,10 @@
             </template> -->
 
             <ItemCard
-            v-for="(product, key) in products"
+            v-for="(product, key) in this.items_list"
             :key="key"
             :item-name="product.name"
-            :item-image="require(`@/assets/${product.image}`)"
+            :item-image="product.imageUrl"
             :item-price="product.price"
           />
 
@@ -62,7 +62,8 @@ import axios from 'axios'
       // AsosHomeCarousel,
       ItemCard
     },
-    data: () => ({ drawer: null },
+    data: () => ({ 
+      drawer: null },
     {
       products: {
         item1: {
@@ -85,7 +86,9 @@ import axios from 'axios'
           price: 97.36,
           image: "asos4.png"
         }
-      }
+      },
+
+      items_list:null,
     }),
     computed: {
     // something() {
@@ -112,15 +115,25 @@ import axios from 'axios'
   },
 
   created(){
-    const graphqlurl="http://localhost:5030/graphqlserver"
+    const graphqlurl="http://localhost:5030/graphql"
     const graphqlQuery = {
     "operationName": "Query",
-    "query": `query Query { items { name price imageUrl } }`,
-    "variables": {}
+    "query": `query Query { items { name price imageUrl } }`
+    
 };
-axios({url: graphqlurl, method:'get', data:graphqlQuery})
+axios({url: graphqlurl, method:'post', data:graphqlQuery})
 .then((response)=>{
   console.log(response)
+  this.items_list=response.data.data.items
+  this.items_list= this.items_list.map(function(item){
+    const temp={
+      name:item.name,
+      price: item.price,
+      imageUrl: "http://" + item.imageUrl
+    }
+    return temp
+  })
+  console.log(this.items_list)
 })
 .catch((err)=>{
   console.log(err)
