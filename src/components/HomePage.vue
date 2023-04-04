@@ -118,6 +118,7 @@
 
 <script>
 import NavBar from './NavBar.vue'
+import axios from 'axios'
 
 export default {
   components: {
@@ -134,7 +135,43 @@ export default {
       ],
     }
   },
-}
+
+  created(){
+      const parameters={
+            method: "GET",
+  url: "https://asos2.p.rapidapi.com/products/v2/list",
+  params: {
+    store: "US",
+    offset: "0",
+    categoryId: "4209",
+    limit: "100",
+    country: "US",
+    sort: "freshness",
+    currency: "USD",
+    sizeSchema: "US",
+    lang: "en-US",
+  },headers: {
+    "X-RapidAPI-Key": "e2131ac1c7mshf037e692363d1d8p1e89cajsn50d1e5e1a4e6",
+    "X-RapidAPI-Host": "asos2.p.rapidapi.com",
+  },
+  }
+  axios.request(parameters)
+        .then( (response)=>{
+            console.log(response.data.products)
+            items_list=response.data.products
+            
+            return items_list
+
+        })
+        .catch( (err)=>{
+            console.log(err)
+        })
+
+
+
+
+
+}}
 </script>
 
 <style>
