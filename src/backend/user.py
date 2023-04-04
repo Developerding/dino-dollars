@@ -130,7 +130,7 @@ def find_by_UID(UID):
     return jsonify(
         {
             "code":404,
-            "message": "Email or password incorrect."
+            "message": "UID not found."
         }
     ),404
 

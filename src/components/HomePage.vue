@@ -152,6 +152,7 @@
 
 <script>
 import NavBar from './NavBar.vue'
+import axios from 'axios'
 
 export default {
   components: {
@@ -168,12 +169,14 @@ export default {
       ],
     }
   },
+
   methods: {
     scrollToBottom(){
       this.$refs['bottom'].scrollIntoView({behavior: "smooth"})
     }  
   }
 }
+
 </script>
 
 <style>

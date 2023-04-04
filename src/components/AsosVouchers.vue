@@ -135,9 +135,18 @@ export default {
   created(){
         let userObj=this.$store.getters.getUser
         this.UID=userObj.UID
-        this.points=userObj.Points
-        let url="http://127.0.0.1:6001/validate_voucher"+'/'+this.UID
-        axios.get(url)
+        let url1="http://127.0.0.1:5003/user/" + this.UID
+
+        axios.get(url1)
+        .then( (response)=>{
+            console.log(response)
+            this.points=response.data.data.Points
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+        let url2="http://127.0.0.1:6001/validate_voucher"+'/'+this.UID
+        axios.get(url2)
         .then( (response)=>{
             // console.log(response.data)
             // console.log(response.data.data.AllVouchers)
