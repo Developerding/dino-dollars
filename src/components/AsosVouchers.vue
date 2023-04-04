@@ -11,7 +11,9 @@
                     <v-list-item-content>
                         <div><img src="https://www.theclimatepledge.com/content/dam/amazonclimatepledge/signatory-logo/ASOS.png" width="200"></div>
                         <v-list-item-title class="font-weight-light slogan">
-                        Discover shopping online.
+                        Discover the latest fashion <br>
+                        trends with ASOS. Shop the <br>
+                        new collection and more!
                         </v-list-item-title><br><br>
                         <div>
                             <PopUp_ShopNow/>
