@@ -11,7 +11,7 @@
         </router-link>
         <!-- make this scroll to the bottom of about page -->
         <router-link to="/" tag="v-btn">
-            <v-btn text @click="scrollToBottom">How to earn?</v-btn> 
+            <v-btn text>How to earn?</v-btn> 
         </router-link>
 
         <v-menu offset-y v-if="userLoggedIn">

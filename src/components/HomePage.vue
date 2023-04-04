@@ -68,21 +68,32 @@
               <!-- <v-col class="col-3"> -->
                 <v-card width="500" class="rounded-xl" color="#388E3C">
                   <v-card-title class="justify-left header white--text">Link</v-card-title>
-                  <v-card-text class="body white--text">Connect your DinoDollars account with our partner companies to get started.</v-card-text>
+                  <v-card-text class="body white--text">Connect your Dino Dollars account with our partner companies to get started.</v-card-text>
                 </v-card>
               <!-- </v-col> -->
               <v-spacer></v-spacer>
-              <img src="../assets/Link.png" height="300">
+              <img src="../assets/Link.png" height="100">
+              <img src="../assets/Link.png" height="100">
+              <img src="../assets/Link.png" height="100">
+              <img src="../assets/Link.png" height="100">
+              <img src="../assets/Link.png" height="100">
+              <img src="../assets/Link.png" height="100">
+
             </v-row>
             <br><br><br>
 
             <v-row align="right" class="pr-2 mx-8">
-            <img src="../assets/Spend.png" height="300">
+            <img src="../assets/Spend.png" height="100">
+            <img src="../assets/Spend.png" height="100">
+            <img src="../assets/Spend.png" height="100">
+            <img src="../assets/Spend.png" height="100">
+            <img src="../assets/Spend.png" height="100">
+            <img src="../assets/Spend.png" height="100">
             <v-spacer></v-spacer>
               <!-- <v-col align="right" class="pr-10 mx-2"> -->
                 <v-card align="right" width="500" class="rounded-xl" color="#388E3C">
                   <v-card-title class="justify-left header white--text">Spend</v-card-title>
-                  <v-card-text align="left" class="body white--text">Make a purchase from one of our partner companies and receive DinoDollars for every dollar spent. $1 = 10 DinoDollars!</v-card-text>
+                  <v-card-text align="left" class="body white--text">Make a purchase from one of our partner companies and receive Dino Dollars for every dollar spent. $1 = 10 Dino Dollars!</v-card-text>
                 </v-card>
               <!-- </v-col> -->
             </v-row>
@@ -95,13 +106,23 @@
                   <v-card-text class="body white--text">Choose from a wide range of Dino vouchers from your favourite brands and redeem them using your Dino Dollars.</v-card-text>
                 </v-card>
                 <v-spacer></v-spacer>
-            <img src="../assets/Redeem.png" height="300">
+            <img src="../assets/Redeem.png" height="100">
+            <img src="../assets/Redeem.png" height="100">
+            <img src="../assets/Redeem.png" height="100">
+            <img src="../assets/Redeem.png" height="100">
+            <img src="../assets/Redeem.png" height="100">
+            <img src="../assets/Redeem.png" height="100">
+
               <!-- </v-col> -->
             </v-row>
             <br><br><br>
 
             <v-row align="right" class="pr-2 mx-8">
-            <img src="../assets/Save.png" height="300">
+            <img src="../assets/Save.png" height="100">
+            <img src="../assets/Save.png" height="100">
+            <img src="../assets/Save.png" height="100">
+            <img src="../assets/Save.png" height="100">
+
             <v-spacer></v-spacer>
               <!-- <v-col align="right" class="pr-10 mx-2"> -->
                 <v-card width="500" class="rounded-xl" color="#388E3C">
