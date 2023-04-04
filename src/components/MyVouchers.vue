@@ -67,8 +67,7 @@ export default {
         let url="http://127.0.0.1:5002/purchasedvoucher"+'/'+this.UID
         axios.get(url)
         .then( (response)=>{
-            console.log(response.data.data.AllVouchers)
-            // console.log(response.data.data.AllVouchers)
+            console.log(response)
             this.my_vouchers=response.data.data.AllVouchers
         })
         .catch((err)=>{

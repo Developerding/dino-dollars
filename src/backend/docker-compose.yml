@@ -28,6 +28,7 @@ services:
   #     - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
   rabbitmq:
     image: rabbitmq:3-management
+    # platform: 'linux/x86_64'
     container_name: rabbitmq
     restart: always
     networks:
@@ -193,6 +194,23 @@ services:
       rabbit_port: 5672
       PYTHONUNBUFFERED: 1
 
+# Changes made
+  email_test:
+    build:
+      context: ./
+      dockerfile: email_test.Dockerfile
+    image: geraldding/email_test:dino
+    restart: always
+    networks:
+      - dino-net
+    depends_on:
+      - rabbitmq
+    container_name: email_test
+    environment:
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      PYTHONUNBUFFERED: 1
+
   validatevoucher:
     build:
       context: ./
@@ -217,6 +235,7 @@ services:
       context: ./kong/declarative
       dockerfile: kong.Dockerfile
     image: geraldding/kong:kongnodb
+    # platform: 'linux/x86_64'
     restart: always
     networks:
       - dino-net

@@ -1,37 +1,24 @@
 <template>
 
-    <v-card class="mx-auto rounded-lg" variant="outlined">
+    <v-card class="mx-auto rounded-lg" variant="outlined" v-if="Date.now() < new Date(expiryDate)">
 
         <v-card-text class="py-0">
             <v-row align="center" gutter>
-
-                <v-col
-                cols="2"
-                >
+                <v-col cols="2">
                 <v-img src="../assets/asos.jpg" width="100" height="100" justify="centre" align="left" class="rounded-xl elevation-5"></v-img>
                 </v-col>
 
-                <v-col
-                cols="8" 
-                >
-                
+                <v-col cols="8" >
                     <v-list-item three-line>
-                        <!-- <v-list-item-content>
-                            <v-list-item-title class="shop mb-1" >$5 OFF</v-list-item-title>
-                            <v-list-item-title class="body">75 points</v-list-item-title>
-                            <v-list-item-subtitle class="body">Expires in 2 hours</v-list-item-subtitle>
-                        </v-list-item-content> -->
-                        <v-list-item-content >
+                        <v-list-item-content>
                             <v-list-item-title class="shop mb-1" >{{ discountAmount }}% off</v-list-item-title>
                             <v-list-item-title class="body">{{ ddRequired }} points</v-list-item-title>
                             <v-list-item-subtitle class="body">{{ expiryDate }}</v-list-item-subtitle>
                         </v-list-item-content>
-                                    </v-list-item>
+                       </v-list-item>
                 </v-col>
                 
-                <v-col
-                cols="2"
-                >
+                <v-col cols="2">
                 <PopUp_ShopNow/>
                 </v-col>
 
@@ -41,6 +28,34 @@
         <br/>
         
     </v-card>
+
+    <v-card class="mx-auto rounded-lg" color="grey" variant="outlined" v-else>
+        <v-card-text class="py-0">
+            <v-row align="center" gutter>
+                <v-col cols="2">
+                <v-img src="../assets/asos.jpg" width="100" height="100" justify="centre" align="left" class="rounded-xl"></v-img>
+                </v-col>
+
+                <v-col cols="8" >
+                    <v-list-item three-line>
+                        <v-list-item-content>
+                            <v-list-item-title class="shop mb-1" >{{ discountAmount }}% off</v-list-item-title>
+                            <v-list-item-title class="body">{{ ddRequired }} points</v-list-item-title>
+                            <v-list-item-subtitle class="body">{{ expiryDate }}</v-list-item-subtitle>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-col>
+                
+                <v-col cols="2" class="shop">
+                EXPIRED
+                </v-col>
+
+            </v-row>
+        </v-card-text>
+
+<br/>
+
+</v-card>
 </template>
 
 <script>
