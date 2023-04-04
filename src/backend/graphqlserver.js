@@ -1,5 +1,6 @@
 const express = require('express')
 const axios= require('axios')
+const cors= require('cors')
 const expressGraphQL= require('express-graphql').graphqlHTTP
 const {GraphQLSchema, 
     GraphQLObjectType, 
@@ -94,7 +95,7 @@ const schema= new GraphQLSchema({
     query: RootQueryType
 })
 
-app.use('/graphql', expressGraphQL({
+app.use(cors(), '/graphql', expressGraphQL({
     schema: schema,
     graphiql: true
 }))

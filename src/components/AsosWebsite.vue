@@ -55,6 +55,7 @@
 // import AsosHomeCarousel from './AsosHomeCarousel.vue'
 import ItemCard from "@/components/ItemCard.vue";
 import {mapActions, mapGetters} from 'vuex'
+import axios from 'axios'
 
   export default {
     components: {
@@ -108,6 +109,24 @@ import {mapActions, mapGetters} from 'vuex'
     ...mapActions([
       'changeName'
     ])
+  },
+
+  created(){
+    const graphqlurl="http://localhost:5030/graphqlserver"
+    const graphqlQuery = {
+    "operationName": "Query",
+    "query": `query Query { items { name price imageUrl } }`,
+    "variables": {}
+};
+axios({url: graphqlurl, method:'get', data:graphqlQuery})
+.then((response)=>{
+  console.log(response)
+})
+.catch((err)=>{
+  console.log(err)
+})
+
+}
   }
-  }
+  
 </script>
