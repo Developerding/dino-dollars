@@ -51,7 +51,7 @@ export const store = new Vuex.Store({
         //     })
         // },
         addItemToCart: (state,payload) => {
-            state.cart.push({name: payload.ItemName, price:payload.ItemPrice})
+            state.cart.push({name: payload.ItemName, price:payload.ItemPrice, ItemImage:payload.ItemImage})
         },
         removeAllItems: state => {
             state.cart = []

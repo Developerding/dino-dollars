@@ -48,13 +48,18 @@
           <v-row>
             <b id="heading" class="mb-2">MY BAG</b>
           </v-row><br>
+
         <v-row v-for="item in cartItems" :key="item.name" class="pb-4">
+          
             <v-card width="500" >
+              <v-img :src="item.ItemImage" :width="150" :height="150" >
+    </v-img>
               <v-card-title class="justify-left">{{ item.name }}</v-card-title>
               <v-card-text align="left">${{ item.price }}</v-card-text>
             </v-card>
             <v-row></v-row>
         </v-row>
+
         <v-row>
           <v-btn v-on:click="removeAllItems">Clear Cart</v-btn>
         </v-row>

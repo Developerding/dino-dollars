@@ -61,6 +61,7 @@ axios.request(parameters)
 
 //creating express app
 const app=express()
+app.use(cors())
 
 
 //creating item type:
@@ -95,7 +96,7 @@ const schema= new GraphQLSchema({
     query: RootQueryType
 })
 
-app.use(cors(), '/graphql', expressGraphQL({
+app.use( '/graphql', expressGraphQL({
     schema: schema,
     graphiql: true
 }))
