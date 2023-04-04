@@ -1,16 +1,16 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from os import environ
 
 app = Flask(__name__)
+
+CORS(app)  
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL')
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/user'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-
-CORS(app)  
 
 class User(db.Model):
     __tablename__ = 'USER'
@@ -57,6 +57,7 @@ class Accounts(db.Model):
         return {"UID": self.UID, "Name": self.Name}
 
 @app.route('/user', methods=['GET'])
+@cross_origin()
 def get_all():
     userList = User.query.all()
     if len(userList):
@@ -77,6 +78,7 @@ def get_all():
 
 
 @app.route("/user/<string:email>/<string:password>")
+@cross_origin()
 def find_by_email_and_password(email, password):
     # data=request.get_json()
     # Email=data['Email']
@@ -107,7 +109,7 @@ def find_by_email_and_password(email, password):
     # print(user)
     return jsonify(
         {
-           
+
             "code":404,
             "message": "Email or password incorrect."
         }
@@ -115,6 +117,7 @@ def find_by_email_and_password(email, password):
 
 
 @app.route("/user/<int:UID>")
+@cross_origin()
 def find_by_UID(UID):
     user = User.query.filter_by(UID=UID).first()
 
@@ -138,6 +141,7 @@ def find_by_UID(UID):
 
 # @app.route("/user/<int:UID>", methods=['POST'])
 @app.route("/user", methods=['POST'])
+@cross_origin()
 def create_user():
     data = request.get_json()
 
@@ -197,6 +201,7 @@ def create_user():
 
 
 @app.route("/point/<int:UID>", methods=['PUT'])
+@cross_origin()
 def update_user(UID):
     try:
         user = User.query.filter_by(UID=UID).first()
@@ -254,6 +259,7 @@ def update_user(UID):
 
 
 @app.route("/user/<int:UID>", methods=['DELETE'])
+@cross_origin()
 def delete_user(UID):
     user = User.query.filter_by(UID=UID).first()
     if user:
@@ -278,6 +284,7 @@ def delete_user(UID):
     ), 404
 
 @app.route("/accounts/<int:UID>/<string:Name>", methods=['POST'])
+@cross_origin()
 def create_account(UID,Name):
     if (Accounts.query.filter_by(UID=UID, Name=Name).first()):
         return jsonify(
