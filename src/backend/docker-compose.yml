@@ -28,6 +28,7 @@ services:
   #     - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
   rabbitmq:
     image: rabbitmq:3-management
+    # platform: 'linux/x86_64'
     container_name: rabbitmq
     restart: always
     networks:
@@ -217,6 +218,7 @@ services:
       context: ./kong/declarative
       dockerfile: kong.Dockerfile
     image: geraldding/kong:kongnodb
+    # platform: 'linux/x86_64'
     restart: always
     networks:
       - dino-net

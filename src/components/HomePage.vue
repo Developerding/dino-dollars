@@ -152,7 +152,7 @@
 
 <script>
 import NavBar from './NavBar.vue'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   components: {

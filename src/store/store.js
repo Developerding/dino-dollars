@@ -11,8 +11,7 @@ export const store = new Vuex.Store({
         amount: 0,
         discountedAmount: 0,
         voucher: null,
-        user: null,
-        purchasedVoucher: null
+        user: null
     },
     getters: {
         // somethingChanged: state => {
@@ -43,9 +42,6 @@ export const store = new Vuex.Store({
         },
         getVoucher(state){
             return state.voucher
-        },
-        getPurchasedVoucher(state){
-            return state.purchasedVoucher
         }
     },
     mutations: {
