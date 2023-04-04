@@ -40,12 +40,14 @@ def buy_voucher(UID, DDRequired):
                     print(f'DDRequired {DDRequired}')
                     print(type(newBalance))
                     newPoints = {"Points": newBalance}
-                    result = updateUserBalance(newPoints, UID)
+                    result = updateUserBalance(newPoints, UID, newVoucher)
                     print('\n------------------------')
-                    print('\nresult: ', result)
+                    print('\nresult: ', result) 
                     return jsonify(result), result["code"]
                 else:
                     return jsonify(user), user["code"]
+                
+                
             else:
                 return jsonify(newVoucher), newVoucher["code"]
             
@@ -85,7 +87,7 @@ def getCurrentBalance(UID):
     return user
 
 
-def updateUserBalance(order, UID):
+def updateUserBalance(order, UID, newVoucher):
     # 2. Send the order info {cart items}
     # Invoke the order microservice
     print('\n-----Invoking order microservice-----')
@@ -136,6 +138,15 @@ def updateUserBalance(order, UID):
     #     # invoke_http(activity_log_URL, method="POST", json=order_result)            
     #     amqp_setup.channel.basic_publish(exchange=amqp_setup.exchangename, routing_key="order.info", 
     #         body=message)
+
+    formatted_body = {
+        "type": "buy",
+        "voucher" : newVoucher,
+        "order_result": order_result
+    }
+
+    message = json.dumps(formatted_body)
+    amqp_setup.channel.basic_publish(exchange=amqp_setup.exchangename, routing_key="buy.notifications", body=message, properties=pika.BasicProperties(delivery_mode = 2))
     
     print("\nOrder published to RabbitMQ Exchange.\n")
     return {

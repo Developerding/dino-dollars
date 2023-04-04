@@ -193,6 +193,23 @@ services:
       rabbit_port: 5672
       PYTHONUNBUFFERED: 1
 
+# Changes made
+  email_test:
+    build:
+      context: ./
+      dockerfile: email_test.Dockerfile
+    image: geraldding/email_test:dino
+    restart: always
+    networks:
+      - dino-net
+    depends_on:
+      - rabbitmq
+    container_name: email_test
+    environment:
+      rabbit_host: rabbitmq
+      rabbit_port: 5672
+      PYTHONUNBUFFERED: 1
+
   validatevoucher:
     build:
       context: ./
