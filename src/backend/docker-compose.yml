@@ -153,6 +153,21 @@ services:
       PYTHONUNBUFFERED: 1
     ports:
       - "5010:5010"
+    
+  
+  graphqlserver:
+    build:
+      context: ./
+      dockerfile: graphqlserver.Dockerfile
+    image: geraldding/graphqlserver:dino
+    restart: always
+    networks:
+      - dino-net
+    container_name: graphqlserver
+    environment:
+      graphqlserver_url: http://graphqlserver:5030/graphql
+    ports:
+      - "5030:5030"
   
   purchasedvoucher:
     build:
