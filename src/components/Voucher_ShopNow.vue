@@ -16,9 +16,9 @@
                 >
                     <v-list-item three-line>
                         <v-list-item-content>
-                            <v-list-item-title class="text-h5 mb-1" >$5 OFF</v-list-item-title>
-                            <v-list-item-title>75 points</v-list-item-title>
-                            <v-list-item-subtitle>Expires in 2 hours</v-list-item-subtitle>
+                            <v-list-item-title class="mb-1 shop" >$5 OFF</v-list-item-title>
+                            <v-list-item-title class="body">75 points</v-list-item-title>
+                            <v-list-item-subtitle class="body">Expires in 2 hours</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
                 </v-col>
@@ -52,3 +52,15 @@ export default {
 }
 
 </script>
+
+
+<style>
+.shop {
+  font-family: glacial_bold;
+  font-size: 25px
+}
+
+h3, .body {
+  font-family: glacial;
+}
+</style>

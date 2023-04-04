@@ -6,8 +6,10 @@
             <img src="../assets/dinodollar logo transparent.png" height="50" class="d-flex justify-center align-center">
         </router-link><space></space>
 
-        
-        <v-btn text class="btn">About</v-btn>
+        <router-link to="/" tag="v-btn">
+            <v-btn text class="btn">About</v-btn>
+        </router-link>
+        <!-- make this scroll to the bottom of about page -->
         <router-link to="/" tag="v-btn">
             <v-btn text @click="scrollToBottom">How to earn?</v-btn> 
         </router-link>

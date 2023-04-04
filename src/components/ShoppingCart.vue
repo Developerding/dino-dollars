@@ -71,7 +71,7 @@
           </v-row><br>
           <v-divider></v-divider>
           <v-card-text><b>WE ACCEPT:</b>
-
+            <v-img src="../assets/paymentmethod.png"></v-img>
           </v-card-text>
           
 
