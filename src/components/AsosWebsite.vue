@@ -94,7 +94,14 @@ import {callASOS} from "../backend/callASOS.js"
   },
 
   created(){
-    this.items_list = callASOS()
+     callASOS()
+    .then((response)=>{
+      console.log(response);
+      this.items_list=response
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
     // callASOS().then(value => console.log(value))
     // console.log(items_list)
     // this.items_list= items_list
