@@ -1,6 +1,6 @@
 <template>
 
-    <v-card class="mx-auto rounded-lg" variant="outlined" v-if="Date.now() < new Date(expiryDate)">
+    <v-card class="mx-auto rounded-lg" variant="outlined" v-if="redeemedDate==null">
 
         <v-card-text class="py-0">
             <v-row align="center" gutter>
@@ -12,8 +12,8 @@
                     <v-list-item three-line>
                         <v-list-item-content>
                             <v-list-item-title class="shop mb-1" >{{ discountAmount }}% off</v-list-item-title>
-                            <v-list-item-title class="body">{{ ddRequired }} points</v-list-item-title>
-                            <v-list-item-subtitle class="body">{{ expiryDate }}</v-list-item-subtitle>
+                            <v-list-item-title class="body">Cost of Voucher: {{ ddRequired }} points</v-list-item-title>
+                            <v-list-item-subtitle class="body">Date of Purchase: {{ purchasedDate }}</v-list-item-subtitle>
                         </v-list-item-content>
                        </v-list-item>
                 </v-col>
@@ -40,8 +40,8 @@
                     <v-list-item three-line>
                         <v-list-item-content>
                             <v-list-item-title class="shop mb-1" >{{ discountAmount }}% off</v-list-item-title>
-                            <v-list-item-title class="body">{{ ddRequired }} points</v-list-item-title>
-                            <v-list-item-subtitle class="body">{{ expiryDate }}</v-list-item-subtitle>
+                            <v-list-item-title class="body">Cost of Voucher: {{ ddRequired }} points</v-list-item-title>
+                            <v-list-item-subtitle class="body">Date of Purchase: {{ purchasedDate }}</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
                 </v-col>
@@ -73,7 +73,9 @@ export default {
             drawer: false,
             discountAmount:this.voucher_obj.DiscountAmt,
             ddRequired:this.voucher_obj.DDRequired,
-            expiryDate:this.voucher_obj.ExpiryDate.slice(4,16)
+            // expiryDate:this.voucher_obj.ExpiryDate.slice(4,16),
+            purchasedDate: this.voucher_obj.PurchasedDate.slice(4,16),
+            redeemedDate: this.voucher_obj.RedeemedDate
         }
     }
 }

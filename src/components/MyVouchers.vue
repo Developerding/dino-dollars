@@ -69,6 +69,7 @@ export default {
         .then( (response)=>{
             console.log(response)
             this.my_vouchers=response.data.data.AllVouchers
+            console.log(this.my_vouchers)
         })
         .catch((err)=>{
             console.log(err)
