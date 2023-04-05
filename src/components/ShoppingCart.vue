@@ -162,6 +162,7 @@ export default {
       // this.$store.dispatch('paypalTest')
       let authToken = "Bearer " + this.token
       let value = this.cartTotal
+      
     
       let data = {
           "intent": "CAPTURE",
@@ -239,8 +240,8 @@ export default {
 
       axios.post(url,data)
       .then(response => {
-        console.log(response)
-        // state.pointsEarned = response
+        // console.log("I'm testing something" + response.data.data.Points)
+        this.$store.dispatch("setUserStatePoints", response.data.data.Points);
       })
       .catch(error => {
         console.log(error)

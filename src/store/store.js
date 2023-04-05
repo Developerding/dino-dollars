@@ -84,6 +84,9 @@ export const store = new Vuex.Store({
 
         logOut (state){
             state.user=null
+        },
+        setUserStatePoints(state,payload) {
+            state.user.Points = payload
         }
 
         
@@ -120,6 +123,9 @@ export const store = new Vuex.Store({
             .catch( error => {
                 console.log(error.message);
             });
+        },
+        setUserStatePoints: (context,payload) => {
+            context.commit("setUserStatePoints",payload )
         },
         applyVoucher: (context,payload) => {
             context.commit('applyVoucher',payload)

@@ -61,7 +61,7 @@ export default {
 
       let body = {
         "pname": platformName,
-        "discount": discountAmt + "% Discount",
+        "discount": discountAmt,
         "uid": userUID,
         "DDRequired": ddRequired
       }
