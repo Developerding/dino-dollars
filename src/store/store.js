@@ -9,9 +9,11 @@ export const store = new Vuex.Store({
         cart: [
         ],
         amount: 0,
-        discountedAmount: 0,
+        discountedAmount: null,
+        // pointsEarned: null,
         voucher: null,
-        user: null
+        user: null,
+        
     },
     getters: {
         // somethingChanged: state => {
@@ -52,11 +54,14 @@ export const store = new Vuex.Store({
         // },
         addItemToCart: (state,payload) => {
             state.cart.push({name: payload.ItemName, price:payload.ItemPrice, ItemImage:payload.ItemImage})
+            state.amount += payload.ItemPrice
+            state.discountedAmount += payload.ItemPrice
         },
         removeAllItems: state => {
             state.cart = []
             state.amount = 0
-            state.discountedAmount = 0
+            state.discountedAmount = null
+            state.voucher = null
         },
         // removeItem: (state,payload) => {
         //     item.find()
@@ -70,9 +75,9 @@ export const store = new Vuex.Store({
         applyVoucher: (state,payload) => {
             state.voucher = payload
         },
-        removeVoucher: state => {
-            state.voucher = null
-        },
+        // removeVoucher: state => {
+        //     state.voucher = null
+        // },
         logUser (state, payload){
             state.user=payload
         },

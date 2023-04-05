@@ -5,28 +5,15 @@ volumes:
   pgdata:
   kongadata:
   user_data:
-  # db-data:
-  # db:
-  #   driver: local
+  av_data:
+  pv_data:
+
 
 networks:
   dino-net:
     driver: bridge
 
 services:
-  # db:
-  #   image: mysql:8.0
-  #   cap_add:
-  #     - SYS_NICE
-  #   restart: always
-  #   environment:
-  #     - MYSQL_DATABASE=user
-  #     - MYSQL_ROOT_PASSWORD=password
-  #   ports:
-  #     - '3307:3306'
-  #   volumes:
-  #     - db:/var/lib/mysql
-  #     - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
   rabbitmq:
     image: rabbitmq:3-management
     # platform: 'linux/x86_64'
@@ -56,9 +43,7 @@ services:
     ports:
       - "6033:3306"
     volumes:
-      # - dbdata:/var/lib/mysql
       - user_data:/var/lib/mysql
-      # - /Database:/docker-entrypoint-initdb.d
 
   user:
     build:
@@ -70,15 +55,12 @@ services:
       - dino-net
     container_name: user
     environment:
-      # dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/user
       DB_HOST: userdb
       DB_PORT: 3306
       DB_USER: user
       DB_PASSWORD: password
       DB_NAME: user
       PYTHONUNBUFFERED: 1
-    # links:
-      # - db
     volumes:
       - user_data:/var/lib/mysql
     ports:
@@ -140,20 +122,34 @@ services:
       - dino-net
     container_name: availablevoucher
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/availablevoucher
-      # DB_HOST: db
-      # DB_PORT: 3307
-      # DB_USER: root
-      # DB_PASSWORD: password
-      # DB_NAME: user
+      DB_HOST: avdb
+      DB_PORT: 3306
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: availablevoucher
       PYTHONUNBUFFERED: 1
-    # links:
-      # - db
-    # volumes:
-    #   - ./:/src
+    volumes:
+      - av_data:/var/lib/mysql
     ports:
       - "5001:5001"
-  
+    depends_on:
+      - avdb
+
+  avdb: 
+    image: mysql
+    container_name: avdb
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: availablevoucher
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    networks:
+      - dino-net
+    ports:
+      - "6034:3306"
+    volumes:
+      - av_data:/var/lib/mysql
+
   redeemvoucher:
     build:
       context: ./
@@ -199,19 +195,32 @@ services:
       - dino-net
     container_name: purchasedvoucher
     environment:
-      dbURL: mysql+mysqlconnector://is213@host.docker.internal:3306/purchasedvoucher
-      # DB_HOST: db
-      # DB_PORT: 3307
-      # DB_USER: root
-      # DB_PASSWORD: password
-      # DB_NAME: user
+      DB_HOST: pvdb
+      DB_PORT: 3306
+      DB_USER: user
+      DB_PASSWORD: password
+      DB_NAME: purchasedvoucher
       PYTHONUNBUFFERED: 1
-    # links:
-      # - db
-    # volumes:
-    #   - ./:/src
+    volumes:
+      - pv_data:/var/lib/mysql
     ports:
       - "5002:5002"
+    depends_on:
+      - pvdb
+  pvdb: 
+    image: mysql
+    container_name: pvdb
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: purchasedvoucher
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    networks:
+      - dino-net
+    ports:
+      - "6035:3306"
+    volumes:
+      - pv_data:/var/lib/mysql
 
   error:
     build:
