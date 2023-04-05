@@ -56,6 +56,7 @@ export const store = new Vuex.Store({
         removeAllItems: state => {
             state.cart = []
             state.amount = 0
+            state.discountedAmount = 0
         },
         // removeItem: (state,payload) => {
         //     item.find()
@@ -68,6 +69,9 @@ export const store = new Vuex.Store({
 
         applyVoucher: (state,payload) => {
             state.voucher = payload
+        },
+        removeVoucher: state => {
+            state.voucher = null
         },
         logUser (state, payload){
             state.user=payload
@@ -90,6 +94,9 @@ export const store = new Vuex.Store({
         },
         removeAllItems: context => {
             context.commit('removeAllItems')
+        },
+        removeVoucher: context => {
+            context.commit('removeVoucher')
         },
         // removeItem: (context,payload) => {
         //     context.commit('removeItem',payload)

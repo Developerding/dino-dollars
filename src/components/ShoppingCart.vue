@@ -210,6 +210,9 @@ export default {
           // console.log(response)
           let amountSpent = response.data.purchase_units[0].amount.value
           this.pointsAccumulation(amountSpent)
+          this.$store.dispatch("removeAllItems");
+          this.$store.dispatch("removeVoucher");
+          this.$router.push('/')
       })
       .catch(error => {
           console.log(error)
