@@ -5,8 +5,7 @@ from os import environ
 
 app = Flask(__name__)
 ##Rememeber to change db connection using environ
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL')
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/availablevoucher'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://user:password@avdb:3306/availablevoucher'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 CORS(app)  
@@ -20,10 +19,10 @@ class AvailableVoucher(db.Model):
     DDRequired=db.Column(db.Integer, nullable=False)
 
     #init AvailableVoucher object
-    def __init__(self, PlatformName, DDRequired, DiscountAmt):
+    def __init__(self, PlatformName, DiscountAmt, DDRequired):
         self.Platform_Name=PlatformName
         self.DiscountAmt=DiscountAmt
-        self.DDrequired=DDRequired
+        self.DDRequired=DDRequired
 
     #returned object in JSON format
     def json(self):
@@ -33,7 +32,16 @@ class AvailableVoucher(db.Model):
             'DiscountAmt': self.DiscountAmt,
             'DDRequired': self.DDRequired
         }
+with app.app_context():
+    db.create_all()
 
+    if len(AvailableVoucher.query.all()) == 0:
+        u1 = AvailableVoucher(PlatformName="ASOS", DiscountAmt=10, DDRequired=40)
+        u2 = AvailableVoucher(PlatformName="ASOS", DiscountAmt=5, DDRequired=20)
+
+        db.session.add(u1)
+        db.session.add(u2)
+        db.session.commit()
 #function to access all available vouchers:
 @app.route('/availablevoucher', methods=['GET'])
 def get_all():

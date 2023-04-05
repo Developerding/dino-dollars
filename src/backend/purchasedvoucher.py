@@ -6,8 +6,7 @@ from os import environ
 
 app = Flask(__name__)
 ##Rememeber to change db connection using environ
-app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('dbURL')
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root@localhost:3306/purchasedvoucher'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://user:password@pvdb:3306/purchasedvoucher'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
