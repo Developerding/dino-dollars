@@ -2,9 +2,9 @@
     <v-card class="rounded-lg" outlined>
         <v-list-item three-line>
         <v-list-item-content>
-            <v-list-item-title class="text-h5 mb-1" >{{ discountAmount }}% off</v-list-item-title>
-            <v-list-item-title>{{ ddRequired }} points</v-list-item-title>
-            <v-list-item-subtitle>{{ expiryDate }}</v-list-item-subtitle>
+            <v-list-item-title class="shop mb-1" >{{ discountAmount }}% off</v-list-item-title>
+            <v-list-item-title class="body">{{ ddRequired }} points</v-list-item-title>
+            <v-list-item-subtitle class="body">{{ expiryDate }}</v-list-item-subtitle>
         </v-list-item-content>
 
         <v-btn

@@ -5,7 +5,7 @@
           <v-avatar class="mr-8" size="60"><img src="../assets/asos.jpg"></v-avatar>
       </router-link>
       <v-responsive align="center" justify="center" class="mr-4">
-      <v-text-field dense flat hide-details rounded solo-inverted label="Search for Categories or Stores" background-color="white"></v-text-field>
+      <v-text-field dense flat hide-details rounded solo-inverted label="Search for Categories or Items" background-color="white"></v-text-field>
       </v-responsive>
 
       <router-link to="/ShoppingCart"><v-icon color="white">mdi-cart-outline</v-icon></router-link>
@@ -32,18 +32,8 @@
     </v-main>
 
     <v-main v-else grid-list-md>
-      <!-- <ol>
-        <li v-for="item in cartItems" :key="item.name">
-          {{ item.name }}
-          {{ item.price }}
-        </li>
-      </ol> -->
-      <!-- <v-row>
-        <v-col class="col-2"></v-col>
-        <b id="heading">MY BAG</b>
-      </v-row><br><br> -->
       <v-row>
-        <v-col class="col-2"></v-col>
+        <v-col class="col-1"></v-col>
         <v-col align="center">
           <v-row>
             <b id="heading" class="mb-2">MY BAG</b>
@@ -51,11 +41,17 @@
 
         <v-row v-for="item in cartItems" :key="item.name" class="pb-4">
           
-            <v-card width="500" >
-              <v-img :src="item.ItemImage" :width="150" :height="150" >
-    </v-img>
-              <v-card-title class="justify-left">{{ item.name }}</v-card-title>
-              <v-card-text align="left">${{ item.price }}</v-card-text>
+            <v-card width="570">
+              <v-row>
+              <v-col class="ml-3">
+                <v-img :src="item.ItemImage" :width="100" :height="150" contain align="left"></v-img>
+              </v-col>
+              <v-col align="left" cols="8">
+                <v-card-text class="mt-2" align="left" style="font-size:25px; color:green; font-weight: bold;">SGD ${{ item.price }}</v-card-text>
+                <v-card-text style="font-size:18px" class="justify-left">{{ item.name }}</v-card-text>
+              </v-col>
+              <v-spacer></v-spacer>
+              </v-row>
             </v-card>
             <v-row></v-row>
         </v-row>
@@ -65,45 +61,34 @@
         </v-row>
       </v-col>
       <v-col>
-        <v-card width="400">
+        <v-card width="500">
           <v-card-title id="heading"><b>TOTAL</b></v-card-title>
           <v-divider></v-divider>
           <v-card-text><b>Sub-total:</b><span align="right" justify="right"> ${{ cartTotal }}</span> <br>
           <b>Delivery:</b> $0.00</v-card-text>
           <v-divider></v-divider><br>
           <v-row align="center" justify="center">
-            <v-btn v-on:click="checkoutCart(); redeemVoucher()" large depressed width="370px" class="btn white--text" color="green darken-2">Checkout</v-btn>
+            <v-btn v-on:click="checkoutCart(); redeemVoucher()" large depressed width="450px" class="btn white--text" color="green darken-2">Checkout</v-btn>
           </v-row><br>
           <v-divider></v-divider>
           <v-card-text><b>WE ACCEPT:</b>
             <v-img src="../assets/paymentmethod.png"></v-img>
           </v-card-text>
-          
+        </v-card><br><br>
 
+        <v-card width="500">
+          <v-card-title id="heading"><b>MY VOUCHERS</b></v-card-title>
+          <v-divider></v-divider>
+          <div v-for="(voucher,index) in this.voucher_list" v-bind:key="index">
+          <User_Voucher
+          v-bind:voucher_obj="voucher"
+          />
+          </div>
         </v-card>
       </v-col>
-      <v-col class="col-1"></v-col>
 
       </v-row>
-      <!-- <p>
-        {{ cartTotal }}
-      </p>
-
-      <v-btn v-on:click="removeAllItems">Clear Cart</v-btn>
-
-      <v-btn v-on:click="pointsUpdate" large>checkout</v-btn>
-
-      <v-btn v-on:click="checkoutCart(); redeemVoucher()" large>Checkout</v-btn> -->
-
-      <div v-for="(voucher,index) in this.voucher_list" v-bind:key="index">
-      <User_Voucher
-      v-bind:voucher_obj="voucher"
-        /></div>
-
-      <!-- <v-btn
-        v-on:click="validatingVoucher"
-        large
-        >test validation</v-btn> -->
+      
     </v-main>
 
   </v-app>
@@ -212,7 +197,7 @@ export default {
           this.pointsAccumulation(amountSpent)
           this.$store.dispatch("removeAllItems");
           this.$store.dispatch("removeVoucher");
-          this.$router.push('/')
+          this.$router.push('/PaymentConfirmed')
       })
       .catch(error => {
           console.log(error)

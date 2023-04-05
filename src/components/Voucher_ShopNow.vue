@@ -18,7 +18,7 @@
                        </v-list-item>
                 </v-col>
                 
-                <v-col cols="2">
+                <v-col cols="1">
                 <PopUp_ShopNow/>
                 </v-col>
 

@@ -5,7 +5,7 @@
             <v-avatar class="mr-8" size="60"><img src="../assets/asos.jpg"></v-avatar>
         </router-link>
         <v-responsive align="center" justify="center" class="mr-4">
-        <v-text-field dense flat hide-details rounded solo-inverted label="Search for Categories or Stores" background-color="white"></v-text-field>
+        <v-text-field dense flat hide-details rounded solo-inverted label="Search for Categories or Items" background-color="white"></v-text-field>
         </v-responsive>
 
         <router-link to="/ShoppingCart"><v-icon color="white">mdi-cart-outline</v-icon></router-link>
@@ -66,7 +66,7 @@ import {callASOS} from "../backend/callASOS.js"
     data: () => ({ 
       drawer: null },
     {
-      
+
       items_list:null,
     }),
     computed: {

@@ -1,8 +1,8 @@
 <template>
     <v-row justify="center">
-      <v-btn class="btn white--text" color="green darken-2" outlined text @click.stop="dialog = true">
+      <v-btn class="btn white--text" color="green darken-2"  @click.stop="dialog = true"  align="center" justify="center">
         SHOP NOW
-      </v-btn><v-spacer></v-spacer>
+      </v-btn>
   
       <v-dialog v-model="dialog" max-width="290">
         <v-card class="px-5 pt-5 pb-5 mx-auto text-center d-inline-block shop" variant="outlined">
