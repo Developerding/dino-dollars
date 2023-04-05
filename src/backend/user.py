@@ -61,6 +61,18 @@ class Accounts(db.Model):
 with app.app_context():
     db.create_all()
 
+    if len(User.query.all()) == 0:
+        u1 = User(UID=1, Name="Ding", Email="gerald.ding.2021@scis.smu.edu.sg", Points=0, Password="password")
+        u2 = User(UID=2, Name="Poy", Email="ryanpoy.2021@scis.smu.edu.sg", Points=0, Password="password")
+        a1 = Accounts(UID=1, Name="Facebook")
+        a2 = Accounts(UID=1, Name="Google")
+
+        db.session.add(u1)
+        db.session.add(u2)
+        db.session.add(a1)
+        db.session.add(a2)
+        db.session.commit()
+
 @app.route('/user', methods=['GET'])
 def get_all():
     userList = User.query.all()
