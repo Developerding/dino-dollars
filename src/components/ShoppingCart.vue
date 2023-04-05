@@ -33,7 +33,7 @@
 
     <v-main v-else grid-list-md>
       <v-row>
-        <v-col class="col-2"></v-col>
+        <v-col class="col-1"></v-col>
         <v-col align="center">
           <v-row>
             <b id="heading" class="mb-2">MY BAG</b>
@@ -41,7 +41,7 @@
 
         <v-row v-for="item in cartItems" :key="item.name" class="pb-4">
           
-            <v-card width="650" >
+            <v-card width="570">
               <v-row>
               <v-col class="ml-3">
                 <v-img :src="item.ItemImage" :width="100" :height="150" contain align="left"></v-img>
@@ -61,14 +61,14 @@
         </v-row>
       </v-col>
       <v-col>
-        <v-card width="600">
+        <v-card width="500">
           <v-card-title id="heading"><b>TOTAL</b></v-card-title>
           <v-divider></v-divider>
           <v-card-text><b>Sub-total:</b><span align="right" justify="right"> ${{ cartTotal }}</span> <br>
           <b>Delivery:</b> $0.00</v-card-text>
           <v-divider></v-divider><br>
           <v-row align="center" justify="center">
-            <v-btn v-on:click="checkoutCart(); redeemVoucher()" large depressed width="550px" class="btn white--text" color="green darken-2">Checkout</v-btn>
+            <v-btn v-on:click="checkoutCart(); redeemVoucher()" large depressed width="450px" class="btn white--text" color="green darken-2">Checkout</v-btn>
           </v-row><br>
           <v-divider></v-divider>
           <v-card-text><b>WE ACCEPT:</b>
@@ -76,7 +76,7 @@
           </v-card-text>
         </v-card><br><br>
 
-        <v-card width="600">
+        <v-card width="500">
           <v-card-title id="heading"><b>MY VOUCHERS</b></v-card-title>
           <v-divider></v-divider>
           <div v-for="(voucher,index) in this.voucher_list" v-bind:key="index">
@@ -86,7 +86,6 @@
           </div>
         </v-card>
       </v-col>
-      <v-col class="col-1"></v-col>
 
       </v-row>
       
