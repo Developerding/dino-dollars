@@ -45,8 +45,9 @@ class User(db.Model):
 
 class Accounts(db.Model):
     __tablename__ = 'ACCOUNTS'
+    AID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     UID = db.Column(db.ForeignKey('USER.UID', ondelete='CASCADE', onupdate='CASCADE'), nullable=False, index=True)
-    Name = db.Column(db.String(64), primary_key=True)
+    Name = db.Column(db.String(64))
 
     def __init__(self, UID, Name):
         self.UID = UID
@@ -62,8 +63,8 @@ with app.app_context():
     db.create_all()
 
     if len(User.query.all()) == 0:
-        u1 = User(UID=1, Name="Ding", Email="gerald.ding.2021@scis.smu.edu.sg", Points=0, Password="password")
-        u2 = User(UID=2, Name="Poy", Email="ryanpoy.2021@scis.smu.edu.sg", Points=0, Password="password")
+        u1 = User(Name="Ding", Email="gerald.ding.2021@scis.smu.edu.sg", Password="password")
+        u2 = User(Name="Poy", Email="ryanpoy.2021@scis.smu.edu.sg", Password="password")
         a1 = Accounts(UID=1, Name="Facebook")
         a2 = Accounts(UID=1, Name="Google")
 
