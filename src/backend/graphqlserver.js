@@ -13,6 +13,9 @@ GraphQLList} = require('graphql')
 
 
 //connecting to ASOS API and pulling data:
+
+
+
 const parameters={
     method: "GET",
 url: "https://asos2.p.rapidapi.com/products/v2/list",
