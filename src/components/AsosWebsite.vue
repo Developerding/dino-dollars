@@ -94,15 +94,12 @@ import {callASOS} from "../backend/callASOS.js"
   },
 
   created(){
-    const items_list= callASOS()
-    console.log(callASOS())
-    console.log(items_list)
-    this.items_list= items_list
-    console.log(this.items_list)
-    
-
-
-}
+    this.items_list = callASOS()
+    // callASOS().then(value => console.log(value))
+    // console.log(items_list)
+    // this.items_list= items_list
+    console.log('i think this is an item list' + this.items_list)
+    }
   }
   
 </script>

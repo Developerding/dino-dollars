@@ -1,7 +1,7 @@
 // import axios from 'axios'
 
 
-export function callASOS(){
+export async function callASOS(){
     const axios = require('axios')
 
 
@@ -32,11 +32,11 @@ const graphqlQuery = {
 // }
 
 
- axios({url: graphqlurl, method:'post', data:graphqlQuery})
+await axios({url: graphqlurl, method:'post', data:graphqlQuery})
 .then((response)=>{
-  console.log(response)
-  let items_list
-  items_list=response.data.data.items
+  // console.log(response)
+  // let items_list
+  let items_list=response.data.data.items
   items_list= items_list.map(function(item){
     const temp={
       name:item.name,
@@ -45,7 +45,7 @@ const graphqlQuery = {
     }
     return temp
   })
-  console.log(items_list)
+  console.log("inside callasos"+items_list)
   return items_list
 })
 .catch((err)=>{
