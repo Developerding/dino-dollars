@@ -11,7 +11,7 @@ export async function callASOS(){
         };
 
 
-        const response= await axios({url:graphqlurl, method:'post', data:graphqlQuery})
+        const response=  await axios({url:graphqlurl, method:'post', data:graphqlQuery})
         let items_list= response.data.data.items;
         items_list= items_list.map(function(item){
             const temp= {

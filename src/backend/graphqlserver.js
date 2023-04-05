@@ -35,7 +35,7 @@ headers: {
 "X-RapidAPI-Host": "asos2.p.rapidapi.com",
 },
 }
-await axios.request(parameters)
+axios.request(parameters)
 .then( (response)=>{
     items_list=response.data.products
     items_list=items_list.map(function(item){
