@@ -58,6 +58,9 @@ class Accounts(db.Model):
     def json(self):
         return {"UID": self.UID, "Name": self.Name}
 
+with app.app_context():
+    db.create_all()
+
 @app.route('/user', methods=['GET'])
 def get_all():
     userList = User.query.all()
