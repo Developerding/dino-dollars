@@ -13,6 +13,9 @@ GraphQLList} = require('graphql')
 
 
 //connecting to ASOS API and pulling data:
+
+
+
 const parameters={
     method: "GET",
 url: "https://asos2.p.rapidapi.com/products/v2/list",
@@ -32,7 +35,7 @@ headers: {
 "X-RapidAPI-Host": "asos2.p.rapidapi.com",
 },
 }
-axios.request(parameters)
+await axios.request(parameters)
 .then( (response)=>{
     items_list=response.data.products
     items_list=items_list.map(function(item){

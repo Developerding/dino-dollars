@@ -55,7 +55,8 @@
 // import AsosHomeCarousel from './AsosHomeCarousel.vue'
 import ItemCard from "@/components/ItemCard.vue";
 import {mapActions, mapGetters} from 'vuex'
-import axios from 'axios'
+// import axios from 'axios'
+import {callASOS} from "../backend/callASOS.js"
 
   export default {
     components: {
@@ -65,6 +66,7 @@ import axios from 'axios'
     data: () => ({ 
       drawer: null },
     {
+
       items_list:null,
     }),
     computed: {
@@ -92,31 +94,19 @@ import axios from 'axios'
   },
 
   created(){
-    const graphqlurl="http://localhost:5030/graphql"
-    const graphqlQuery = {
-    "operationName": "Query",
-    "query": `query Query { items { name price imageUrl } }`
-    
-};
-axios({url: graphqlurl, method:'post', data:graphqlQuery})
-.then((response)=>{
-  console.log(response)
-  this.items_list=response.data.data.items
-  this.items_list= this.items_list.map(function(item){
-    const temp={
-      name:item.name,
-      price: item.price,
-      imageUrl: "http://" + item.imageUrl
+     callASOS()
+    .then((response)=>{
+      console.log(response);
+      this.items_list=response
+    })
+    .catch((err)=>{
+      console.log(err)
+    })
+    // callASOS().then(value => console.log(value))
+    // console.log(items_list)
+    // this.items_list= items_list
+    console.log('i think this is an item list' + this.items_list)
     }
-    return temp
-  })
-  console.log(this.items_list)
-})
-.catch((err)=>{
-  console.log(err)
-})
-
-}
   }
   
 </script>
