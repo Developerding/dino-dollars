@@ -19,23 +19,23 @@
             <v-icon color="green" style="font-size:80px" class="mt-3">mdi-checkbox-marked-circle</v-icon>
         </v-row>
         <v-row align="center" justify="center" style="font-size:23px" class="pt-3">
-            Total Spent: $ 
+            Total Spent: $ {{ amount }}
         </v-row>
-        <v-row align="center" justify="center" style="font-size:23px" class="pt-3 green--text">
+        <!-- <v-row align="center" justify="center" style="font-size:23px" class="pt-3 green--text">
             Dino Dollars Earned: 
-        </v-row>
+        </v-row> -->
         <v-row align="center" justify="center" style="font-size:23px" class="pt-3">
-            Dino Dollars Balance: 
+            Dino Dollars Balance:  {{ userPoints }}
         </v-row>
         <br><br><br>
         <v-row align="center" justify="center">
-            <router-link to="/AsosWebsite" tag="v-btn" class="body">
-                <v-btn>Continue Shopping</v-btn>
-            </router-link>
+
+                <v-btn @click="backToASOS">Continue Shopping</v-btn>
+
             <v-col cols="1"></v-col>            
-            <router-link to="/" tag="v-btn" class="body">
-                <v-btn>Return to Dino Dollars</v-btn>
-            </router-link>
+
+                <v-btn @click="backtoDinoDollars">Return to Dino Dollars</v-btn>
+
         </v-row>
       </v-main>
     </v-app>
@@ -65,3 +65,28 @@ export default {
   }
 }
 </script> -->
+<script>
+export default {
+  computed: {
+    userPoints() {
+      return this.$store.state.user.Points
+    },
+    amount() {
+      return this.$store.state.discountedAmount
+    }
+  },
+  methods:{
+    backToASOS(){
+      
+      this.$store.dispatch("removeAllItems");
+      this.$router.push('/AsosWebsite')
+    },
+    backtoDinoDollars(){
+      
+      this.$store.dispatch("removeAllItems");
+      this.$router.push('/')
+    }
+  }
+  
+}
+</script>

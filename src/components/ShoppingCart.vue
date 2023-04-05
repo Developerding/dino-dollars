@@ -136,13 +136,8 @@ export default {
       let state = this.$store.state
       var amount = 0
 
-      if (!this.$store.state.amount) {
-        state.cart.forEach(item => {
-          state.amount += item.price
-        })
-
-        amount = state.amount
-      }
+      amount = state.amount
+      state.discountedAmount = amount
 
       if (this.$store.state.voucher) {
         let voucherObj=this.$store.getters.getVoucher
@@ -195,9 +190,9 @@ export default {
           // console.log(response)
           let amountSpent = response.data.purchase_units[0].amount.value
           this.pointsAccumulation(amountSpent)
-          this.$store.dispatch("removeAllItems");
-          this.$store.dispatch("removeVoucher");
           this.$router.push('/PaymentConfirmed')
+          // this.$store.dispatch("removeAllItems");
+          // this.$store.dispatch("removeVoucher");
       })
       .catch(error => {
           console.log(error)
@@ -236,6 +231,7 @@ export default {
     pointsAccumulation: function(amountSpent) {
       let currentUser = this.currentUser()
       let currentUID = currentUser.UID
+      // let state = this.$store.state
       // console.log(currentUID.UID)
 
       let url = "http://localhost:6003/add_points/" + currentUID
@@ -244,6 +240,7 @@ export default {
       axios.post(url,data)
       .then(response => {
         console.log(response)
+        // state.pointsEarned = response
       })
       .catch(error => {
         console.log(error)
