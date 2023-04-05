@@ -5,7 +5,7 @@
             <v-avatar class="mr-8" size="60"><img src="../assets/asos.jpg"></v-avatar>
         </router-link>
         <v-responsive align="center" justify="center" class="mr-4">
-        <v-text-field dense flat hide-details rounded solo-inverted label="Search for Categories or Stores" background-color="white"></v-text-field>
+        <v-text-field dense flat hide-details rounded solo-inverted label="Search for Categories or Items" background-color="white"></v-text-field>
         </v-responsive>
 
         <router-link to="/ShoppingCart"><v-icon color="white">mdi-cart-outline</v-icon></router-link>
@@ -65,29 +65,6 @@ import axios from 'axios'
     data: () => ({ 
       drawer: null },
     {
-      products: {
-        item1: {
-          name: "Cargo Trousers",
-          price: 48.15,
-          image: "asos1.png"
-        },
-        item2: {
-          name: "Cotton Jacket",
-          price: 58.85,
-          image: "asos2.png"
-        },
-        item3: {
-          name: "Linen Jumpsuit",
-          price: 101.64,
-          image: "asos3.png"
-        },
-        item4: {
-          name: "Midi Dress",
-          price: 97.36,
-          image: "asos4.png"
-        }
-      },
-
       items_list:null,
     }),
     computed: {
