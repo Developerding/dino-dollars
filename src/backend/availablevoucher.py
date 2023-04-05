@@ -20,7 +20,7 @@ class AvailableVoucher(db.Model):
 
     #init AvailableVoucher object
     def __init__(self, PlatformName, DiscountAmt, DDRequired):
-        self.Platform_Name=PlatformName
+        self.PlatformName=PlatformName
         self.DiscountAmt=DiscountAmt
         self.DDRequired=DDRequired
 
