@@ -62,7 +62,7 @@
                 <h2>Unavailable Vouchers:</h2><br>
                 <div v-if="unavailable_voucher_list!=[]">
                     <h4>Earn more points to purchase these amazing deals!</h4>
-                </div>
+                </div><br>
                 <!-- implement code to determine number of vouchers to display -->
                 <div v-for="(voucher,index) in this.unavailable_voucher_list" v-bind:key="index">
                 <Unavailable_Voucher
