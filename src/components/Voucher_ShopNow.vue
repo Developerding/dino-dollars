@@ -47,7 +47,7 @@
                 </v-col>
                 
                 <v-col cols="2" class="shop">
-                EXPIRED
+                REDEEMED
                 </v-col>
 
             </v-row>

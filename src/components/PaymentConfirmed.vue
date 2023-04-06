@@ -24,9 +24,9 @@
         <!-- <v-row align="center" justify="center" style="font-size:23px" class="pt-3 green--text">
             Dino Dollars Earned: 
         </v-row> -->
-        <v-row align="center" justify="center" style="font-size:23px" class="pt-3">
+        <!-- <v-row align="center" justify="center" style="font-size:23px" class="pt-3">
             Dino Dollars Balance:  {{ userPoints }}
-        </v-row>
+        </v-row> -->
         <br><br><br>
         <v-row align="center" justify="center">
 
