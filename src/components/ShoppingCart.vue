@@ -58,7 +58,7 @@
 
         <v-row>
           <v-btn v-on:click="removeAllItems">Clear Cart</v-btn>
-        </v-row>
+        </v-row><br>
       </v-col>
       <v-col>
         <v-card width="500">

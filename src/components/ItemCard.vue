@@ -17,7 +17,7 @@
 
     <v-dialog v-model="showDialog" width="500">
         <v-card>
-          <v-card-text class="shop bold pt-8" align="center">
+          <v-card-text class="shop bold pt-8 black--text" align="center">
             Item Added to Cart
           </v-card-text>
           <v-card-text class="body" align="center">

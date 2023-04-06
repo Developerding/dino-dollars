@@ -18,7 +18,7 @@
                        </v-list-item>
                 </v-col>
                 
-                <v-col cols="1">
+                <v-col cols="1" class="ml-3">
                 <PopUp_ShopNow/>
                 </v-col>
 
@@ -77,6 +77,9 @@ export default {
             purchasedDate: this.voucher_obj.PurchasedDate.slice(4,16),
             redeemedDate: this.voucher_obj.RedeemedDate
         }
+    },
+    created() {
+        console.log(this.voucher_obj)
     }
 }
 
